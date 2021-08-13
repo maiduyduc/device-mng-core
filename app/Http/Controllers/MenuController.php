@@ -38,7 +38,7 @@ class MenuController extends Controller
         $menulist->name = $request->input('name');
         $menulist->save();
         $request->session()->flash('message', 'Successfully created menu');
-        return redirect()->route('menu.menu.create'); 
+        return redirect()->route('menu.menu.create');
     }
 
     public function edit(Request $request){
@@ -56,16 +56,8 @@ class MenuController extends Controller
         $menulist->name = $request->input('name');
         $menulist->save();
         $request->session()->flash('message', 'Successfully update menu');
-        return redirect()->route('menu.menu.edit', ['id'=>$request->input('id')]); 
+        return redirect()->route('menu.menu.edit', ['id'=>$request->input('id')]);
     }
-
-    /*
-    public function show(Request $request){
-        return view('dashboard.editmenu.menu.show',[
-            'menulist'  => Menulist::where('id', '=', $request->input('id'))->first()
-        ]);
-    }
-    */
 
     public function delete(Request $request){
         $menus = Menus::where('menu_id', '=', $request->input('id'))->first();

@@ -12,7 +12,7 @@
 */
 
 Route::group(['middleware' => ['get.menu']], function () {
-    Route::get('/', 'HomeController@home');
+    Route::get('/', 'HomeController@home')->name('home');
 
     Auth::routes();
 
@@ -43,5 +43,10 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::get('/delete', 'MenuController@delete')->name('menu.menu.delete');
         });
 
+    });
+
+    Route::get('dangxuat', function () {
+        Auth::logout();
+        return redirect()->route('login');
     });
 });
