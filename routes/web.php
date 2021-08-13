@@ -12,22 +12,9 @@
 */
 
 Route::group(['middleware' => ['get.menu']], function () {
-    Route::get('/', function () {
-        return view('dashboard.homepage');
-    });
+    Route::get('/', 'HomeController@home');
 
-    Route::group(['middleware' => ['role:user']], function () {
-
-        Route::get('/404', function () {
-            return view('dashboard.404');
-        });
-        Route::get('/500', function () {
-            return view('dashboard.500');
-        });
-
-    });
     Auth::routes();
-
 
     Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('users', 'UsersController')->except(['create', 'store']);

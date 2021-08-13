@@ -137,22 +137,10 @@ class MenusTableSeeder extends Seeder
         $this->insertLink('guest,user,admin', 'Dashboard', '/', 'cil-speedometer');
 
         $this->beginDropdown('admin', 'Settings', 'cil-calculator');
-            $this->insertLink('admin', 'Notes',                   '/notes');
             $this->insertLink('admin', 'Users',                   '/users');
             $this->insertLink('admin', 'Edit menu',               '/menu/menu');
             $this->insertLink('admin', 'Edit menu elements',      '/menu/element');
             $this->insertLink('admin', 'Edit roles',              '/roles');
-        $this->endDropdown();
-
-        $this->insertLink('guest', 'Login', '/login', 'cil-account-logout');
-        $this->insertLink('guest', 'Register', '/register', 'cil-account-logout');
-
-        $this->insertTitle('user,admin', 'Extras');
-        $this->beginDropdown('user,admin', 'Pages', 'cil-star');
-            $this->insertLink('user,admin', 'Login',         '/login');
-            $this->insertLink('user,admin', 'Register',      '/register');
-            $this->insertLink('user,admin', 'Error 404',     '/404');
-            $this->insertLink('user,admin', 'Error 500',     '/500');
         $this->endDropdown();
 
         $this->joinAllByTransaction(); ///   <===== Must by use on end of this seeder
