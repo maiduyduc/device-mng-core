@@ -14,4 +14,8 @@ class HomeController extends Controller
     public function home(){
         return view('dashboard.homepage');
     }
+
+    public function duc(){
+        dd("hi");
+    }
 }

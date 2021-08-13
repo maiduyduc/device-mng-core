@@ -31,7 +31,7 @@
                                            alt="user@email.com"></div>
             </a>
             <div class="dropdown-menu dropdown-menu-right pt-0">
-                <div class="dropdown-header bg-light py-2"><strong>Thầy Đỗ Văn Uy - {{ Auth::user()->menuroles }}</strong></div>
+                <div class="dropdown-header bg-light py-2"><strong>{{ Auth::user()->name }} - {{ Auth::user()->menuroles }}</strong></div>
 
                 <a class="dropdown-item" href="#">
                     <svg class="c-icon mr-2">

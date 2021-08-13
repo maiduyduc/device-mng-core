@@ -15,7 +15,9 @@ class MenusTableSeeder extends Seeder
     private $sequence = 1;
     private $joinData = array();
     private $adminRole = null;
-    private $userRole = null;
+    private $ktvRole = null;
+    private $ptbRole = null;
+    private $trkRole = null;
     private $subFolder = '';
 
     public function join($roles, $menusId){
@@ -70,11 +72,17 @@ class MenusTableSeeder extends Seeder
             $permission = Permission::create(['name' => 'visit ' . $name]);
         }
         $roles = explode(',', $roles);
-        if(in_array('user', $roles)){
-            $this->userRole->givePermissionTo($permission);
-        }
         if(in_array('admin', $roles)){
             $this->adminRole->givePermissionTo($permission);
+        }
+        if(in_array('ktv', $roles)){
+            $this->ktvRole->givePermissionTo($permission);
+        }
+        if(in_array('ptb', $roles)){
+            $this->ptbRole->givePermissionTo($permission);
+        }
+        if(in_array('trk', $roles)){
+            $this->trkRole->givePermissionTo($permission);
         }
         return $lastId;
     }
@@ -128,13 +136,15 @@ class MenusTableSeeder extends Seeder
     {
         /* Get roles */
         $this->adminRole = Role::where('name' , '=' , 'admin' )->first();
-        $this->userRole = Role::where('name', '=', 'user' )->first();
+        $this->ktvRole = Role::where('name', '=', 'ktv' )->first();
+        $this->ptbRole = Role::where('name', '=', 'ptb' )->first();
+        $this->trkRole = Role::where('name', '=', 'trk' )->first();
         /* Create Sidebar menu */
         DB::table('menulist')->insert([
             'name' => 'sidebar menu'
         ]);
         $this->menuId = DB::getPdo()->lastInsertId();  //set menuId
-        $this->insertLink('guest,user,admin', 'Dashboard', '/', 'cil-speedometer');
+        $this->insertLink('ktv,ptb,trk,admin', 'Dashboard', '/', 'cil-speedometer');
 
         $this->beginDropdown('admin', 'Settings', 'cil-calculator');
             $this->insertLink('admin', 'Users',                   '/users');
@@ -142,6 +152,20 @@ class MenusTableSeeder extends Seeder
             $this->insertLink('admin', 'Edit menu elements',      '/menu/element');
             $this->insertLink('admin', 'Edit roles',              '/roles');
         $this->endDropdown();
+
+        $this->beginDropdown('ktv', 'Test', 'cil-bell');
+            $this->insertLink('ktv', 'ktv', '/duc');
+        $this->endDropdown();
+
+        $this->beginDropdown('ptb', 'Test ptb', 'cil-bell');
+            $this->insertLink('ptb', 'ptb', '/duc');
+        $this->endDropdown();
+
+        $this->beginDropdown('trk', 'Test trk', 'cil-bell');
+            $this->insertLink('trk', 'trk', '/duc');
+        $this->endDropdown();
+
+        $this->insertLink('ktv,ptb,trk,admin', 'Đăng xuất', '/dangxuat', 'cil-account-logout');
 
         $this->joinAllByTransaction(); ///   <===== Must by use on end of this seeder
     }
