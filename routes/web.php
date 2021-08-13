@@ -25,7 +25,6 @@ Route::group(['middleware' => ['get.menu']], function () {
             return view('dashboard.500');
         });
 
-        Route::resource('notes', 'NotesController');
     });
     Auth::routes();
 
