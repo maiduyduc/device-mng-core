@@ -21,13 +21,13 @@ class MenuController extends Controller
     }
 
     public function index(Request $request){
-        return view('dashboard.editmenu.menu.index', array(
+        return view('apps.menu.index', array(
             'menulist'  => Menulist::all()
         ));
     }
 
     public function create(){
-        return view('dashboard.editmenu.menu.create',[]);
+        return view('apps.menu.add');
     }
 
     public function store(Request $request){
@@ -37,12 +37,12 @@ class MenuController extends Controller
         $menulist = new Menulist();
         $menulist->name = $request->input('name');
         $menulist->save();
-        $request->session()->flash('message', 'Successfully created menu');
-        return redirect()->route('menu.menu.create');
+        alert()->success('', 'Thêm mới menu thành công!');
+        return redirect()->route('menu.menu.index');
     }
 
     public function edit(Request $request){
-        return view('dashboard.editmenu.menu.edit',[
+        return view('apps.menu.edit',[
             'menulist'  => Menulist::where('id', '=', $request->input('id'))->first()
         ]);
     }
@@ -55,8 +55,8 @@ class MenuController extends Controller
         $menulist = Menulist::where('id', '=', $request->input('id'))->first();
         $menulist->name = $request->input('name');
         $menulist->save();
-        $request->session()->flash('message', 'Successfully update menu');
-        return redirect()->route('menu.menu.edit', ['id'=>$request->input('id')]);
+        alert()->success('', 'Cập nhật thông tin menu thành công!');
+        return redirect()->route('menu.menu.index');
     }
 
     public function delete(Request $request){
@@ -64,12 +64,10 @@ class MenuController extends Controller
         if(!empty($menus)){
             $request->session()->flash('message', "Can't delete. This menu have assigned menu elements");
             $request->session()->flash('back', 'menu.menu.index');
-            return view('dashboard.shared.universal-info');
+            return $this->failResponse();
         }else{
             Menulist::where('id', '=', $request->input('id'))->delete();
-            $request->session()->flash('message', 'Successfully deleted menu');
-            $request->session()->flash('back', 'menu.menu.index');
-            return view('dashboard.shared.universal-info');
+            return $this->successResponse();
         }
     }
 

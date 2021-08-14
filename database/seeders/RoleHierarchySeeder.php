@@ -28,15 +28,21 @@ class RoleHierarchySeeder extends Seeder
             'role_id' => $adminRole->id,
             'hierarchy' => 1,
         ]);
-        $userRole = Role::create(['name' => 'user']);
+        $ktvRole = Role::create(['name' => 'ktv']);
         RoleHierarchy::create([
-            'role_id' => $userRole->id,
+            'role_id' => $ktvRole->id,
             'hierarchy' => 2,
         ]);
-        $guestRole = Role::create(['name' => 'guest']);
+        $ptbRole = Role::create(['name' => 'ptb']);
         RoleHierarchy::create([
-            'role_id' => $guestRole->id,
+            'role_id' => $ptbRole->id,
             'hierarchy' => 3,
+        ]);
+
+        $trkRole = Role::create(['name' => 'trk']);
+        RoleHierarchy::create([
+            'role_id' => $trkRole->id,
+            'hierarchy' => 4,
         ]);
 
         /*  insert users   */
@@ -46,22 +52,52 @@ class RoleHierarchySeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
             'remember_token' => Str::random(10),
-            'menuroles' => 'user,admin'
+            'menuroles' => 'admin'
         ]);
         $user->assignRole('admin');
-        $user->assignRole('user');
-        for($i = 0; $i<$numberOfUsers; $i++){
+
+        $user = User::create([
+            'name' => 'ktv',
+            'email' => 'ktv@ktv.com',
+            'email_verified_at' => now(),
+            'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
+            'remember_token' => Str::random(10),
+            'menuroles' => 'ktv'
+        ]);
+        $user->assignRole('ktv');
+
+        $user = User::create([
+            'name' => 'ptb',
+            'email' => 'ptb@ptb.com',
+            'email_verified_at' => now(),
+            'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
+            'remember_token' => Str::random(10),
+            'menuroles' => 'ptb'
+        ]);
+        $user->assignRole('ptb');
+
+        $user = User::create([
+            'name' => 'trk',
+            'email' => 'trk@trk.com',
+            'email_verified_at' => now(),
+            'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
+            'remember_token' => Str::random(10),
+            'menuroles' => 'trk'
+        ]);
+        $user->assignRole('trk');
+
+        /*for($i = 0; $i<$numberOfUsers; $i++){
             $user = User::create([
                 'name' => $faker->name(),
                 'email' => $faker->unique()->safeEmail(),
                 'email_verified_at' => now(),
-                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
                 'remember_token' => Str::random(10),
                 'menuroles' => 'user'
             ]);
             $user->assignRole('user');
             array_push($usersIds, $user->id);
-        }
+        }*/
 
     }
 }

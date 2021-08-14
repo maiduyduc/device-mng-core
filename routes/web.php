@@ -13,7 +13,7 @@
 
 Route::group(['middleware' => ['get.menu']], function () {
     Route::get('/', 'HomeController@home')->name('home');
-
+    Route::get('/duc', 'HomeController@duc')->name('duc');
     Auth::routes();
 
     Route::group(['middleware' => ['role:admin']], function () {

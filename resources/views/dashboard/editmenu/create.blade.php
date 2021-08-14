@@ -95,8 +95,8 @@
                                     </div>
                                     <br><br>
                                     <div id="div-icon">
-                                        Icon - Find icon class in: 
-                                        <a 
+                                        Icon - Find icon class in:
+                                        <a
                                             href="https://coreui.io/docs/icons/icons-list/#coreui-icons-free-502-icons"
                                             target="_blank"
                                         >
@@ -123,8 +123,8 @@
 @endsection
 
 @section('javascript')
-<script src="{{ asset('js/axios.min.js') }}"></script> 
-<script src="{{ asset('js/menu-create.js') }}"></script>
 
+<script src="{{ asset('js/axios.min.js') }}"></script>
+<script src="{{ asset('js/menu-create.js') }}"></script>
 
 @endsection

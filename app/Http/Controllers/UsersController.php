@@ -28,14 +28,14 @@ class UsersController extends Controller
     {
         $you = auth()->user();
         $users = User::all();
-        return view('dashboard.admin.usersList', compact('users', 'you'));
+        return view('apps.dashboard.users.index', compact('users', 'you'));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -47,12 +47,13 @@ class UsersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit($id)
     {
         $user = User::find($id);
-        return view('dashboard.admin.userEditForm', compact('user'));
+//        return view('dashboard.admin.userEditForm', compact('user'));
+        return view('apps.dashboard.users.edit', compact('user'));
     }
 
     /**
@@ -60,7 +61,7 @@ class UsersController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -71,8 +72,9 @@ class UsersController extends Controller
         $user = User::find($id);
         $user->name       = $request->input('name');
         $user->email      = $request->input('email');
+        $user->menuroles  = $request->input('menuroles');
         $user->save();
-        $request->session()->flash('message', 'Successfully updated user');
+        alert()->success('','Cập nhật thông tin người dùng thành công!');
         return redirect()->route('users.index');
     }
 
@@ -80,7 +82,7 @@ class UsersController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {

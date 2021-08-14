@@ -35,7 +35,7 @@ class MenuElementController extends Controller
             }
         }
         $getSidebarMenu = new GetSidebarMenu();
-        return view('dashboard.editmenu.index', array(
+        return view('apps.menu.menu-element.index_v2', array(
             'menulist'      => Menulist::all(),
             'role'          => 'admin',
             'roles'         => RolesService::get(),

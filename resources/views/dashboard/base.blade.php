@@ -8,7 +8,7 @@
 -->
 
 <html lang="en">
-  <head>
+<head>
     <base href="./">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,55 +40,52 @@
     <!-- Main styles for this application-->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
-    @yield('css')
+@yield('css')
 
-    <!-- Global site tag (gtag.js) - Google Analytics-->
+<!-- Global site tag (gtag.js) - Google Analytics-->
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
 
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      // Shared ID
-      gtag('config', 'UA-118965717-3');
-      // Bootstrap ID
-      gtag('config', 'UA-118965717-5');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        // Shared ID
+        gtag('config', 'UA-118965717-3');
+        // Bootstrap ID
+        gtag('config', 'UA-118965717-5');
     </script>
-
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     <link href="{{ asset('css/coreui-chartjs.css') }}" rel="stylesheet">
-  </head>
+</head>
+@include('sweetalert::alert')
 
+<body class="c-app">
+<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
 
+    @include('dashboard.shared.nav-builder')
 
-  <body class="c-app">
-    <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+    @include('dashboard.shared.header')
 
-      @include('dashboard.shared.nav-builder')
-
-      @include('dashboard.shared.header')
-
-      <div class="c-body">
+    <div class="c-body">
 
         <main class="c-main">
 
-          @yield('content')
+            @yield('content')
 
         </main>
         @include('dashboard.shared.footer')
-      </div>
     </div>
+</div>
 
 
-
-    <!-- CoreUI and necessary plugins-->
-    <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/coreui-utils.js') }}"></script>
-    @yield('javascript')
-
+<!-- CoreUI and necessary plugins-->
+<script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
+<script src="{{ asset('js/coreui-utils.js') }}"></script>
+@yield('javascript')
 
 
-
-  </body>
+</body>
 </html>

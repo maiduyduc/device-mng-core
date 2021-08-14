@@ -30,8 +30,8 @@
                                 </div>
                                 <input class="form-control" type="text" placeholder="{{ __('E-Mail Address') }}" name="email" value="{{ $user->email }}" required>
                             </div>
-                            <button class="btn btn-block btn-success" type="submit">{{ __('Save') }}</button>
-                            <a href="{{ route('users.index') }}" class="btn btn-block btn-primary">{{ __('Return') }}</a> 
+                            <button class="btn btn-block btn-success" type="submit">{{ __('Đồng ý') }}</button>
+                            <a href="{{ route('users.index') }}" class="btn btn-block btn-primary">{{ __('Trở lại') }}</a>
                         </form>
                     </div>
                 </div>
