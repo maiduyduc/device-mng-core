@@ -12,7 +12,8 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
     public function home(){
-        return view('dashboard.homepage');
+//        return view('dashboard.homepage');
+        return view('apps.dashboard.index');
     }
 
     public function duc(){

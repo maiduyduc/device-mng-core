@@ -25,7 +25,7 @@
 
 @include('apps.partials.header')
 <!-- ========== Left Sidebar Start ========== -->
-@include('apps.partials.sidebar')
+@include('apps.shared.nav-builder')
 <!-- Left Sidebar End -->
     <!-- Begin main content-->
     <div class="main-content">
@@ -61,7 +61,7 @@
 
 <script src="{{ asset('assets\apps\assets\js\app.js') }}"></script>
 
-{{--@include('sweetalert::alert')--}}
+@include('sweetalert::alert')
 <script>
     $(document).on('click', '#getMessage', function (e) {
         e.preventDefault();

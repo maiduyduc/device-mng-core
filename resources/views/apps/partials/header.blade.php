@@ -8,7 +8,7 @@
 {{--                        <img src="{{ asset('assets\images\logo-light.svg') }}" alt="" height="22">--}}
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets\images\logo.jpg') }}" alt="" height="50px">
+                        <img src="{{ asset('assets\apps\assets\images\logo.jpg') }}" alt="" height="50px">
                     </span>
                 </a>
             </div>
@@ -16,14 +16,6 @@
             <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
                 <i class="fa fa-fw fa-bars"></i>
             </button>
-            <!-- App Search-->
-            {{--            <form class="app-search d-none d-lg-block">--}}
-            {{--                <div class="position-relative">--}}
-            {{--                    <input type="text" class="form-control" placeholder="Search...">--}}
-            {{--                    <span class="bx bx-search-alt"></span>--}}
-            {{--                </div>--}}
-            {{--            </form>--}}
-
         </div>
 
         <div class="d-flex">

@@ -1,7 +1,7 @@
 @extends('apps.layouts.app')
 
 @section('title')
-    <title>Danh sách người dùng</title>
+    <title>Quản lý menu chính</title>
 @endsection
 @section('link')
     <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}"
@@ -18,26 +18,6 @@
             vertical-align: middle !important;
             text-align: center !important;
         }
-
-        .badge-soft-admin {
-            color: #f46a6a;
-            background-color: rgba(244, 106, 106, .18);
-        }
-
-        .badge-soft-ptb {
-            color: #556ee6;
-            background-color: rgba(85, 110, 230, .18);
-        }
-
-        .badge-soft-trk {
-            color: #34c38f;
-            background-color: rgba(52, 195, 143, .18);
-        }
-
-        .badge-soft-ktv {
-            color: #343a40;
-            background-color: rgba(52, 58, 64, .18);
-        }
     </style>
 @endsection
 
@@ -48,12 +28,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0 font-size-18">Danh sách người dùng</h4>
+                    <h4 class="mb-0 font-size-18">Danh sách menu chính</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Người dùng</a></li>
-                            <li class="breadcrumb-item active">Danh sách người dùng</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Quản lý menu chính</a></li>
+                            <li class="breadcrumb-item active">Danh sách menu chính</li>
                         </ol>
                     </div>
 
@@ -71,16 +51,11 @@
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
-                                    {{--                                    <div class="page-title-right">--}}
-                                    {{--                                        <a href="{{ route('user.create') }}" class="btn btn-primary">Tạo tài khoản--}}
-                                    {{--                                            mới</a>--}}
-                                    {{--                                        <a href="{{ route('user.trash') }}" class="btn btn-danger"--}}
-                                    {{--                                           data-toggle="tooltip" data-placement="top" title=""--}}
-                                    {{--                                           data-original-title="Thùng rác"--}}
-                                    {{--                                        >--}}
-                                    {{--                                            <i class="bx bx-trash"></i>--}}
-                                    {{--                                        </a>--}}
-                                    {{--                                    </div>--}}
+                                    <div class="page-title-right">
+                                        <a href="{{ route('menu.menu.create') }}" class="btn btn-primary">
+                                            Thêm menu mới
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -90,43 +65,29 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="width: 50px">ID</th>
-                                <th>Tên người dùng</th>
-                                <th>Email</th>
-                                <th style="max-width: 3rem">Vai trò</th>
-                                <th scope="col" style="width: 100px">Hành động</th>
+                                <th>Tên Menu</th>
+                                <th scope="col" style="max-width: 6rem">Hành động</th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            @foreach($users as $user)
+                            @foreach($menulist as $menu)
                                 <tr>
-                                    <td style="text-align: center !important;">{{ $user->id }}</td>
+                                    <td style="text-align: center !important;">{{ $menu->id }}</td>
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0">{{ $user->name }}</p>
+                                        <p class="text-dark font-size-14 mb-0">{{ $menu->name }}</p>
                                     </td>
-                                    <td><p class="text-dark font-size-14 mb-0">{{ $user->email }}</p></td>
-                                    <td style="text-align: center !important;">
-                                        <span class="badge badge-soft-{{ $user->menuroles }} font-size-14">
-                                            @foreach(config('my-config.role-name') as $role => $name)
-                                                @if($role == $user->menuroles)
-                                                    {{ $name }}
-                                                @endif
-                                            @endforeach
-                                            </span>
-                                    </td>
-
-                                    <td class="d-flex justify-content-around">
-                                        @if( $you->id !== $user->id )
-                                            <a href="{{ url('/users/' . $user->id . '/edit') }}"
-                                               class="btn btn-primary badge badge-primary font-size-14">Sửa</a>
-                                            <form action="{{ route('users.destroy', $user->id ) }}" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-danger badge badge-danger  font-size-14">Xóa tài
-                                                    khoản
-                                                </button>
-                                            </form>
-                                        @endif
+                                    <td style="max-width: 6rem; text-align: center!important;">
+                                        <a href="{{ route('menu.index', ['menu' => $menu->id] ) }}"
+                                           class="btn btn-info badge badge-info font-size-14">Xem chi tiết
+                                        </a>
+                                        <a href="{{ route('menu.menu.edit', ['id' => $menu->id] ) }}"
+                                           class="btn btn-primary badge badge-primary font-size-14">Sửa
+                                        </a>
+                                        <a href=""
+                                           class="btn btn-danger badge badge-danger font-size-14 action_delete"
+                                           data-url="{{ route('menu.menu.delete', ['id' => $menu->id] ) }}"
+                                        >Xóa</a>
                                     </td>
                                 </tr>
                             @endforeach
