@@ -144,28 +144,17 @@ class MenusTableSeeder extends Seeder
             'name' => 'sidebar menu'
         ]);
         $this->menuId = DB::getPdo()->lastInsertId();  //set menuId
-        $this->insertLink('ktv,ptb,trk,admin', 'Dashboard', '/', 'cil-speedometer');
-
-        $this->beginDropdown('admin', 'Settings', 'cil-calculator');
-            $this->insertLink('admin', 'Users',                   '/users');
-            $this->insertLink('admin', 'Edit menu',               '/menu/menu');
-            $this->insertLink('admin', 'Edit menu elements',      '/menu/element');
-            $this->insertLink('admin', 'Edit roles',              '/roles');
+        $this->insertLink('ktv,ptb,trk,admin', 'Trang chủ', '/', 'mdi mdi-home');
+        $this->insertTitle('admin', 'CHỨC NĂNG DÀNH RIÊNG CHO AMDIN');
+        $this->beginDropdown('admin', 'Quản lý hệ thống', 'bx bx-chip');
+            $this->insertLink('admin', 'Quản lý người dùng',      '/users');
+            $this->insertLink('admin', 'Quản lý vai trò',         '/roles');
+            $this->insertLink('admin', 'Quản lý menu chính',      '/menu/menu');
+            $this->insertLink('admin', 'Quản lý menu con',        '/menu/element');
         $this->endDropdown();
 
-        $this->beginDropdown('ktv', 'Test', 'cil-bell');
-            $this->insertLink('ktv', 'ktv', '/duc');
-        $this->endDropdown();
 
-        $this->beginDropdown('ptb', 'Test ptb', 'cil-bell');
-            $this->insertLink('ptb', 'ptb', '/duc');
-        $this->endDropdown();
-
-        $this->beginDropdown('trk', 'Test trk', 'cil-bell');
-            $this->insertLink('trk', 'trk', '/duc');
-        $this->endDropdown();
-
-        $this->insertLink('ktv,ptb,trk,admin', 'Đăng xuất', '/dangxuat', 'cil-account-logout');
+        $this->insertLink('ktv,ptb,trk,admin', 'Đăng xuất', '/dangxuat', 'mdi mdi-logout');
 
         $this->joinAllByTransaction(); ///   <===== Must by use on end of this seeder
     }

@@ -85,7 +85,7 @@ class MenuElementController extends Controller
     }
 
     public function create(){
-        return view('dashboard.editmenu.create',[
+        return view('apps.menu.menu-element.add',[
             'roles'    => RolesService::get(),
             'menulist' => Menulist::all(),
         ]);
@@ -138,14 +138,14 @@ class MenuElementController extends Controller
             $menuRole->menus_id = $menus->id;
             $menuRole->save();
         }
-        $request->session()->flash('message', 'Successfully created menu element');
-        return redirect()->route('menu.create');
+        alert()->success('', 'Thành công');
+        return redirect()->route('menu.index');
     }
 
     public function edit(Request $request){
 
 
-        return view('dashboard.editmenu.edit',[
+        return view('apps.menu.menu-element.edit',[
             'roles'    => RolesService::get(),
             'menulist' => Menulist::all(),
             'menuElement' => Menus::where('id', '=', $request->input('id'))->first(),
@@ -154,15 +154,7 @@ class MenuElementController extends Controller
     }
 
     public function update(Request $request){
-
-        //var_dump( $_POST );
-        //die();
-
         $validatedData = $request->validate($this->getValidateArray());
-
-        //var_dump( $_POST );
-       //die();
-
         $menus = Menus::where('id', '=', $request->input('id'))->first();
         $menus->slug = $request->input('type');
         $menus->menu_id = $request->input('menu');
@@ -188,8 +180,8 @@ class MenuElementController extends Controller
                 $menuRole->save();
             }
         }
-        $request->session()->flash('message', 'Successfully update menu element');
-        return redirect()->route('menu.edit', ['id'=>$request->input('id')]);
+        alert()->success('', 'Cập nhật thành công');
+        return redirect()->route('menu.index');
     }
 
     public function show(Request $request){
@@ -199,7 +191,7 @@ class MenuElementController extends Controller
         if(empty($menuElement)){
             $menuElement = Menus::where('id', '=', $request->input('id'))->first();
         }
-        return view('dashboard.editmenu.show',[
+        return view('apps.menu.menu-element.show',[
             'menulist' => Menulist::all(),
             'menuElement' => $menuElement,
             'menuroles' => Menurole::where('menus_id', '=', $request->input('id'))->get()
@@ -208,13 +200,13 @@ class MenuElementController extends Controller
 
     public function delete(Request $request){
         $menus = Menus::where('id', '=', $request->input('id'))->first();
-        $menuId = $menus->menu_id;
+//        $menuId = $menus->menu_id;
         $menus->delete();
         Menurole::where('menus_id', '=', $request->input('id'))->delete();
-        $request->session()->flash('message', 'Successfully deleted menu element');
-        $request->session()->flash('back', 'menu.index');
-        $request->session()->flash('backParams', ['menu' => $menuId]);
-        return view('dashboard.shared.universal-info');
+//        $request->session()->flash('message', 'Successfully deleted menu element');
+//        $request->session()->flash('back', 'menu.index');
+//        $request->session()->flash('backParams', ['menu' => $menuId]);
+        return $this->successResponse();
     }
 
 }

@@ -29,13 +29,14 @@
     if(array_key_exists('slug', $data) && $data['slug'] === 'dropdown'){
     ?>
     <tr>
-        <td>{{ $data['id'] }}</td>
+{{--        <td>{{ $data['id'] }}</td>--}}
+        <td>{{ $data['sequence'] }}</td>
         <td>
             <p class="text-dark font-size-14 mb-0">{{ $data['name']}}</p>
         </td>
         <td>{{ $data['slug'] }}</td>
         <td></td>
-        <td>{{ $data['sequence'] }}</td>
+{{--        <td>{{ $data['sequence'] }}</td>--}}
         <td>
             <a class="btn btn-success" href="{{ route('menu.up', ['id' => $data['id']]) }}">
                 <i class="mdi mdi-arrow-up-bold-outline"></i>
@@ -66,13 +67,14 @@
     if( $data[$i]['slug'] === 'link' ){
     ?>
     <tr>
-        <td>{{ $data[$i]['id'] }}</td>
+{{--        <td>{{ $data[$i]['id'] }}</td>--}}
+        <td>{{ $data[$i]['sequence'] }}</td>
         <td>
             <p class="text-dark font-size-14 mb-0">{{ $data[$i]['name']}}</p>
         </td>
         <td>{{ $data[$i]['slug'] }}</td>
         <td>{{ $data[$i]['href'] }}</td>
-        <td>{{ $data[$i]['sequence'] }}</td>
+{{--        <td>{{ $data[$i]['sequence'] }}</td>--}}
         <td>
             <a class="btn btn-success" href="{{ route('menu.up', ['id' => $data[$i]['id']]) }}">
                 <i class="mdi mdi-arrow-up-bold-outline"></i>
@@ -158,7 +160,7 @@
                                         </form>
                                     </div>
                                     <div class="page-title-right">
-                                        <a href="{{ route('menu.menu.create') }}" class="btn btn-primary">
+                                        <a href="{{ route('menu.create') }}" class="btn btn-primary">
                                             Thêm menu mới
                                         </a>
                                     </div>
@@ -169,11 +171,12 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                             <tr>
-                                <th scope="col" style="width: 50px">ID</th>
+{{--                                <th scope="col" style="width: 50px">ID</th>--}}
+                                <th scope="col">Thứ tự ưu tiên</th>
                                 <th>Tên Menu</th>
                                 <th scope="col">Loại</th>
                                 <th scope="col">Đường dẫn</th>
-                                <th scope="col">Thứ tự ưu tiên</th>
+{{--                                <th scope="col">Thứ tự ưu tiên</th>--}}
                                 <th scope="col">Tăng cấp ưu tiên</th>
                                 <th scope="col">Giảm cấp ưu tiên</th>
                                 <th scope="col" style="max-width: 6rem">Hành động</th>
@@ -184,13 +187,14 @@
                             @foreach($menuToEdit as $menuel)
                                 @if($menuel['slug'] === 'link')
                                     <tr>
-                                        <td>{{ $menuel['id'] }}</td>
+{{--                                        <td>{{ $menuel['id'] }}</td>--}}
+                                        <td>{{ $menuel['sequence'] }}</td>
                                         <td>
                                             <p class="text-dark font-size-14 mb-0">{{ $menuel['name']}}</p>
                                         </td>
                                         <td>{{ $menuel['slug'] }}</td>
                                         <td>{{ $menuel['href'] }}</td>
-                                        <td>{{ $menuel['sequence'] }}</td>
+{{--                                        <td>{{ $menuel['sequence'] }}</td>--}}
                                         <td>
                                             <a class="btn btn-success"
                                                href="{{ route('menu.up', ['id' => $menuel['id']]) }}">
@@ -220,13 +224,14 @@
                                     <?php renderDropdownForMenuEdit($menuel, $role) ?>
                                 @elseif($menuel['slug'] === 'title')
                                     <tr>
-                                        <td>{{ $menuel['id'] }}</td>
+{{--                                        <td>{{ $menuel['id'] }}</td>--}}
+                                        <td>{{ $menuel['sequence'] }}</td>
                                         <td>
                                             <p class="text-dark font-size-14 mb-0">{{ $menuel['name']}}</p>
                                         </td>
                                         <td>{{ $menuel['slug'] }}</td>
                                         <td></td>
-                                        <td>{{ $menuel['sequence'] }}</td>
+{{--                                        <td>{{ $menuel['sequence'] }}</td>--}}
                                         <td>
                                             <a class="btn btn-success"
                                                href="{{ route('menu.up', ['id' => $menuel['id']]) }}">

@@ -23,23 +23,23 @@ class RoleHierarchySeeder extends Seeder
         $usersIds = array();
         $faker = Faker::create();
         /* Create roles */
-        $adminRole = Role::create(['name' => 'admin']);
+        $adminRole = Role::create(['name' => 'admin', 'display_name' => 'Super Admin']);
         RoleHierarchy::create([
             'role_id' => $adminRole->id,
             'hierarchy' => 1,
         ]);
-        $ktvRole = Role::create(['name' => 'ktv']);
+        $ktvRole = Role::create(['name' => 'ktv', 'display_name' => 'Kỹ thuật viên']);
         RoleHierarchy::create([
             'role_id' => $ktvRole->id,
             'hierarchy' => 2,
         ]);
-        $ptbRole = Role::create(['name' => 'ptb']);
+        $ptbRole = Role::create(['name' => 'ptb', 'display_name' => 'Phòng thiết bị']);
         RoleHierarchy::create([
             'role_id' => $ptbRole->id,
             'hierarchy' => 3,
         ]);
 
-        $trkRole = Role::create(['name' => 'trk']);
+        $trkRole = Role::create(['name' => 'trk', 'display_name' => 'Trưởng khoa']);
         RoleHierarchy::create([
             'role_id' => $trkRole->id,
             'hierarchy' => 4,
@@ -47,7 +47,7 @@ class RoleHierarchySeeder extends Seeder
 
         /*  insert users   */
         $user = User::create([
-            'name' => 'admin',
+            'name' => 'Super Admin',
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
             'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
@@ -57,7 +57,7 @@ class RoleHierarchySeeder extends Seeder
         $user->assignRole('admin');
 
         $user = User::create([
-            'name' => 'ktv',
+            'name' => 'Kỹ thuật viên',
             'email' => 'ktv@ktv.com',
             'email_verified_at' => now(),
             'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
@@ -67,7 +67,7 @@ class RoleHierarchySeeder extends Seeder
         $user->assignRole('ktv');
 
         $user = User::create([
-            'name' => 'ptb',
+            'name' => 'Phòng thiết bị',
             'email' => 'ptb@ptb.com',
             'email_verified_at' => now(),
             'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
@@ -77,7 +77,7 @@ class RoleHierarchySeeder extends Seeder
         $user->assignRole('ptb');
 
         $user = User::create([
-            'name' => 'trk',
+            'name' => 'Trưởng khoa',
             'email' => 'trk@trk.com',
             'email_verified_at' => now(),
             'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123

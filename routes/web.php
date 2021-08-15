@@ -48,5 +48,5 @@ Route::group(['middleware' => ['get.menu']], function () {
     Route::get('dangxuat', function () {
         Auth::logout();
         return redirect()->route('login');
-    });
+    })->name('dangxuat');
 });
