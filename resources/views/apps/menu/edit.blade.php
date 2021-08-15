@@ -35,20 +35,23 @@
                                 <input type="hidden" name="id" value="{{ $menulist->id }}" id="menuElementId"/>
                                 <div class="form-group">
                                     <label for="formrow-firstname-input">Tên menu</label>
-                                    <input type="text" name="name" value="{{ $menulist->name }}"
+                                    <input type="text" name="name"
+                                           value="{{ $menulist->name }}"
                                            required autofocus
                                            placeholder="{{ __('Tên menu') }}"
-                                           class="form-control @error('name') is-invalid @enderror"
+                                           class="form-control"
                                            id="formrow-firstname-input">
-                                    @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
                                 <div class="d-flex justify-content-around">
-                                    <button type="submit" class="btn btn-primary w-md col-md-5">Cập nhật thông tin</button>
-                                    <a href="{{ route('menu.menu.index') }}" class="btn btn-danger w-md col-md-5">Hủy</a>
+                                    <div class="col-md-6">
+                                        <button type="submit" style="width: 100%" class="btn btn-primary w-md">
+                                            Cập nhật thông tin
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="{{ route('menu.menu.index') }}" style="width: 100%"
+                                                             class="btn btn-danger w-md">Hủy</a>
+                                    </div>
                                 </div>
                             </form>
                             <div class="col-lg-6">

@@ -29,7 +29,7 @@ class RolesController extends Controller
         ->select('roles.*', 'role_hierarchy.hierarchy')
         ->orderBy('hierarchy', 'asc')
         ->get();
-        return view('dashboard.roles.index', array(
+        return view('apps.dashboard.roles.index', array(
             'roles' => $roles,
         ));
     }
@@ -69,7 +69,8 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('dashboard.roles.create');
+//        return view('dashboard.roles.create');
+        return view('apps.dashboard.roles.add');
     }
 
     /**
@@ -82,6 +83,7 @@ class RolesController extends Controller
     {
         $role = new Role();
         $role->name = $request->input('name');
+        $role->display_name = $request->input('display_name');
         $role->save();
         $hierarchy = RoleHierarchy::select('hierarchy')
         ->orderBy('hierarchy', 'desc')->first();
@@ -95,8 +97,8 @@ class RolesController extends Controller
         $roleHierarchy->role_id = $role->id;
         $roleHierarchy->hierarchy = $hierarchy;
         $roleHierarchy->save();
-        $request->session()->flash('message', 'Successfully created role');
-        return redirect()->route('roles.create');
+        alert()->success('', 'Tạo thành công');
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -120,7 +122,7 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        return view('dashboard.roles.edit', array(
+        return view('apps.dashboard.roles.edit', array(
             'role' => Role::where('id', '=', $id)->first()
         ));
     }
@@ -136,9 +138,10 @@ class RolesController extends Controller
     {
         $role = Role::where('id', '=', $id)->first();
         $role->name = $request->input('name');
+        $role->display_name = $request->input('display_name');
         $role->save();
-        $request->session()->flash('message', 'Successfully updated role');
-        return redirect()->route('roles.edit', $id);
+        alert()->success('', 'Cập nhật thành công');
+        return redirect()->route('roles.index', $id);
     }
 
     /**
@@ -153,15 +156,13 @@ class RolesController extends Controller
         $roleHierarchy = RoleHierarchy::where('role_id', '=', $id)->first();
         $menuRole = Menurole::where('role_name', '=', $role->name)->first();
         if(!empty($menuRole)){
-            $request->session()->flash('message', "Can't delete. Role has assigned one or more menu elements.");
-            $request->session()->flash('back', 'roles.index');
-            return view('dashboard.shared.universal-info');
+            alert()->error('','Không thể xóa vai trò này');
+            return redirect()->route('roles.index');
         }else{
             $role->delete();
             $roleHierarchy->delete();
-            $request->session()->flash('message', "Successfully deleted role");
-            $request->session()->flash('back', 'roles.index');
-            return view('dashboard.shared.universal-info');
+            alert()->success('','Xóa thành công');
+            return redirect()->route('roles.index');
         }
     }
 }

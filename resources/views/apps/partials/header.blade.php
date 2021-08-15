@@ -118,7 +118,7 @@
                     {{--                    </a>--}}
                     {{--                    <a class="dropdown-item d-block" href="#"><i class="bx bx-wrench font-size-16 align-middle mr-1"></i> Cài đặt</a>--}}
                     {{--                    <div class="dropdown-divider"></div>--}}
-                    <a class="dropdown-item text-danger" href="{{ route('logout') }}">
+                    <a class="dropdown-item text-danger" href="{{ route('dangxuat') }}">
                         <i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Đăng xuất
                     </a>
                 </div>
