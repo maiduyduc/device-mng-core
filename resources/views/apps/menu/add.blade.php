@@ -1,7 +1,7 @@
 @extends('apps.layouts.app')
 
 @section('title')
-    <title>Tạo menu mới</title>
+    <title>Tạo menu cha mới</title>
 @endsection
 @section('link')
 @endsection
@@ -12,12 +12,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0 font-size-18">Tạo menu mới</h4>
+                    <h4 class="mb-0 font-size-18">Tạo menu cha mới</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Quản lý menu chính</a></li>
-                            <li class="breadcrumb-item active">Tạo menu mới</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Quản lý menu cha</a></li>
+                            <li class="breadcrumb-item active">Tạo menu cha mới</li>
                         </ol>
                     </div>
 
