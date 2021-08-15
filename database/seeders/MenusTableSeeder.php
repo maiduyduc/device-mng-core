@@ -171,7 +171,7 @@ class MenusTableSeeder extends Seeder
         //Tìm kiếm, báo cáo
         $this->beginDropdown('ktv,ptb,trk',   'Tìm kiếm, Báo cáo',   'mdi mdi-book-search-outline');
             $this->insertLink('ktv,ptb,trk',  'Tìm kiếm',                  '/1');
-            $this->insertLink('ktv,ptb,trk',  'Lập báo cáo',               '/1');
+            $this->insertLink('ktv',  'Lập báo cáo',               '/1');
         $this->endDropdown();
         //================
 
