@@ -43,7 +43,11 @@
                             <i class="mdi mdi-home-plus d-block check-nav-icon mt-4 mb-2"></i>
                             <p class="font-weight-bold mb-4">Xuất thông tin vào nhiều phòng</p>
                         </a>
-
+                        <a class="nav-link" id="v-pills-only-tab" data-toggle="pill" href="#only" role="tab"
+                           aria-controls="v-pills-only" aria-selected="false">
+                            <i class="mdi mdi-file-export d-block check-nav-icon mt-4 mb-2"></i>
+                            <p class="font-weight-bold mb-4">Chỉ xuất thông tin</p>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-10">
@@ -53,7 +57,8 @@
                                 <div class="tab-pane fade show active" id="one-room" role="tabpanel"
                                      aria-labelledby="v-pills-gen-ques-tab">
                                     <h4 class="card-title mb-4">Chọn phòng để xuất thông tin</h4>
-                                    <form method="post" action="{{ route('handover.exportOneRoom', ['id' => $handover_id->id]) }}">
+                                    <form method="post"
+                                          action="{{ route('handover.exportOneRoom', ['id' => $handover_id->id]) }}">
                                         @csrf
                                         <div class="row">
                                             <div class="table-responsive">
@@ -90,7 +95,8 @@
                                                         <option selected hidden value="">Chọn phòng
                                                         </option>
                                                         @foreach($rooms as $room)
-                                                            <option value="{{ $room->id }}.{{$room->name}}">{{ $room->name }}</option>
+                                                            <option
+                                                                value="{{ $room->id }}.{{$room->name}}">{{ $room->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -114,7 +120,8 @@
                                 <div class="tab-pane fade" id="many-room" role="tabpanel"
                                      aria-labelledby="v-pills-privacy-tab">
                                     <h4 class="card-title mb-4">Vui lòng chọn phòng cho tất cả thiết bị</h4>
-                                    <form method="post" action="{{ route('handover.exportManyRoom', ['id' => $handover_id->id]) }}">
+                                    <form method="post"
+                                          action="{{ route('handover.exportManyRoom', ['id' => $handover_id->id]) }}">
                                         @csrf
                                         <div>
                                             <div class="chat-conversation p-3">
@@ -171,7 +178,41 @@
                                         </div>
                                     </form>
                                 </div>
+                                <div class="tab-pane fade" id="only" role="tabpanel"
+                                     aria-labelledby="v-pills-privacy-tab">
+                                    <h4 class="card-title mb-4">Chỉ xuất thông tin thiết bị - Không nhập vào phòng</h4>
+                                    <form method="post"
+                                          action="{{ route('handover.exportOnly', ['id' => $handover_id->id]) }}">
+                                        @csrf
+                                        <div>
+                                            <div class="chat-conversation p-3">
+                                                <ul class="list-unstyled" data-simplebar="" style="max-height: 350px;">
+                                                    <li>
+                                                        <div class="p-3 chat-input-section">
+                                                            <h3>Hành động này sẽ chỉ xuất thông tin thiết bị, trạng thái
+                                                                thiết bị sẽ được đặt thành "Chưa sử dụng" và được tính là
+                                                                thiết bị tồn kho.</h3>
 
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <button type="submit" style="width: 100%"
+                                                        class="btn btn-primary w-md">Đồng ý
+                                                </button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="" style="width: 100%"
+                                                   class="btn btn-danger w-md">Hủy</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -36,10 +36,14 @@ class HandoverController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $i = 1;
-        $handovers = $this->handover::all();
+        if($request->has('pending')){
+            $handovers = $this->handover::where('status','pending')->get();
+        }else{
+            $handovers = $this->handover::all();
+        }
         return view('apps.dashboard.handovers.index', compact('handovers', 'i'));
     }
 
@@ -56,7 +60,7 @@ class HandoverController extends Controller
     {
         $data = $this->handover->find($id);
         $categories = DB::table('categories')->get();
-        $device_prefix = DB::table('device_prefix')->get();
+        $device_prefix = DB::table('device_prefixes')->get();
         $i = 1;
         return view('apps.dashboard.handovers.edit', compact('data', 'i', 'categories', 'device_prefix'));
     }
@@ -297,6 +301,55 @@ class HandoverController extends Controller
                 DB::commit();
                 alert()->success('Xuất thông tin thành công!');
                 return redirect()->route('room.index');
+            } catch (\Exception $exception) {
+                DB::rollBack();
+                log::error('Message: ' . $exception->getMessage() . ' ---line: ' . $exception->getLine());
+                alert()->error('Lỗi', 'Message: ' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
+                return redirect()->route('handover.info', ['id' => $id]);
+            }
+        }
+    }
+
+    public function exportOnly(Request $request, $id){
+        $handover_id = $this->handover->find($id);
+        if ($handover_id->is_export == 1) {
+            alert()->info('Thông tin này đã được xuất rồi!');
+            return redirect()->route('handover.info', ['id' => $id]);
+        } else {
+            $infos = $this->handover_list->where('handover_id', $id)->get();
+            $countDevice = $this->handover_list->where('handover_id', $id)->sum('qty');
+            try {
+                DB::beginTransaction();
+                foreach ($infos as $info) {
+                    //thêm dữ liệu vào bảng device
+                    for ($i = 0; $i < $info->qty; $i++) {
+                        $device = $this->device->create([
+                            'device_prefix_id' => $info->device_prefix_id,
+                            'category_id' => $info->category_id,
+                            'handover_id' => $info->handover_id,
+                            'device_name' => $info->device_name,
+                            'device_info' => $info->device_info,
+                            'serial' => $info->serial,
+                            'unit' => $info->unit,
+                            'status' => 'inactive'
+                        ]);
+                        //thêm dữ liệu vào bảng history_device
+                        $this->history->create([
+                            'device_id' => $device->full_number,
+                            'device_name' => $info->device_name,
+                            'date_modified' => now(),
+                            'note' => 'Nhập thiết bị'
+                        ]);
+                    }
+                }
+                $this->handover->where('id', $id)->update([
+                    'is_export' => 1,
+                    'can_export' => 0
+                ]);
+
+                DB::commit();
+                alert()->success('Xuất thông tin thành công!');
+                return redirect()->route('device.index');
             } catch (\Exception $exception) {
                 DB::rollBack();
                 log::error('Message: ' . $exception->getMessage() . ' ---line: ' . $exception->getLine());

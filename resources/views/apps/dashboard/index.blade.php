@@ -30,7 +30,6 @@
         </div>
 
         <div class="row">
-
             <div class="col-xl-12">
                 <div class="row">
                     <div class="col-md-4">
@@ -38,13 +37,15 @@
                             <div class="card-body">
                                 <div class="media">
                                     <div class="media-body">
-                                        <p class="text-muted font-weight-medium">Số lượng thiết bị</p>
-                                        <h4 class="mb-0">9,999</h4>
+                                        <p class="text-muted font-weight-medium">
+                                            <a href="{{ route('device.index') }}">Số lượng thiết bị</a>
+                                        </p>
+                                        <h4 class="mb-0">{{ $devices }}</h4>
                                     </div>
 
                                     <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
                                                         <span class="avatar-title">
-                                                            <i class="bx bx-copy-alt font-size-24"></i>
+                                                            <i class="mdi mdi-desktop-tower-monitor font-size-24"></i>
                                                         </span>
                                     </div>
                                 </div>
@@ -56,8 +57,11 @@
                             <div class="card-body">
                                 <div class="media">
                                     <div class="media-body">
-                                        <p class="text-muted font-weight-medium">Số lượng tồn kho</p>
-                                        <h4 class="mb-0">999</h4>
+                                        <p class="text-muted font-weight-medium">
+
+                                            <a href="{{ route('device.index', 'noRoom') }}">Số lượng tồn kho</a>
+                                        </p>
+                                        <h4 class="mb-0">{{ $stocks }}</h4>
                                     </div>
 
                                     <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
@@ -74,13 +78,82 @@
                             <div class="card-body">
                                 <div class="media">
                                     <div class="media-body">
-                                        <p class="text-muted font-weight-medium">Số máy đang hỏng</p>
-                                        <h4 class="mb-0">99</h4>
+                                        <p class="text-muted font-weight-medium">
+                                            <a href="{{ route('device.index','error') }}">Số máy đang hỏng</a>
+                                        </p>
+                                        <h4 class="mb-0">{{ $device_error }}</h4>
                                     </div>
 
                                     <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
                                                         <span class="avatar-title rounded-circle bg-primary">
-                                                            <i class="bx bx-purchase-tag-alt font-size-24"></i>
+                                                            <i class="mdi mdi-block-helper font-size-24"></i>
+                                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+            </div>
+            <div class="col-xl-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">
+                                            <a href="{{ route('document.index','pending') }}">Văn bản nhập thiết bị chưa xử lý</a>
+                                        </p>
+                                        <h4 class="mb-0">{{ $documents }}</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                                        <span class="avatar-title">
+                                                            <i class="mdi mdi-file-document font-size-24"></i>
+                                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">
+                                            <a href="{{ route('device-plan.index','pending') }}">Yêu cầu dự trù chưa xử lý</a>
+                                        </p>
+                                        <h4 class="mb-0">{{ $devicePlans }}</h4>
+                                    </div>
+
+                                    <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                                        <span class="avatar-title rounded-circle bg-primary">
+                                                            <i class="mdi mdi-file-download font-size-24"></i>
+                                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">
+                                            <a href="{{ route('handover.index', 'pending') }}">Văn bản bàn giao chưa xử lý</a>
+                                        </p>
+                                        <h4 class="mb-0">{{ $handovers }}</h4>
+                                    </div>
+
+                                    <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                                        <span class="avatar-title rounded-circle bg-primary">
+                                                            <i class="mdi mdi-file-move font-size-24"></i>
                                                         </span>
                                     </div>
                                 </div>

@@ -29,10 +29,14 @@ class DevicePlanController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $i = 1;
-        $device_plans = $this->device_plan::all();
+        if($request->has('pending')){
+            $device_plans = $this->device_plan::where('status','pending')->get();
+        }else{
+            $device_plans = $this->device_plan::all();
+        }
         return view('apps.dashboard.device_plan.index', compact('device_plans', 'i'));
     }
 

@@ -19,12 +19,22 @@ class DeviceController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $devices = $this->device
-            ->where('status', '<>', 'in_order_liquidate')
-            ->Where('status', '<>', 'liquidated')
-            ->get();
+        if ($request->has('error')) {
+            $devices = $this->device
+                ->where('status', 'error')
+                ->get();
+        } elseif ($request->has('noRoom')) {
+            $devices = $this->device
+                ->where('room_id', null)
+                ->get();
+        } else {
+            $devices = $this->device
+                ->where('status', '<>', 'in_order_liquidate')
+                ->Where('status', '<>', 'liquidated')
+                ->get();
+        }
         return view("apps.dashboard.devices.index", compact("devices"));
     }
 
