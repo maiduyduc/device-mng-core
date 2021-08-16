@@ -51,27 +51,27 @@ Route::group(['middleware' => ['get.menu']], function () {
     Route::prefix('/category-device')->group(function () {
         Route::get('/', [
             'as' => 'category-device.index',
-            'uses' => 'apps\CategoryController@index'
+            'uses' => 'apps\CategoryDeviceController@index'
         ]);
         Route::get('/create', [
             'as' => 'category-device.create',
-            'uses' => 'apps\CategoryController@create'
+            'uses' => 'apps\CategoryDeviceController@create'
         ]);
         Route::post('/store', [
             'as' => 'category-device.store',
-            'uses' => 'apps\CategoryController@store'
+            'uses' => 'apps\CategoryDeviceController@store'
         ]);
         Route::get('/edit/{id}', [
             'as' => 'category-device.edit',
-            'uses' => 'apps\CategoryController@edit'
+            'uses' => 'apps\CategoryDeviceController@edit'
         ]);
         Route::post('/update/{id}', [
             'as' => 'category-device.update',
-            'uses' => 'apps\CategoryController@update'
+            'uses' => 'apps\CategoryDeviceController@update'
         ]);
         Route::get('/delete/{id}', [
             'as' => 'category-device.delete',
-            'uses' => 'apps\CategoryController@delete'
+            'uses' => 'apps\CategoryDeviceController@delete'
         ]);
     });
     //trang quản lý lịch sử thiết bị
