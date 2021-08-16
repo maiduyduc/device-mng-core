@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function getData($id)
     {
         $message = DB::table('document_devices')->where('document_id', $id)->get();

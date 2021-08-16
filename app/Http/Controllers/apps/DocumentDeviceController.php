@@ -24,6 +24,7 @@ class DocumentDeviceController extends Controller
         $this->document_info = $document_info;
         $this->handover_list = $handover_list;
         $this->handover = $handover;
+        $this->middleware('auth');
     }
 
     public function index()

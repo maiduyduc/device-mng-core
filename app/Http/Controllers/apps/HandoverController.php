@@ -33,6 +33,7 @@ class HandoverController extends Controller
         $this->room = $room;
         $this->device = $device;
         $this->history = $history;
+        $this->middleware('auth');
     }
 
     public function index()

@@ -16,6 +16,7 @@ class RoomController extends Controller
     {
         $this->room = $room;
         $this->device = $device;
+        $this->middleware('auth');
     }
 
     public function index()

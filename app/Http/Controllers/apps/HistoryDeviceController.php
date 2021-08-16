@@ -13,6 +13,7 @@ class HistoryDeviceController extends Controller
     public function __construct(HistoryDevice $history)
     {
         $this->history = $history;
+        $this->middleware('auth');
     }
 
     public function index()

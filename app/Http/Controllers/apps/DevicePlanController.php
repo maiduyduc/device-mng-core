@@ -26,6 +26,7 @@ class DevicePlanController extends Controller
         $this->device_plan_list = $device_plan_list;
         $this->document = $document;
         $this->document_info = $document_info;
+        $this->middleware('auth');
     }
 
     public function index()

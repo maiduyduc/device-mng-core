@@ -31,13 +31,13 @@ Truy cập vào thư mục htdocs, mở gitbash hoặc cmd và thực thi lần 
 Sao chép dự án về máy
 
 ```bash
-  git clone https://github.com/maiduyduc/device-mng.git
+  git clone https://github.com/maiduyduc/device-mng-core.git
 ```
 
 Truy cập vào thư gốc của dự án
 
 ```bash
-  cd device-mng
+  cd device-mng-core
 ```
 
 Cài đặt Composer
@@ -63,14 +63,6 @@ Khởi tại database và dữ liệu mẫu
 ```bash
   php artisan migrate:fresh --seed
 ```
-*Nếu dữ liệu mẫu không được khởi tạo bạn có thể khởi tạo lại bằng cách chạy lần lượt các câu lệnh sau:*
-
- ```bash
-  php artisan db:seed --class=UserSeeder
-  php artisan db:seed --class=RoleSeeder
-  php artisan db:seed --class=RoleUserSeeder
-  php artisan db:seed --class=PermissionSeeder
-```
 
 Chạy serve
 
@@ -81,7 +73,21 @@ Chạy serve
 Truy cập vào http://localhost:8000/ hoặc http://127.0.0.1:8000 và đăng nhập với thông tin:
 
 ```bash
-  Email: admin@super
+  Quyền tài khoản admin: chỉnh sửa người dùng, menu, phân quyền, sao lưu phục hồi,
+  ----------------
+  Email: admin@admin
+  Password: 123
+```
+```bash
+  Quyền tài khoản ktv, ptb, trk (hiện tại chưa chia nhỏ quyền): xem, thêm, sửa, xóa các văn bản 
+  ----------------
+  Email: ktv@ktv
+  Password: 123
+  ----------------
+  Email: ptb@ptb
+  Password: 123
+  ----------------
+  Email: trk@trk
   Password: 123
 ```
 
