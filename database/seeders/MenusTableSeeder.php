@@ -144,16 +144,54 @@ class MenusTableSeeder extends Seeder
             'name' => 'sidebar menu'
         ]);
         $this->menuId = DB::getPdo()->lastInsertId();  //set menuId
-        $this->insertLink('ktv,ptb,trk,admin', 'Trang chủ', '/', 'mdi mdi-home');
-        $this->insertTitle('admin', 'CHỨC NĂNG DÀNH RIÊNG CHO AMDIN');
-        $this->beginDropdown('admin', 'Quản lý hệ thống', 'bx bx-chip');
-            $this->insertLink('admin', 'Quản lý người dùng',      '/users');
-            $this->insertLink('admin', 'Quản lý vai trò',         '/roles');
-            $this->insertLink('admin', 'Quản lý menu chính',      '/menu/menu');
-            $this->insertLink('admin', 'Quản lý menu con',        '/menu/element');
+        $this->insertLink('ktv,ptb,trk,admin',      'Trang chủ',           '/', 'mdi mdi-home');
+        //===========================================================================================
+        //Quản lý cấp phát
+        $this->beginDropdown('ktv,ptb,trk',   'Quản lý cấp phát',    'bx bx-edit');
+            $this->insertLink('ktv',          'Lập dự trù',               '/device-plan');
+            $this->insertLink('ptb,trk',      'Nhận dự trù',              '/device-plan');
+            //Nhập thiết bị: ktv được phép thao tác: xem, thêm, sửa, xóa | ptb & trk chỉ được xem
+            $this->insertLink('ktv,ptb,trk',  'Nhập thiết bị',            '/document');
+            $this->insertLink('ptb',          'Bàn giao thiết bị',        '/handover');
+            $this->insertLink('ktv',          'Nhận bàn giao',            '/handover');
         $this->endDropdown();
+        //================
+        //Quản lý kiểm kê
+        $this->beginDropdown('ktv,ptb,trk',   'Kiểm kê',             'mdi mdi-clipboard-text-outline');
+            $this->insertLink('ktv,ptb,trk',  'Kiểm kê trên máy',         '/developing');
+            $this->insertLink('ktv,ptb,trk',  'Kiểm kê trên sổ',          '/developing');
+        $this->endDropdown();
+        //================
+        //Theo dõi
+        $this->beginDropdown('ktv,ptb,trk',   'Theo dõi',            'mdi mdi-eye');
+            $this->insertLink('ktv,ptb,trk',  'Nhật ký thiết bị',          '/developing');
+            $this->insertLink('ktv,ptb,trk',  'Tổng hợp thanh lý',         '/liquidate');
+        $this->endDropdown();
+        //================
+        //Tìm kiếm, báo cáo
+        $this->beginDropdown('ktv,ptb,trk',   'Tìm kiếm, Báo cáo',   'mdi mdi-book-search-outline');
+            $this->insertLink('ktv,ptb,trk',  'Tìm kiếm',                  '/developing');
+            $this->insertLink('ktv',  'Lập báo cáo',               '/developing');
+        $this->endDropdown();
+        //================
 
+        //Quản trị hệ thống
+        $this->insertTitle('admin', 'CHỨC NĂNG DÀNH RIÊNG CHO AMDIN');
+        $this->beginDropdown('admin,ktv',   'Quản lý hệ thống', 'bx bx-chip');
+            $this->insertLink('admin',      'Quản lý người dùng',      '/users');
+            $this->insertLink('admin',      'Quản lý vai trò',         '/roles');
+            $this->insertLink('admin',      'Quản lý menu chính',      '/menu/menu');
+            $this->insertLink('admin',      'Quản lý menu con',        '/menu/element');
+            $this->insertLink('ktv',        'Quản lý phòng',           '/room');
+            $this->insertLink('ktv,admin',  'Sao lưu, phục hồi',       '/developing');
+            $this->beginDropdown('ktv',     'Quản lý thiết bị');
+                $this->insertLink('ktv',    'Danh mục thiết bị',       '/category-device');
+                $this->insertLink('ktv',    'Danh sách thiết bị',      '/device');
+            $this->endDropdown();
+        $this->endDropdown();
+        //================
 
+        //Đăng xuất
         $this->insertLink('ktv,ptb,trk,admin', 'Đăng xuất', '/dangxuat', 'mdi mdi-logout');
 
         $this->joinAllByTransaction(); ///   <===== Must by use on end of this seeder

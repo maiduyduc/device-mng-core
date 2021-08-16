@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('apps.layouts.app')
 
 @section('title')
     <title>Chỉnh sửa thông tin bàn giao</title>
@@ -206,7 +206,7 @@
     </div>
 @endsection
 @section('js')
-    <script src="{{ asset('assets\js\add-item-document.js') }}"></script>
-    <script src="{{ asset('assets\libs\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
-    <script src="{{ asset('assets\js\pages\form-element.init.js') }}"></script>
+    <script src="{{ asset('assets\apps\assets\js\add-item-document.js') }}"></script>
+    <script src="{{ asset('assets\apps\assets\libs\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
+    <script src="{{ asset('assets\apps\assets\js\pages\form-element.init.js') }}"></script>
 @endsection

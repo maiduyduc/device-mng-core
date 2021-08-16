@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('apps.layouts.app')
 
 @section('title')
     <title>Lập thanh lý</title>
@@ -145,5 +145,5 @@
     </div>
 @endsection
 @section('js')
-    <script src="{{ asset('assets\js\add-item-device-plan.js') }}"></script>
+    <script src="{{ asset('assets\apps\assets\js\add-item-device-plan.js') }}"></script>
 @endsection

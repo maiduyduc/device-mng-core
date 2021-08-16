@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('apps.layouts.app')
 
 @section('title')
     <title>Lịch sử thiết bị</title>

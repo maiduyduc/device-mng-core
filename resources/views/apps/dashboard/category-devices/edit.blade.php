@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('apps.layouts.app')
 
 @section('title')
     <title>Sửa chủng loại</title>
@@ -62,5 +62,5 @@
     </div>
 @endsection
 @section('js')
-    <script src="{{ asset('js\roles\js\checkbox.js') }}"></script>
+
 @endsection

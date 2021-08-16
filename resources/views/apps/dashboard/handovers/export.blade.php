@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('apps.layouts.app')
 
 @section('title')
     <title>Xuất thông tin thiết bị</title>
 @endsection
 @section('link')
-    <link href="{{ asset('assets\libs\select2\css\select2.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets\apps\assets\libs\select2\css\select2.min.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('content')
@@ -184,5 +184,5 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('assets\libs\select2\js\select2.min.js') }}"></script>
+    <script src="{{ asset('assets\apps\assets\libs\select2\js\select2.min.js') }}"></script>
 @endsection

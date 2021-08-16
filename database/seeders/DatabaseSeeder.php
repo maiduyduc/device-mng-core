@@ -13,20 +13,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //$this->call(MenusTableSeeder::class);
-        //$this->call(UsersAndNotesSeeder::class);
-        /*
-        $this->call('UsersAndNotesSeeder');
-        $this->call('MenusTableSeeder');
-        $this->call('FolderTableSeeder');
-        $this->call('ExampleSeeder');
-        $this->call('BREADSeeder');
-        $this->call('EmailSeeder');
-        */
-
         $this->call([
             RoleHierarchySeeder::class,
             MenusTableSeeder::class,
+
+            CategorySeeder::class,
+            DevicePrefixSeeder::class,
+            DocumentPrefixSeeder::class,
+            RoomSeeder::class,
+            DeviceGroupSeeder::class,
+            DocumentSeeder::class,
+            DocumentInfoSeeder::class,
+            DevicePlanSeeder::class,
+            DevicePlanInfoSeeder::class,
+            DeviceSeeder::class,
         ]);
     }
 }
