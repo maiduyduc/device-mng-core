@@ -29,6 +29,7 @@ class HomeController extends Controller
         $devices = $this->device
             ->where('status', '<>', 'in_order_liquidate')
             ->where('status', '<>', 'liquidated')
+            ->where('room_id', '<>', null)
             ->count();
         $device_error = $this->device
             ->where('status', '=', 'error')
