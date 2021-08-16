@@ -193,6 +193,10 @@ Route::group(['middleware' => ['get.menu']], function () {
             'as' => 'handover.exportManyRoom',
             'uses' => 'apps\HandoverController@exportManyRoom'
         ]);
+        Route::post('/exportOnly/{id}', [
+            'as' => 'handover.exportOnly',
+            'uses' => 'apps\HandoverController@exportOnly'
+        ]);
     });
     //trang quản lý văn bản dự trù
     Route::prefix('/device-plan')->group(function () {

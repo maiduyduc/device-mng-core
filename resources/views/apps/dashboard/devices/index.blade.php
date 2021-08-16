@@ -4,9 +4,11 @@
     <title>Danh sách thiết bị</title>
 @endsection
 @section('link')
-    <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}"
+          rel="stylesheet"
           type="text/css">
-    <link href="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\css\buttons.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\css\buttons.bootstrap4.min.css') }}"
+          rel="stylesheet"
           type="text/css">
     <!-- Responsive datatable examples -->
     <link href="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\css\responsive.bootstrap4.min.css') }}"
@@ -26,10 +28,12 @@
             color: #343a40;
             background-color: rgba(52, 58, 64, .18);
         }
-        .badge-soft-fixing{
-            color:#f1b44c;
-            background-color:rgba(241,180,76,.18
-        )}
+
+        .badge-soft-fixing {
+            color: #f1b44c;
+            background-color: rgba(241, 180, 76, .18
+            )
+        }
 
         .badge-soft-liquidate {
             color: #50a5f1;
@@ -114,7 +118,11 @@
                                         <p class="text-dark font-size-14 mb-0">{{ $device->warranty_period }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0">{{ $device->Room->name }}</p>
+                                        <p class="text-dark font-size-14 mb-0">
+                                            @if($device->room_id != null)
+                                                {{ $device->Room->name }}
+                                            @endif
+                                        </p>
                                     </td>
                                     <td style="text-align: center !important;">
                                         {{--                                        <p class="text-dark font-size-14 mb-0">{{ $device->status }}</p>--}}
@@ -215,7 +223,8 @@
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-bs4\js\dataTables.bootstrap4.min.js') }}"></script>
     <!-- Buttons examples -->
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons\js\dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\js\buttons.bootstrap4.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\js\buttons.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\jszip\jszip.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\pdfmake\build\pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\pdfmake\build\vfs_fonts.js') }}"></script>
@@ -224,8 +233,10 @@
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons\js\buttons.colVis.min.js') }}"></script>
 
     <!-- Responsive examples -->
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-responsive\js\dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-responsive\js\dataTables.responsive.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js') }}"></script>
 
     <!-- Datatable init js -->
     <script src="{{ asset('assets\apps\assets\js\pages\datatables.init.js') }}"></script>

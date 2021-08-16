@@ -27,10 +27,14 @@ class DocumentDeviceController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $i = 1;
-        $documents = $this->document::all();
+        if($request->has('pending')){
+            $documents = $this->document::where('status','pending')->get();
+        }else{
+            $documents = $this->document::all();
+        }
         return view("apps.dashboard.documents.index", compact("documents", "i"));
     }
 
