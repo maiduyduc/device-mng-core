@@ -21,6 +21,7 @@ class LiquidateController extends Controller
         $this->liquidate = $liquidate;
         $this->device = $device;
         $this->liquidate_info = $liquidate_info;
+        $this->middleware('auth');
     }
 
     public function index()

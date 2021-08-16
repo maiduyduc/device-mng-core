@@ -48,7 +48,7 @@ class RoleHierarchySeeder extends Seeder
         /*  insert users   */
         $user = User::create([
             'name' => 'Super Admin',
-            'email' => 'admin@admin.com',
+            'email' => 'admin@admin',
             'email_verified_at' => now(),
             'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
             'remember_token' => Str::random(10),
@@ -58,7 +58,7 @@ class RoleHierarchySeeder extends Seeder
 
         $user = User::create([
             'name' => 'Kỹ thuật viên',
-            'email' => 'ktv@ktv.com',
+            'email' => 'ktv@ktv',
             'email_verified_at' => now(),
             'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
             'remember_token' => Str::random(10),
@@ -68,7 +68,7 @@ class RoleHierarchySeeder extends Seeder
 
         $user = User::create([
             'name' => 'Phòng thiết bị',
-            'email' => 'ptb@ptb.com',
+            'email' => 'ptb@ptb',
             'email_verified_at' => now(),
             'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
             'remember_token' => Str::random(10),
@@ -78,7 +78,7 @@ class RoleHierarchySeeder extends Seeder
 
         $user = User::create([
             'name' => 'Trưởng khoa',
-            'email' => 'trk@trk.com',
+            'email' => 'trk@trk',
             'email_verified_at' => now(),
             'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
             'remember_token' => Str::random(10),

@@ -16,6 +16,7 @@ class DeviceController extends Controller
     {
         $this->device = $device;
         $this->history = $history;
+        $this->middleware('auth');
     }
 
     public function index()
