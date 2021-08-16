@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class DocumentInfo extends Model
 {
     use HasFactory;
+    protected $table = 'document_infos';
+    protected $guarded = [];
 }

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class DocumentPrefix extends Model
 {
     use HasFactory;
+    protected $table = 'document_prefixes';
+    public $timestamps = false;
 }

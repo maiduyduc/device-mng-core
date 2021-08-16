@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class LiquidateInfo extends Model
 {
     use HasFactory;
+    protected $table = 'liquidate_infos';
+    protected $guarded = [];
 }

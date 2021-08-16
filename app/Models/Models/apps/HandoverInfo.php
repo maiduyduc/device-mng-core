@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class HandoverInfo extends Model
 {
     use HasFactory;
+    protected $table = 'handover_infos';
+    protected $guarded = [];
 }

@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('apps.layouts.app')
 
 @section('title')
     <title>Thông tin thanh lý</title>
 @endsection
 @section('link')
-    <link href="{{ asset('assets\libs\datatables.net-responsive-bs4\css\responsive.bootstrap4.min.css') }}"
+    <link href="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\css\responsive.bootstrap4.min.css') }}"
           rel="stylesheet" type="text/css">
     <style>
         input[type="checkbox"][readonly] {

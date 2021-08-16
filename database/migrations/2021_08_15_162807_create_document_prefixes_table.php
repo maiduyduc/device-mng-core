@@ -15,7 +15,7 @@ class CreateDocumentPrefixesTable extends Migration
     {
         Schema::create('document_prefixes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('prefix');
         });
     }
 

@@ -15,7 +15,8 @@ class CreateDevicePrefixesTable extends Migration
     {
         Schema::create('device_prefixes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('prefix');
+            $table->string('display_name')->nullable();
         });
     }
 

@@ -15,6 +15,13 @@ class CreateLiquidatesTable extends Migration
     {
         Schema::create('liquidates', function (Blueprint $table) {
             $table->id();
+            $table->integer('number');
+            $table->integer('document_prefix_id');
+            $table->string('full_number');
+            $table->integer('qty');
+            $table->string('status')->default('pending');
+            $table->text('note')->nullable();
+            $table->boolean('can_edit')->default(1);
             $table->timestamps();
         });
     }

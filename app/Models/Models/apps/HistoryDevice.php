@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class HistoryDevice extends Model
 {
     use HasFactory;
+    protected $table = 'history_devices';
+    protected $guarded = [];
 }

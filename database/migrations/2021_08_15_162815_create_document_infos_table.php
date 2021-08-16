@@ -15,6 +15,19 @@ class CreateDocumentInfosTable extends Migration
     {
         Schema::create('document_infos', function (Blueprint $table) {
             $table->id();
+            $table->integer('document_id');
+            $table->integer('category_id')->nullable();
+            $table->integer('device_prefix_id')->default(1);
+            $table->string('device_name');
+            $table->text('device_info')->nullable();
+            $table->string('origin')->nullable();
+            $table->string('unit')->nullable();
+            $table->integer('order_qty');
+            $table->integer('stock')->default(0);
+            $table->integer('recommended_qty')->nullable();
+            $table->double('unit_price')->nullable();
+            $table->double('total_money')->nullable();
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

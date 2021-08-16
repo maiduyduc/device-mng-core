@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('apps.layouts.app')
 
 @section('title')
     <title>Tạo chứng từ mua sắm</title>
@@ -248,5 +248,5 @@
     </div>
 @endsection
 @section('js')
-    <script src="{{ asset('assets\js\add-item-document.js') }}"></script>
+    <script src="{{ asset('assets\apps\assets\js\add-item-document.js') }}"></script>
 @endsection

@@ -15,6 +15,10 @@ class CreateHistoryDevicesTable extends Migration
     {
         Schema::create('history_devices', function (Blueprint $table) {
             $table->id();
+            $table->string('device_id');
+            $table->string('device_name');
+            $table->dateTime('date_modified')->default(now());
+            $table->text('note');
             $table->timestamps();
         });
     }

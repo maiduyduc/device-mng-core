@@ -15,6 +15,19 @@ class CreateHandoverInfosTable extends Migration
     {
         Schema::create('handover_infos', function (Blueprint $table) {
             $table->id();
+            $table->integer('device_prefix_id')->default(1);
+            $table->integer('category_id')->nullable();
+            $table->integer('handover_id');
+            $table->string('device_name');
+            $table->text('device_info')->nullable();
+            $table->string('origin')->nullable();
+            $table->string('unit')->nullable();
+            $table->integer('qty');
+            $table->string('serial')->nullable();
+            $table->date('purchase_date')->default(now());
+            $table->integer('inventory_qty')->nullable();
+            $table->boolean('inv_status')->default(1);
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

@@ -158,20 +158,20 @@ class MenusTableSeeder extends Seeder
         //================
         //Quản lý kiểm kê
         $this->beginDropdown('ktv,ptb,trk',   'Kiểm kê',             'mdi mdi-clipboard-text-outline');
-            $this->insertLink('ktv,ptb,trk',  'Kiểm kê trên máy',         '/1');
-            $this->insertLink('ktv,ptb,trk',  'Kiểm kê trên sổ',          '/1');
+            $this->insertLink('ktv,ptb,trk',  'Kiểm kê trên máy',         '/developing');
+            $this->insertLink('ktv,ptb,trk',  'Kiểm kê trên sổ',          '/developing');
         $this->endDropdown();
         //================
         //Theo dõi
         $this->beginDropdown('ktv,ptb,trk',   'Theo dõi',            'mdi mdi-eye');
-            $this->insertLink('ktv,ptb,trk',  'Nhật ký thiết bị',          '/1');
-            $this->insertLink('ktv,ptb,trk',  'Tổng hợp thanh lý',         '/1');
+            $this->insertLink('ktv,ptb,trk',  'Nhật ký thiết bị',          '/developing');
+            $this->insertLink('ktv,ptb,trk',  'Tổng hợp thanh lý',         '/liquidate');
         $this->endDropdown();
         //================
         //Tìm kiếm, báo cáo
         $this->beginDropdown('ktv,ptb,trk',   'Tìm kiếm, Báo cáo',   'mdi mdi-book-search-outline');
-            $this->insertLink('ktv,ptb,trk',  'Tìm kiếm',                  '/1');
-            $this->insertLink('ktv',  'Lập báo cáo',               '/1');
+            $this->insertLink('ktv,ptb,trk',  'Tìm kiếm',                  '/developing');
+            $this->insertLink('ktv',  'Lập báo cáo',               '/developing');
         $this->endDropdown();
         //================
 
@@ -183,7 +183,7 @@ class MenusTableSeeder extends Seeder
             $this->insertLink('admin',      'Quản lý menu chính',      '/menu/menu');
             $this->insertLink('admin',      'Quản lý menu con',        '/menu/element');
             $this->insertLink('ktv',        'Quản lý phòng',           '/room');
-            $this->insertLink('ktv,admin',  'Sao lưu, phục hồi',       '/1');
+            $this->insertLink('ktv,admin',  'Sao lưu, phục hồi',       '/developing');
             $this->beginDropdown('ktv',     'Quản lý thiết bị');
                 $this->insertLink('ktv',    'Danh mục thiết bị',       '/category-device');
                 $this->insertLink('ktv',    'Danh sách thiết bị',      '/device');
