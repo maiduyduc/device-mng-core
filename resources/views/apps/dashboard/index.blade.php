@@ -38,7 +38,7 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <p class="text-muted font-weight-medium">
-                                            <a href="{{ route('device.index') }}">Số lượng thiết bị</a>
+                                            <a href="{{ route('device.index') }}">Số lượng thiết bị đang sử dụng</a>
                                         </p>
                                         <h4 class="mb-0">{{ $devices }}</h4>
                                     </div>
