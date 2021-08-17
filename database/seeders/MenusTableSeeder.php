@@ -152,7 +152,7 @@ class MenusTableSeeder extends Seeder
             $this->insertLink('ptb,trk',      'Nhận dự trù',              '/device-plan');
             //Nhập thiết bị: ktv được phép thao tác: xem, thêm, sửa, xóa | ptb & trk chỉ được xem
             $this->insertLink('ktv,ptb,trk',  'Nhập thiết bị',            '/document');
-            $this->insertLink('ptb',          'Bàn giao thiết bị',        '/handover');
+            $this->insertLink('ptb,trk',      'Bàn giao thiết bị',        '/handover');
             $this->insertLink('ktv',          'Nhận bàn giao',            '/handover');
         $this->endDropdown();
         //================

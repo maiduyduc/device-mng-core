@@ -124,7 +124,7 @@
                                         </span>
                                         @if($document->is_export == 1)
                                             <span class="font-size-14 badge badge-soft-{{ $document->status }}"
-                                                  style="max-width: 20rem">Đã xuất thông tin
+                                                  style="max-width: 20rem">Đã tạo phiếu bàn giao
                                         </span>
                                         @endif
                                     </td>
@@ -135,16 +135,17 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-around">
+                                            @if(Auth::user()->menuroles == 'ktv')
                                             <a class="btn btn-primary badge badge-primary font-size-14"
-                                               style="@if($document->status == 'accept' || $document->status == 'cancel') display:none @endif"
+                                               style="@if($document->can_edit == 0) display:none @endif"
                                                href="{{ route('document.edit', ['id'=>$document->id]) }}">Sửa</a>
                                             <a href=""
                                                style="@if($document->status == 'accept' || $document->status == 'cancel') display:none @endif"
                                                class="btn btn-danger badge badge-danger font-size-14 action_delete"
                                                data-url="{{ route('document.delete', ['id'=>$document->id]) }}"
                                             >Xóa</a>
+                                            @endif
                                             <a class="btn btn-info badge badge-info font-size-14"
-                                               style="@if($document->status == 'accept' || $document->status == 'cancel') width:100% @endif"
                                                href="{{ route('document.info', ['id'=>$document->id]) }}">Xem chi
                                                 tiết</a>
                                         </div>
