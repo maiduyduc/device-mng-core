@@ -178,20 +178,16 @@
             <div>
                 <p></p>
                 <div class="row">
-                    @if($code[0]->status == 'accept')
+                    @if($code[0]->status == 'accept' && Auth::user()->menuroles == 'ktv')
                         <div class="col-md-6 noPrint">
-                            {{--                        <form method="post"--}}
-                            {{--                              action="{{ route('device-plan.is-buy', ['id'=>$code[0]->id]) }}">--}}
-                            {{--                            @csrf--}}
                             <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
                                     style="width: 100%; height: 36px"
                                     @if($is_buy_count == 0) disabled @endif
                                     type="submit">
                                 Cập nhật trạng thái mua
                             </button>
-                            {{--                        </form>--}}
                         </div>
-                    @else
+                    @elseif(Auth::user()->menuroles == 'trk')
                         <div class="col-md-3 noPrint">
                             <form method="post"
                                   action="{{ route('device-plan.approve', ['id'=>$code[0]->id]) }}">
@@ -228,13 +224,30 @@
                                 </button>
                             </form>
                         </div>
+                        @else
+                            <div class="col-md-6 noPrint">
+                                <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
+                                        style="width: 100%; height: 36px"
+                                        disabled
+                                        type="submit">
+                                    @if($code[0]->status == 'accept')
+                                        Đã phê duyệt
+                                    @elseif($code[0]->status == 'cancel')
+                                        Đã từ chối
+                                    @else
+                                        Chờ phê duyệt
+                                    @endif
+                                </button>
+                            </div>
                     @endif
-                    <div class="col-md-3 noPrint">
+
+                    <div class="@if(Auth::user()->menuroles != 'ktv') col-md-5 @else col-md-3 @endif noPrint">
                         <button type="button" style="width: 100%; height: 36px" onclick="window.print()"
                                 class="btn btn-info badge badge-info font-size-14">
                             In văn bản
                         </button>
                     </div>
+                    @if(Auth::user()->menuroles == 'ktv')
                     <div class="col-md-2 noPrint">
                         <form method="post"
                               action="{{ route('device-plan.export', ['id'=>$code[0]->id]) }}">
@@ -243,10 +256,11 @@
                                     style="width: 100%; height: 36px"
                                     @if($code[0]->can_export == 0) disabled @endif
                                     type="submit">
-                                Xuất thông tin
+                                Tạo phiếu nhập
                             </button>
                         </form>
                     </div>
+                        @endif
                     <div class="col-md-1 noPrint">
                         <a style="width: 100%; height: 36px; line-height: 20px;" href="{{ route('device-plan.index') }}"
                            class="btn btn-outline-dark font-size-14 noPrint"><i class="bx bx-arrow-back"></i></a>

@@ -105,12 +105,13 @@
                                         </span>
                                         @if($items->is_export == 1)
                                             <span class="font-size-14 badge badge-soft-{{ $items->status }}"
-                                                  style="max-width: 20rem">Đã xuất thông tin
+                                                  style="max-width: 20rem">Đã tạo phiếu nhập
                                                 @endif
                                         </span>
                                     </td>
                                     <td>{{ $items->created_at }}</td>
                                     <td>
+                                        @if(Auth::user()->menuroles == 'ktv')
                                         <a class="btn btn-primary badge badge-primary font-size-14"
                                            style="@if($items->status == 'accept' || $items->status == 'cancel') display:none @endif"
                                            href="{{ route('device-plan.edit',['id'=>$items->id]) }}">Sửa</a>
@@ -119,8 +120,9 @@
                                            class="btn btn-danger badge badge-danger font-size-14 action_delete"
                                            data-url="{{ route('device-plan.delete', ['id'=>$items->id]) }}"
                                         >Xóa</a>
+                                        @endif
                                         <a href="{{ route('device-plan.info', ['id'=>$items->id]) }}"
-                                           style="@if($items->status == 'accept' || $items->status == 'cancel') width:100% @endif"
+                                           style=""
                                            class="btn btn-info badge badge-info font-size-14">Xem chi tiết</a>
                                     </td>
                                 </tr>

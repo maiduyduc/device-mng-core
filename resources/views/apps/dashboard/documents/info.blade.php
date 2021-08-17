@@ -195,62 +195,95 @@
         <div>
             <p></p>
             <div class="row">
-                <div class="col-md-3 noPrint">
-                    <form method="post"
-                          action="{{ route('document.approve', ['id'=>$code[0]->id]) }}">
-                        @csrf
-                        <button class="btn btn-primary badge badge-primary font-size-14 noPrint"
-                                style="width: 100%; height: 36px"
-                                @if($code[0]->can_edit == 0)
-                                disabled
+                @if(Auth::user()->menuroles == 'trk')
+                    <div class="col-md-3 noPrint">
+                        <form method="post"
+                              action="{{ route('document.approve', ['id'=>$code[0]->id]) }}">
+                            @csrf
+                            <button class="btn btn-primary badge badge-primary font-size-14 noPrint"
+                                    style="width: 100%; height: 36px"
+                                    @if($code[0]->can_edit == 0)
+                                    disabled
+                                    @endif
+                                    type="submit">
+                                @if($code[0]->status == 'accept')
+                                    Đã phê duyệt
+                                @elseif($code[0]->status == 'cancel')
+                                    Đã từ chối
+                                @else
+                                    Phê duyệt
                                 @endif
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-md-3 noPrint">
+                        <form method="post"
+                              action="{{ route('document.refuse', ['id'=>$code[0]->id]) }}">
+                            @csrf
+                            <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
+                                    style="width: 100%; height: 36px"
+                                    @if($code[0]->can_edit == 0)
+                                    disabled
+                                    @endif
+                                    type="submit">Từ chối
+                            </button>
+                        </form>
+                    </div>
+                @else
+                    <div class="col-md-6">
+                        <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
+                                style="width: 100%; height: 36px"
+                                disabled
                                 type="submit">
                             @if($code[0]->status == 'accept')
                                 Đã phê duyệt
                             @elseif($code[0]->status == 'cancel')
                                 Đã từ chối
                             @else
-                                Phê duyệt
+                                Chờ phê duyệt
                             @endif
                         </button>
-                    </form>
-                </div>
-                <div class="col-md-3 noPrint">
-                    <form method="post"
-                          action="{{ route('document.refuse', ['id'=>$code[0]->id]) }}">
-                        @csrf
-                        <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
-                                style="width: 100%; height: 36px"
-                                @if($code[0]->can_edit == 0)
-                                disabled
-                                @endif
-                                type="submit">Từ chối
-                        </button>
-                    </form>
-                </div>
-                <div class="col-md-3 noPrint">
+                    </div>
+                @endif
+                @if(Auth::user()->menuroles == 'ktv')
+                        <div class="col-md-3 noPrint">
+                            <a class="btn btn-danger font-size-14 noPrint @if($code[0]->can_edit == 0) disabled @endif"
+                               role="button"
+                               href="{{ route('document.edit', ['id'=>$code[0]->id]) }}"
+                               style="width: 100%; height: 36px;">
+                                Sửa
+                            </a>
+                        </div>
+                @endif
+                <div class="@if(Auth::user()->menuroles == 'trk') col-md-5 @elseif(Auth::user()->menuroles == 'ptb') col-md-3 @else col-md-2 @endif noPrint">
                     <button type="button" style="width: 100%; height: 36px" onclick="window.print()"
                             class="btn btn-info badge badge-info font-size-14">
                         In văn bản
                     </button>
                 </div>
-                <div class="col-md-2 noPrint">
-                    <form method="post"
-                          action="{{ route('document.export', ['id'=>$code[0]->id]) }}">
-                        @csrf
-                        <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
-                                style="width: 100%; height: 36px"
-                                @if($code[0]->can_export==0) disabled @endif
-                                type="submit">
-                            Xuất thông tin
-                        </button>
-                    </form>
-                </div>
+                @if(Auth::user()->menuroles == 'ptb')
+                    <div class="col-md-2 noPrint">
+                        <form method="post"
+                              action="{{ route('document.export', ['id'=>$code[0]->id]) }}">
+                            @csrf
+                            <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
+                                    style="width: 100%; height: 36px"
+                                    @if($code[0]->can_export==0) disabled @endif
+                                    type="submit">
+                                @if($code[0]->is_export==0)
+                                    Tạo phiếu bàn giao
+                                @else
+                                    Đã tạo phiếu bàn giao
+                                @endif
+                            </button>
+                        </form>
+                    </div>
+                @endif
                 <div class="col-md-1 noPrint">
                     <a class="btn btn-outline-dark font-size-14 noPrint"
                        href="{{ route('document.index') }}"
-                            style="width: 100%; height: 36px"
-                            type="submit">
+                       style="width: 100%; height: 36px"
+                       type="submit">
                         <i class="bx bx-arrow-back"></i>
                     </a>
                 </div>

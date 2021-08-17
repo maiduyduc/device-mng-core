@@ -97,6 +97,10 @@ class DocumentDeviceController extends Controller
     public function edit($id)
     {
         $document_id = $this->document->find($id);
+        if($document_id->can_edit == 0){
+            alert()->error('Lỗi','Không thể chỉnh sửa văn bản đã phê duyệt/ từ chối.');
+            return redirect()->route('document.info', ['id' => $id]);
+        }
         $i = 1;
         $categories = DB::table('categories')->get();
         $device_prefix = DB::table('device_prefixes')->get();
@@ -105,7 +109,11 @@ class DocumentDeviceController extends Controller
 
     public function update(Request $request, $id)
     {
-
+        $edited = $this->document->where('id', $id)->get();
+        if($edited[0]->can_edit == 0){
+            alert()->error('Lỗi','Không thể chỉnh sửa văn bản đã phê duyệt/ từ chối.');
+            return redirect()->route('document.info', ['id' => $id]);
+        }
         try {
             DB::beginTransaction();
             $countDevice = count($request->device_name);
@@ -134,12 +142,12 @@ class DocumentDeviceController extends Controller
             }
             DB::commit();
             alert()->success('Cập nhật thành công');
-            return redirect()->route('document.index');
+            return redirect()->route('document.info', ['id' => $id]);
         } catch (\Exception $exception) {
             DB::rollBack();
             alert()->error("Lỗi", 'Message: ' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
             Log::error('Message :' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
-            return redirect()->route('document.index');
+            return redirect()->route('document.info', ['id' => $id]);
         }
     }
 
