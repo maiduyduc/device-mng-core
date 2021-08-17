@@ -164,7 +164,7 @@ class MenusTableSeeder extends Seeder
         //================
         //Theo dõi
         $this->beginDropdown('ktv,ptb,trk',   'Theo dõi',            'mdi mdi-eye');
-            $this->insertLink('ktv,ptb,trk',  'Nhật ký thiết bị',          '/developing');
+            $this->insertLink('ktv,ptb,trk',  'Nhật ký thiết bị',          '/history');
             $this->insertLink('ktv,ptb,trk',  'Tổng hợp thanh lý',         '/liquidate');
         $this->endDropdown();
         //================

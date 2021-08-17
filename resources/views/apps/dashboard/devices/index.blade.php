@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
+                        <table id="testTB" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                             <tr>
                                 {{--                                <th scope="col" style="width: 20px">#</th>--}}
@@ -243,32 +243,32 @@
 
     <script src="{{ asset('assets/apps/js/delete.js') }}"></script>
     {{--    <script src="{{ asset('assets\apps\assets\js\sort-number-table.js') }}"></script>--}}
-    {{--    <script>--}}
-    {{--        $(document).ready(function() {--}}
-    {{--            $('#testTB').DataTable( {--}}
-    {{--                dom: 'Bfrtip',--}}
-    {{--                buttons: [--}}
-    {{--                    {--}}
-    {{--                        extend: 'copyHtml5',--}}
-    {{--                        exportOptions: {--}}
-    {{--                            columns: [ 0, 1, 2, 3, 4 ]--}}
-    {{--                        }--}}
-    {{--                    },--}}
-    {{--                    {--}}
-    {{--                        extend: 'excelHtml5',--}}
-    {{--                        exportOptions: {--}}
-    {{--                            columns: [ 0, 1, 2, 3, 4 ]--}}
-    {{--                        }--}}
-    {{--                    },--}}
-    {{--                    {--}}
-    {{--                        extend: 'pdfHtml5',--}}
-    {{--                        exportOptions: {--}}
-    {{--                            columns: [ 0, 1, 2, 3, 4 ]--}}
-    {{--                        }--}}
-    {{--                    },--}}
-    {{--                    'colvis'--}}
-    {{--                ]--}}
-    {{--            } );--}}
-    {{--        } );--}}
-    {{--    </script>--}}
+        <script>
+            $(document).ready(function() {
+                $('#testTB').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                            extend: 'copyHtml5',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+                            }
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+                            }
+                        },
+                        {
+                            extend: 'pdfHtml5',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+                            }
+                        },
+                        'colvis'
+                    ]
+                } );
+            } );
+        </script>
 @endsection

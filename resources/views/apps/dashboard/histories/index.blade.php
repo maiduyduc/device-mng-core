@@ -37,8 +37,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <table id="testTB" class="table table-striped table-bordered dt-responsive nowrap"
-                               style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <table id="testTB" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                             <tr>
                                 <th scope="col" style="width: 100px">Mã thiết bị</th>
@@ -101,8 +100,6 @@
 
     <!-- Datatable init js -->
     <script src="{{ asset('assets\apps\assets\js\pages\datatables.init.js') }}"></script>
-
-    <script src="{{ asset('assets/apps/js/delete.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#testTB').DataTable( {

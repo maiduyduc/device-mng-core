@@ -349,7 +349,7 @@ class HandoverController extends Controller
 
                 DB::commit();
                 alert()->success('Xuất thông tin thành công!');
-                return redirect()->route('device.index');
+                return redirect()->route('device.index','noRoom');
             } catch (\Exception $exception) {
                 DB::rollBack();
                 log::error('Message: ' . $exception->getMessage() . ' ---line: ' . $exception->getLine());
