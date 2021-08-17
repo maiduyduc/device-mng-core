@@ -78,11 +78,11 @@ Route::group(['middleware' => ['get.menu']], function () {
     Route::prefix('/history')->group(function () {
         Route::get('/', [
             'as' => 'history.index',
-            'uses' => 'apps\HistoryController@index'
+            'uses' => 'apps\HistoryDeviceController@index'
         ]);
         Route::get('/detail/{code}', [
             'as' => 'history.detail',
-            'uses' => 'apps\HistoryController@detail'
+            'uses' => 'apps\HistoryDeviceController@detail'
         ]);
     });
     //trang quản lý văn bản mua sắm

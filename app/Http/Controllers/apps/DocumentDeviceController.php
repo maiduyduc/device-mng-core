@@ -41,7 +41,7 @@ class DocumentDeviceController extends Controller
     public function create()
     {
         $categories = DB::table('categories')->get();
-        $device_prefix = DB::table('device_prefix')->get();
+        $device_prefix = DB::table('device_prefixes')->get();
         return view("apps.dashboard.documents.add", compact('categories', 'device_prefix'));
     }
 
@@ -84,6 +84,7 @@ class DocumentDeviceController extends Controller
                 ]);
             }
             DB::commit();
+            alert()->success('','Thêm mới thành công');
             return redirect()->route('document.index');
         } catch (\Exception $exception) {
             DB::rollBack();
