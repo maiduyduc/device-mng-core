@@ -4,9 +4,11 @@
     <title>Danh sách bàn giao</title>
 @endsection
 @section('link')
-    <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}"
+          rel="stylesheet"
           type="text/css">
-    <link href="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\css\buttons.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\css\buttons.bootstrap4.min.css') }}"
+          rel="stylesheet"
           type="text/css">
     <!-- Responsive datatable examples -->
     <link href="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\css\responsive.bootstrap4.min.css') }}"
@@ -121,9 +123,13 @@
                                                 @endif
                                             @endforeach
                                         </span>
-                                        @if($handover->is_export == 1)
-                                            <span class="font-size-14 badge badge-soft-{{ $handover->status }}"
-                                                  style="max-width: 20rem">Đã xuất thông tin
+
+                                        <span class="font-size-14 badge badge-soft-{{ $handover->status }}"
+                                              style="max-width: 20rem">
+                                                @if($handover->is_export == 1)
+                                                Đã xuất thông tin
+                                            @else
+                                                Chưa xuất thông tin
                                         @endif
                                     </td>
                                     <td>
@@ -133,14 +139,16 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            <a class="btn btn-primary badge badge-primary font-size-14"
-                                               style=" @if($handover->can_edit == 0) display:none @endif"
-                                               href="{{ route('handover.edit', ['id'=>$handover->id]) }}">Sửa</a>
-                                            <a href=""
-                                               style=" @if($handover->is_handover == 1) display:none @endif"
-                                               class="btn btn-danger badge badge-danger font-size-14 action_delete"
-                                               data-url="{{ route('handover.delete', ['id'=>$handover->id]) }}"
-                                            >Xóa</a>
+                                            @if(Auth::user()->menuroles == 'ptb')
+                                                <a class="btn btn-primary badge badge-primary font-size-14"
+                                                   style=" @if($handover->can_edit == 0) display:none @endif"
+                                                   href="{{ route('handover.edit', ['id'=>$handover->id]) }}">Sửa</a>
+                                                <a href=""
+                                                   style=" @if($handover->is_handover == 1) display:none @endif"
+                                                   class="btn btn-danger badge badge-danger font-size-14 action_delete"
+                                                   data-url="{{ route('handover.delete', ['id'=>$handover->id]) }}"
+                                                >Xóa</a>
+                                            @endif
                                             <a class="btn btn-info badge badge-info font-size-14"
                                                style=" @if($handover->is_handover == 1) width:100% @endif"
                                                href="{{ route('handover.info', ['id'=>$handover->id]) }}">Xem chi
@@ -165,7 +173,8 @@
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-bs4\js\dataTables.bootstrap4.min.js') }}"></script>
     <!-- Buttons examples -->
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons\js\dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\js\buttons.bootstrap4.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\js\buttons.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\jszip\jszip.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\pdfmake\build\pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\pdfmake\build\vfs_fonts.js') }}"></script>
@@ -178,8 +187,10 @@
 
     <!-- Init js -->
     <script src="{{ asset('assets\apps\assets\js\pages\table-responsive.init.js') }}"></script>
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-responsive\js\dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-responsive\js\dataTables.responsive.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js') }}"></script>
 
     <!-- Datatable init js -->
     <script src="{{ asset('assets\apps\assets\js\pages\datatables.init.js') }}"></script>

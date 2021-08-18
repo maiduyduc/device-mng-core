@@ -188,14 +188,9 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('assets\apps\assets\libs\select2\js\select2.min.js') }}"></script>
-    <script>
-        $('.select2_init').select2({
-            'placeholder': 'Chọn vai trò'
-        })
-    </script>
-    <!-- form advanced init -->
-    <script src="{{ asset('assets\apps\assets\js\pages\form-advanced.init.js') }}"></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/menu-create.js') }}"></script>
+    <script src="{{ asset('assets\apps\assets\libs\select2\js\select2.min.js') }}"></script>
+    <!-- form advanced init -->
+    <script src="{{ asset('assets\apps\assets\js\pages\form-advanced.init.js') }}"></script>
 @endsection

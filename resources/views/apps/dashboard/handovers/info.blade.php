@@ -180,6 +180,7 @@
         <div>
             <p></p>
             <div class="row">
+                @if(Auth::user()->menuroles == 'ptb')
                 <div class="col-md-3 noPrint">
                     <a class="btn btn-outline-danger badge badge-soft-danger font-size-14 d-flex align-items-center justify-content-center @if($code[0]->is_handover == 1) isDisabled @endif"
                        style="width: 100%; height: 36px;"
@@ -196,17 +197,31 @@
                         </button>
                     </form>
                 </div>
-                <div class="col-md-3 noPrint">
+                @else
+                    <div class="col-md-6 noPrint">
+                        <button type="button" style="width: 100%; height: 36px"
+                                class="btn btn-info badge badge-info font-size-14 isDisabled">
+                            @if($code[0]->is_handover == 1)
+                                Đã bàn giao
+                            @else
+                                Chờ bàn giao
+                            @endif
+                        </button>
+                    </div>
+                @endif
+                <div class="@if(Auth::user()->menuroles == 'ktv') col-md-3 @else col-md-5 @endif noPrint">
                     <button type="button" style="width: 100%; height: 36px" onclick="window.print()"
                             class="btn btn-info badge badge-info font-size-14">
                         In văn bản
                     </button>
                 </div>
+                    @if(Auth::user()->menuroles == 'ktv')
                 <div class="col-md-2 noPrint">
-                    <a class="btn btn-outline-success badge badge-soft-success font-size-14 d-flex align-items-center justify-content-center @if($code[0]->can_export == 0 || $code[0]->is_export == 1) disabled @endif"
+                    <a class="btn btn-danger badge badge-soft-danger font-size-14 d-flex align-items-center justify-content-center @if($code[0]->can_export == 0 || $code[0]->is_export == 1) disabled @endif"
                        style="width: 100%; height: 36px; "
                        href="{{ route('handover.export', ['id' => $code[0]->id]) }}"> Xuất thông tin </a>
                 </div>
+                    @endif
                 <div class="col-md-1 noPrint">
                     <a class="btn btn-outline-dark font-size-14 noPrint"
                        href="{{ route('handover.index') }}"
