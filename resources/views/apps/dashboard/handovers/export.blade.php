@@ -104,14 +104,12 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="col-md-6">
-                                                    <button type="submit" style="width: 100%"
-                                                            class="btn btn-primary w-md">Đồng ý
-                                                    </button>
-                                                </div>
+                                                <button type="submit" style="width: 100%"
+                                                        class="btn btn-primary w-md">Đồng ý
+                                                </button>
                                             </div>
                                             <div class="col-md-6">
-                                                <a href="" style="width: 100%"
+                                                <a href="{{ route('handover.index') }}" style="width: 100%"
                                                    class="btn btn-danger w-md">Hủy</a>
                                             </div>
                                         </div>
@@ -172,7 +170,7 @@
                                                 </button>
                                             </div>
                                             <div class="col-md-6">
-                                                <a href="" style="width: 100%"
+                                                <a href="{{ route('handover.index') }}" style="width: 100%"
                                                    class="btn btn-danger w-md">Hủy</a>
                                             </div>
                                         </div>
@@ -190,7 +188,8 @@
                                                     <li>
                                                         <div class="p-3 chat-input-section">
                                                             <h3>Hành động này sẽ chỉ xuất thông tin thiết bị, trạng thái
-                                                                thiết bị sẽ được đặt thành "Chưa sử dụng" và được tính là
+                                                                thiết bị sẽ được đặt thành "Chưa sử dụng" và được tính
+                                                                là
                                                                 thiết bị tồn kho.</h3>
 
                                                         </div>
@@ -207,7 +206,7 @@
                                                 </button>
                                             </div>
                                             <div class="col-md-6">
-                                                <a href="" style="width: 100%"
+                                                <a href="{{ route('handover.index') }}" style="width: 100%"
                                                    class="btn btn-danger w-md">Hủy</a>
                                             </div>
                                         </div>
