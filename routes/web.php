@@ -295,6 +295,44 @@ Route::group(['middleware' => ['get.menu']], function () {
             'uses' => 'apps\ReportsController@index'
         ]);
     });
+    //Kiểm kê trên sổ
+    Route::prefix('/inventory')->group(function () {
+        Route::get('/', [
+            'as' => 'inventory.index',
+            'uses' => 'apps\InventoryController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'inventory.create',
+            'uses' => 'apps\InventoryController@create'
+        ]);
+        Route::post('/store', [
+            'as' => 'inventory.store',
+            'uses' => 'apps\InventoryController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'inventory.edit',
+            'uses' => 'apps\InventoryController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'inventory.update',
+            'uses' => 'apps\InventoryController@update'
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'inventory.delete',
+            'uses' => 'apps\InventoryController@delete'
+        ]);
+        Route::get('/detail/{id}', [
+            'as' => 'inventory.detail',
+            'uses' => 'apps\InventoryController@detail'
+        ]);
+    });
+    //Kiểm kê trên máy
+    Route::prefix('/auto-inventory')->group(function () {
+        Route::get('/', [
+            'as' => 'auto-inventory.index',
+            'uses' => 'apps\AutoInventoryController@index'
+        ]);
+    });
     //================================================================
     //================================================================
     //================================================================

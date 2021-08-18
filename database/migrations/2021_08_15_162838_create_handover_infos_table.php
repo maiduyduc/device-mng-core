@@ -24,6 +24,7 @@ class CreateHandoverInfosTable extends Migration
             $table->string('unit')->nullable();
             $table->integer('qty');
             $table->string('serial')->nullable();
+            $table->double('price')->nullable();
             $table->date('purchase_date')->default(now());
             $table->integer('inventory_qty')->nullable();
             $table->boolean('inv_status')->default(1);

@@ -221,6 +221,7 @@ class DocumentDeviceController extends Controller
                         'device_info' => $infos[$i]->device_info,
                         'origin' => $infos[$i]->origin,
                         'unit' => $infos[$i]->unit,
+                        'price' => $infos[$i]->unit_price,
                         'qty' => $infos[$i]->recommended_qty,
                         'note' => $infos[$i]->note
                     ]);
