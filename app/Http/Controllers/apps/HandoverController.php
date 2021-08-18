@@ -199,6 +199,7 @@ class HandoverController extends Controller
                             'device_info' => $info->device_info,
                             'serial' => $info->serial,
                             'unit' => $info->unit,
+                            'price' => $info->price,
                             'status' => 'active'
                         ]);
                         //thêm dữ liệu vào bảng history_device
@@ -264,6 +265,7 @@ class HandoverController extends Controller
                             'device_info' => $info->device_info,
                             'serial' => $info->serial,
                             'unit' => $info->unit,
+                            'price' => $info->price
                         );
                         array_push($device_info, $new_info);
                     }
@@ -282,6 +284,7 @@ class HandoverController extends Controller
                         'device_info' => $device_info[$i]['device_info'],
                         'serial' => $device_info[$i]['serial'],
                         'unit' => $device_info[$i]['unit'],
+                        'price' => $device_info[$i]['price'],
                         'status' => 'active'
                     ]);
                     //thêm dữ liệu vào bảng history_device
@@ -331,6 +334,7 @@ class HandoverController extends Controller
                             'device_info' => $info->device_info,
                             'serial' => $info->serial,
                             'unit' => $info->unit,
+                            'price' => $info->price,
                             'status' => 'inactive'
                         ]);
                         //thêm dữ liệu vào bảng history_device

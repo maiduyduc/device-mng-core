@@ -26,6 +26,7 @@ class CreateDevicesTable extends Migration
             $table->text('device_info')->nullable();
             $table->string('serial')->nullable();
             $table->string('unit')->nullable();
+            $table->double('price')->nullable();
             $table->string('status')->default('inactive');
             $table->timestamps();
         });
