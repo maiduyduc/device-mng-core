@@ -288,6 +288,13 @@ Route::group(['middleware' => ['get.menu']], function () {
             'uses' => 'apps\LiquidateController@liquidated'
         ]);
     });
+    //Tạo báo cáo
+    Route::prefix('/report')->group(function () {
+        Route::get('/', [
+            'as' => 'report.index',
+            'uses' => 'apps\ReportsController@index'
+        ]);
+    });
     //================================================================
     //================================================================
     //================================================================
