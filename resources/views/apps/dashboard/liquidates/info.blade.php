@@ -155,26 +155,8 @@
             <div>
                 <p></p>
                 <div class="row">
-                    @if($code[0]->status == 'accept' || $code[0]->status == 'liquidated')
-                        <div class="col-md-6 noPrint">
-                            <form method="post"
-                                  action="{{ route('liquidate.liquidated', ['id'=>$code[0]->id]) }}">
-                                @csrf
-                                <button class="btn btn-primary badge badge-primary font-size-14 noPrint"
-                                        style="width: 100%; height: 36px"
-                                        @if($code[0]->status == 'liquidated')
-                                        disabled
-                                        @endif
-                                        type="submit">
-                                    @if($code[0]->status == 'liquidated')
-                                        Đã thanh lý
-                                    @else
-                                        Thanh lý
-                                    @endif
-                                </button>
-                            </form>
-                        </div>
-                    @else
+
+                    @if(Auth::user()->menuroles == 'trk')
                         <div class="col-md-3 noPrint">
                             <form method="post"
                                   action="{{ route('liquidate.approve', ['id'=>$code[0]->id]) }}">
@@ -187,12 +169,15 @@
                                         type="submit">
                                     @if($code[0]->status == 'accept')
                                         Đã phê duyệt
+                                    @elseif($code[0]->status == 'liquidated')
+                                        Đã thanh lý
                                     @else
                                         Phê duyệt
                                     @endif
                                 </button>
                             </form>
                         </div>
+
                         <div class="col-md-3 noPrint">
                             <form method="post"
                                   action="{{ route('liquidate.refuse', ['id'=>$code[0]->id]) }}">
@@ -211,7 +196,64 @@
                                 </button>
                             </form>
                         </div>
+                    @elseif(Auth::user()->menuroles == 'ptb')
+                        @if($code[0]->status == 'pending')
+                            <div class="col-md-6 noPrint">
+                                    <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
+                                            style="width: 100%; height: 36px"
+                                            disabled
+                                            type="submit">
+                                        Chờ phê duyệt
+                                    </button>
+                            </div>
+                        @elseif($code[0]->status == 'cancel')
+                            <div class="col-md-6 noPrint">
+                                <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
+                                        style="width: 100%; height: 36px"
+                                        disabled
+                                        type="submit">
+                                    Đã từ chối
+                                </button>
+                            </div>
+                        @else
+                            <div class="col-md-6 noPrint">
+                                <form method="post"
+                                      action="{{ route('liquidate.liquidated', ['id'=>$code[0]->id]) }}">
+                                    @csrf
+                                    <button class="btn btn-primary badge badge-primary font-size-14 noPrint"
+                                            style="width: 100%; height: 36px"
+                                            @if($code[0]->status == 'liquidated')
+                                            disabled
+                                            @endif
+                                            type="submit">
+                                        @if($code[0]->status == 'liquidated')
+                                            Đã thanh lý
+                                        @else
+                                            Thanh lý
+                                        @endif
+                                    </button>
+                                </form>
+                            </div>
+                        @endif
+                    @else
+                        <div class="col-md-6 noPrint">
+                            <button class="btn btn-primary badge badge-primary font-size-14 noPrint"
+                                    style="width: 100%; height: 36px"
+                                    disabled
+                                    type="submit">
+                                @if($code[0]->status == 'pending')
+                                    Chờ phê duyệt
+                                @elseif($code[0]->status == 'cancel')
+                                    Đã từ chối
+                                @elseif($code[0]->status == 'liquidated')
+                                    Đã thanh lý
+                                @else
+                                    Chờ thanh lý
+                                @endif
+                            </button>
+                        </div>
                     @endif
+
                     <div class="col-md-3 noPrint">
                         <button type="button" style="width: 100%; height: 36px" onclick="window.print()"
                                 class="btn btn-info badge badge-info font-size-14">
