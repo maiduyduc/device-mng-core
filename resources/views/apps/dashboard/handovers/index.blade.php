@@ -123,13 +123,15 @@
                                                 @endif
                                             @endforeach
                                         </span>
-
+                                        @if($handover->is_export == 1)
                                         <span class="font-size-14 badge badge-soft-{{ $handover->status }}"
                                               style="max-width: 20rem">
-                                                @if($handover->is_export == 1)
-                                                Đã xuất thông tin
+                                            Đã xuất thông tin </span>
                                             @else
-                                                Chưa xuất thông tin
+                                            <span class="font-size-14 badge badge-soft-pending"
+                                                  style="max-width: 20rem">
+                                            Chưa xuất thông tin </span>
+
                                         @endif
                                     </td>
                                     <td>

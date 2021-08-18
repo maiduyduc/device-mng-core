@@ -178,7 +178,7 @@
             <div>
                 <p></p>
                 <div class="row">
-                    @if($code[0]->status == 'accept' && Auth::user()->menuroles == 'ktv')
+                    @if($code[0]->status == 'accept' && Auth::user()->menuroles == 'ptb')
                         <div class="col-md-6 noPrint">
                             <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
                                     style="width: 100%; height: 36px"
@@ -241,13 +241,13 @@
                             </div>
                     @endif
 
-                    <div class="@if(Auth::user()->menuroles != 'ktv') col-md-5 @else col-md-3 @endif noPrint">
+                    <div class="@if(Auth::user()->menuroles != 'ptb') col-md-5 @else col-md-3 @endif noPrint">
                         <button type="button" style="width: 100%; height: 36px" onclick="window.print()"
                                 class="btn btn-info badge badge-info font-size-14">
                             In văn bản
                         </button>
                     </div>
-                    @if(Auth::user()->menuroles == 'ktv')
+                    @if(Auth::user()->menuroles == 'ptb')
                     <div class="col-md-2 noPrint">
                         <form method="post"
                               action="{{ route('device-plan.export', ['id'=>$code[0]->id]) }}">

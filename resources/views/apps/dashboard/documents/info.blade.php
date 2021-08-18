@@ -230,7 +230,7 @@
                         </form>
                     </div>
                 @else
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
                                 style="width: 100%; height: 36px"
                                 disabled
@@ -245,8 +245,8 @@
                         </button>
                     </div>
                 @endif
-                @if(Auth::user()->menuroles == 'ktv')
-                        <div class="col-md-3 noPrint">
+                @if(Auth::user()->menuroles == 'ptb')
+                        <div class="col-md-2 noPrint">
                             <a class="btn btn-danger font-size-14 noPrint @if($code[0]->can_edit == 0) disabled @endif"
                                role="button"
                                href="{{ route('document.edit', ['id'=>$code[0]->id]) }}"
@@ -255,7 +255,7 @@
                             </a>
                         </div>
                 @endif
-                <div class="@if(Auth::user()->menuroles == 'trk') col-md-5 @elseif(Auth::user()->menuroles == 'ptb') col-md-3 @else col-md-2 @endif noPrint">
+                <div class="@if(Auth::user()->menuroles == 'trk') col-md-5 @elseif(Auth::user()->menuroles == 'ktv') col-md-5 @else col-md-2 @endif noPrint">
                     <button type="button" style="width: 100%; height: 36px" onclick="window.print()"
                             class="btn btn-info badge badge-info font-size-14">
                         In văn bản
@@ -279,7 +279,7 @@
                         </form>
                     </div>
                 @endif
-                <div class="col-md-1 noPrint">
+                <div class="@if(Auth::user()->menuroles == 'ktv') col-md-2 @else col-md-1 @endif noPrint">
                     <a class="btn btn-outline-dark font-size-14 noPrint"
                        href="{{ route('document.index') }}"
                        style="width: 100%; height: 36px"

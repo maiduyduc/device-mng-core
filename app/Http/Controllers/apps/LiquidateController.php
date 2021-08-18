@@ -171,6 +171,12 @@ class LiquidateController extends Controller
             $this->liquidate->find($id)->update([
                 'status' => 'liquidated',
             ]);
+            $device_id = $this->liquidate_info->where('liquidate_id', $id)->get();
+            foreach ($device_id as $did){
+                DB::table('devices')->where('full_number', $did->full_number)->update([
+                    'status' => 'liquidated'
+                ]);
+            }
             alert()->success('Thành công', 'Đã thanh lý thiết bị');
         }
         return redirect()->route('liquidate.info', ['id' => $id]);
