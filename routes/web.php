@@ -332,6 +332,18 @@ Route::group(['middleware' => ['get.menu']], function () {
             'as' => 'auto-inventory.index',
             'uses' => 'apps\AutoInventoryController@index'
         ]);
+        Route::get('/create', [
+            'as' => 'auto-inventory.create',
+            'uses' => 'apps\AutoInventoryController@create'
+        ]);
+        Route::post('/store', [
+            'as' => 'auto-inventory.store',
+            'uses' => 'apps\AutoInventoryController@store'
+        ]);
+        Route::get('/detail/{id}', [
+            'as' => 'auto-inventory.detail',
+            'uses' => 'apps\AutoInventoryController@detail'
+        ]);
     });
     //================================================================
     //================================================================
