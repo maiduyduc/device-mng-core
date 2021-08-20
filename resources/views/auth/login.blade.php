@@ -6,7 +6,7 @@
     <title>Đăng nhập | Trường Cao đẳng nghề Bách Khoa Hà Nội</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Trang web quản lý thiết bị khoa CNTT - Trường CĐN Bách Khoa Hà Nội" name="description">
-    <meta content="Mai Duy Đức - LTMT2K10" name="author">
+    <meta content="Mai Duy Đức - LTMT2-K10" name="author">
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets\apps\assets\images\favicon.ico') }}">
     <!-- Bootstrap Css -->
