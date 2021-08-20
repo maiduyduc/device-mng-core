@@ -66,9 +66,11 @@
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
+                                    @if(Auth::user()->menuroles == 'ptb')
                                     <div class="page-title-right">
                                         <a href="{{ route('device-plan.create') }}" class="btn btn-primary">Tạo mới</a>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -111,7 +113,7 @@
                                     </td>
                                     <td>{{ $items->created_at }}</td>
                                     <td>
-                                        @if(Auth::user()->menuroles == 'ktv')
+                                        @if(Auth::user()->menuroles == 'ptb')
                                         <a class="btn btn-primary badge badge-primary font-size-14"
                                            style="@if($items->status == 'accept' || $items->status == 'cancel') display:none @endif"
                                            href="{{ route('device-plan.edit',['id'=>$items->id]) }}">Sửa</a>

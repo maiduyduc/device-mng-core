@@ -75,7 +75,9 @@
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
                                     <div class="page-title-right">
-                                        <a href="{{ route("auto-inventory.create") }}" class="btn btn-primary">Thêm mới</a>
+                                        @if(Auth::user()->menuroles == 'ktv')
+                                            <a href="{{ route("auto-inventory.create") }}" class="btn btn-primary">Thêm mới</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

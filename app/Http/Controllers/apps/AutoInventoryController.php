@@ -35,6 +35,7 @@ class AutoInventoryController extends Controller
     {
         $datas = $this->device
             ->select('device_name', 'room_id', DB::raw('Count(device_name) as qty'), DB::raw('Count(case `status` when "error" then 1 else null end) as Error'))
+            ->where('status','<>' ,'liquidated')
             ->groupBy('device_name', 'room_id')
             ->orderBy('room_id', 'ASC')
             ->get();
@@ -45,6 +46,7 @@ class AutoInventoryController extends Controller
     {
         $datas = $this->device
             ->select('device_name', 'room_id', DB::raw('Count(device_name) as qty'), DB::raw('Count(case `status` when "error" then 1 else null end) as Error'))
+            ->where('status','<>' ,'liquidated')
             ->groupBy('device_name', 'room_id')
             ->orderBy('room_id', 'ASC')
             ->get();

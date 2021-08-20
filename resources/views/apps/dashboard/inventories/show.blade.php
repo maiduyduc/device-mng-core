@@ -1,7 +1,7 @@
 @extends('apps.layouts.app')
 
 @section('title')
-    <title>Kiểm kê tự động</title>
+    <title>Kiểm kê trên số</title>
 @endsection
 @section('link')
     <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}"
@@ -39,12 +39,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0 font-size-18">Kiểm kê tự động</h4>
+                    <h4 class="mb-0 font-size-18">Thông tin kiểm kê</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Kiểm kê</a></li>
-                            <li class="breadcrumb-item active">Kiểm kê tự động</li>
+                            <li class="breadcrumb-item active">Kiểm kê trên số</li>
                         </ol>
                     </div>
 
@@ -59,26 +59,90 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                             <tr>
-                                <th scope="col">Tên thiết bị</th>
-                                <th scope="col">Số lượng</th>
-                                <th scope="col">Số thiết bị đã hỏng</th>
+                                <th rowspan="2">TT</th>
+                                <th rowspan="2" style="width: 200px">Tên tài sản</th>
+                                <th rowspan="2">Mã quản lý</th>
+                                <th rowspan="2">Số seri</th>
+                                <th rowspan="2">Ngày mua</th>
+                                <th rowspan="2">ĐVT</th>
+                                <th rowspan="1" colspan="2">Theo sổ sách</th>
+                                <th rowspan="1" colspan="2">Theo kiểm kê</th>
+                                <th rowspan="2" style="width: 100px">Nguồn <br> tiền</th>
+                                <th rowspan="2" style="width: 100px">Giá trị <br> ước tính</th>
+                                <th rowspan="2">Ghi chú</th>
+                            </tr>
+                            <tr>
+                                <th>SL</th>
+                                <th>Nguyên giá</th>
+                                <th>SL</th>
+                                <th>Nguyên giá</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($datas as $data)
                                 <tr>
-                                    <th id="id_{{$data->room_id}}" colspan="4">Phòng: {{ $data->Room->name }}</th>
-                                </tr>
-                                <tr>
-                                    <td>{{ $data->device_name }}</td>
+                                    <td>
+                                        {{ $i }}
+                                        <p style="display: none">{{ $i++ }}</p>
+                                    </td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0 text-over">
-                                            {{ $data->qty }}
+                                            {{ $data->device_name }}
                                         </p>
                                     </td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0 text-over">
-                                            {{ $data->error_qty }}
+                                            {{ $data->device_code }}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">
+                                            {{ $data->serial }}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">
+                                            {{ $data->date_purchase }}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">
+                                            {{ $data->unit }}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">
+                                            {{ $data->qty_document }}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">
+                                            {{ number_format($data->price_document)  }}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">
+                                            {{ $data->qty_inventory }}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">
+                                            {{ number_format($data->price_inventory)  }}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">
+                                            {{ $data->funds }}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">
+                                            {{ number_format($data->estimate_price)  }}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">
+                                            {{ $data->note }}
                                         </p>
                                     </td>
                                 </tr>
@@ -88,7 +152,7 @@
                         <br>
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="{{ route('auto-inventory.index') }}" style="width: 100%"
+                                <a href="{{ route('inventory.index') }}" style="width: 100%"
                                    class="btn btn-danger w-md">Trở về</a>
                             </div>
                         </div>
@@ -128,17 +192,17 @@
     <!-- Datatable init js -->
     <script src="{{ asset('assets\apps\assets\js\pages\datatables.init.js') }}"></script>
     <!-- delete ajax -->
-    <script>
-        let elements = document.querySelectorAll("*[id]");
-        let usedIds = {};
+{{--    <script>--}}
+{{--        let elements = document.querySelectorAll("*[id]");--}}
+{{--        let usedIds = {};--}}
 
-        for (let i = 0; i < elements.length; i++) {
-            const id = elements[i].getAttribute("id");
-            if (usedIds[id]) {
-                elements[i].parentNode.removeChild(elements[i]);
-            } else {
-                usedIds[id] = true;
-            }
-        }
-    </script>
+{{--        for (let i = 0; i < elements.length; i++) {--}}
+{{--            const id = elements[i].getAttribute("id");--}}
+{{--            if (usedIds[id]) {--}}
+{{--                elements[i].parentNode.removeChild(elements[i]);--}}
+{{--            } else {--}}
+{{--                usedIds[id] = true;--}}
+{{--            }--}}
+{{--        }--}}
+{{--    </script>--}}
 @endsection

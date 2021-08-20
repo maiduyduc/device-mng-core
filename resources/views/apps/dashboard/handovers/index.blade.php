@@ -76,11 +76,13 @@
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
-                                    <div class="page-title-right">
-                                        <a class="btn btn-info" data-toggle="modal" id="getMessage"
-                                           data-target="#messageBoard" data-url="{{ url('ajax-document')}}"
-                                           href="#!"> Nhập từ công văn mua sắm </a>
-                                    </div>
+                                    @if(Auth::user()->menuroles == 'ptb')
+                                        <div class="page-title-right">
+                                            <a class="btn btn-info" data-toggle="modal" id="getMessage"
+                                               data-target="#messageBoard" data-url="{{ url('ajax-document')}}"
+                                               href="#!"> Nhập từ công văn mua sắm </a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
