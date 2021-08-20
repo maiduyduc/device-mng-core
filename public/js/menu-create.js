@@ -97,7 +97,7 @@
 var self = this;
 
 this.buildSelectParent = function (data) {
-  var result = '<option value="none">Không có menu cha</option>';
+  var result = '<option value="none">Do not have parent</option>';
 
   for (var i = 0; i < data.length; i++) {
     result += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
@@ -164,8 +164,8 @@ document.getElementById("type").onchange = function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\device-mng-core\resources\js\coreui\menu-create.js */"./resources/js/coreui/menu-create.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\device-mng-core\resources\sass\style.scss */"./resources/sass/style.scss");
+__webpack_require__(/*! I:\device-mng-core\resources\js\coreui\menu-create.js */"./resources/js/coreui/menu-create.js");
+module.exports = __webpack_require__(/*! I:\device-mng-core\resources\sass\style.scss */"./resources/sass/style.scss");
 
 
 /***/ })
