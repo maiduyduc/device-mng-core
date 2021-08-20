@@ -32,8 +32,11 @@ class RoomController extends Controller
 
     public function store(Request $request)
     {
+//        dd($request);
+
         $this->room->create([
             'name' => $request->name,
+            'num_of_equip' => 0
         ]);
         return redirect()->route('room.index');
     }

@@ -35,16 +35,10 @@
                                 <div class="form-group">
                                     <label for="formrow-name-input">Tên phòng</label>
                                     <input type="text" name="name"
-                                           class="form-control @error('name') is-invalid @enderror"
+                                           class="form-control"
                                            id="formrow-name-input"
                                            placeholder="Nhập tên phòng"
-                                           value="{{ old('name') }}"
                                            required="">
-                                    @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
                                 <div>
                                     <button type="submit" class="btn btn-primary w-md">Đồng ý</button>
