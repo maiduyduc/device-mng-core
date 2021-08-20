@@ -20,6 +20,7 @@ class DocumentPrefixSeeder extends Seeder
             ['prefix' => 'BG'],
             ['prefix' => 'KK'],
             ['prefix' => 'TL'],
+            ['prefix' => 'AKK'],
         ]);
     }
 }

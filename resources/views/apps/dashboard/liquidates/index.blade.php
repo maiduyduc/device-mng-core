@@ -129,6 +129,7 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-around">
+                                            @if(Auth::user()->menuroles == 'ktv')
                                             <a class="btn btn-primary badge badge-primary font-size-14"
                                                style=" @if($liquidate->can_edit == 0) display:none @endif"
                                                href="{{ route('liquidate.edit', ['id'=>$liquidate->id]) }}">Sửa</a>
@@ -137,6 +138,7 @@
                                                class="btn btn-danger badge badge-danger font-size-14 action_delete"
                                                data-url="{{ route('liquidate.delete', ['id'=>$liquidate->id]) }}"
                                             >Xóa</a>
+                                            @endif
                                             <a class="btn btn-info badge badge-info font-size-14"
                                                style=" @if($liquidate->can_edit == 0) width:100% @endif"
                                                href="{{ route('liquidate.info', ['id'=>$liquidate->id]) }}">Xem chi

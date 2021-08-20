@@ -113,6 +113,7 @@
                                     <th scope="col" class="th">Tổng thiết bị</th>
                                     <th scope="col" class="th">Số máy đang hỏng</th>
                                     <th scope="col" class="th">Số máy đang sửa</th>
+                                    <th scope="col" class="th">Số máy đã thanh lý</th>
                                 </tr>
                                 </thead>
 
@@ -123,6 +124,7 @@
                                         <td class="th">{{ $dt['devices'] }}</td>
                                         <td class="th">{{ $dt['deviceError'] }}</td>
                                         <td class="th">{{ $dt['deviceOnRepair'] }}</td>
+                                        <td class="th">{{ $dt['deviceLiquidated'] }}</td>
                                     </tr>
                                     <p style="display: none"> {{ $i++ }}</p>
                                 @endforeach

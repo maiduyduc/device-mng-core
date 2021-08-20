@@ -69,11 +69,16 @@ class ReportsController extends Controller
             ->where('room_id', $room_id)
             ->where('status', 'fixing')
             ->count();
+        $deviceLiquidated = $this->device
+            ->where('room_id', $room_id)
+            ->where('status', 'liquidated')
+            ->count();
         return [
             'roomName' => $roomName,
             'devices' => $devices,
             'deviceError' => $deviceError,
-            'deviceOnRepair' => $deviceOnRepair
+            'deviceOnRepair' => $deviceOnRepair,
+            'deviceLiquidated' => $deviceLiquidated
         ];
     }
 }
