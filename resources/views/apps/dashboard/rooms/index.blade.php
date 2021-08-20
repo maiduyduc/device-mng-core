@@ -120,5 +120,5 @@
     <!-- Datatable init js -->
     <script src="{{ asset('assets\apps\assets\js\pages\datatables.init.js') }}"></script>
 
-    <script src="{{ asset('js/delete.js') }}"></script>
+    <script src="{{ asset('assets/apps/js/delete.js') }}"></script>
 @endsection

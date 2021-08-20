@@ -185,5 +185,5 @@
     <!-- Datatable init js -->
     <script src="{{ asset('assets\apps\assets\js\pages\datatables.init.js') }}"></script>
     <!-- delete ajax -->
-    <script src="{{ asset('js/delete_v2.js') }}"></script>
+    <script src="{{ asset('assets/apps/js/delete_v2.js') }}"></script>
 @endsection
