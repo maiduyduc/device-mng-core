@@ -79,7 +79,7 @@ Truy cập vào http://localhost:8000/ hoặc http://127.0.0.1:8000 và đăng n
   Password: 123
 ```
 ```bash
-  Quyền tài khoản ktv, ptb, trk (hiện tại chưa chia nhỏ quyền): xem, thêm, sửa, xóa các văn bản 
+  Quyền tài khoản ktv, ptb, trk: xem, thêm, sửa, xóa các văn bản được phép
   ----------------
   Email: ktv@ktv
   Password: 123
