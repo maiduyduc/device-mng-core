@@ -49,7 +49,8 @@ Cài đặt Composer
 Cài đặt Node.js
 
 ```bash
-  npm install && npm run dev
+  npm install
+  npm run dev
 ```
 
 Khởi tạo khóa ứng dụng
