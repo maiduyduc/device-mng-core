@@ -18,8 +18,8 @@ class CreateAutoInventoryInfosTable extends Migration
             $table->integer('auto_inventory_id');
             $table->string('device_name');
             $table->integer('room_id');
-            $table->string('status');
             $table->integer('qty');
+            $table->integer('error_qty')->default(0);
             $table->timestamps();
         });
     }

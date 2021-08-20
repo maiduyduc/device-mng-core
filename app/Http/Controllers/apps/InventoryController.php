@@ -87,6 +87,8 @@ class InventoryController extends Controller
 
     public function detail($id)
     {
-
+        $ids = $this->inventory->find($id)->get();
+        $datas = $this->inventory_info->where('inventor_id', $id)->get();
+        return view('apps.dashboard.inventories.show', compact('ids', 'datas'));
     }
 }

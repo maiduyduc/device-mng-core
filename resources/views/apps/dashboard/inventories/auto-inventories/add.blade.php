@@ -4,9 +4,11 @@
     <title>Kiểm kê tự động</title>
 @endsection
 @section('link')
-    <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}"
+          rel="stylesheet"
           type="text/css">
-    <link href="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\css\buttons.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\css\buttons.bootstrap4.min.css') }}"
+          rel="stylesheet"
           type="text/css">
     <!-- Responsive datatable examples -->
     <link href="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\css\responsive.bootstrap4.min.css') }}"
@@ -57,48 +59,58 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                             <tr>
-                                <th scope="col">Device Name</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Qty</th>
-                                <th scope="col">Error</th>
+                                <th scope="col">Tên thiết bị</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Số thiết bị đã hỏng</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($datas as $data)
                                 <tr>
-                                    <td colspan="4">{{ $data->Room->name }}</td>
+                                    <th id="id_{{$data->room_id}}" colspan="4">Phòng: {{ $data->Room->name }}</th>
                                 </tr>
                                 <tr>
                                     <td>{{ $data->device_name }}</td>
-
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0 text-over">{{ $data->status }}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-dark font-size-14 mb-0 text-over" style="max-width: 1rem">
+                                        <p class="text-dark font-size-14 mb-0 text-over">
                                             {{ $data->qty }}
                                         </p>
                                     </td>
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0 text-over" style="max-width: 1rem">
+                                        <p class="text-dark font-size-14 mb-0 text-over">
                                             {{ $data->Error }}
                                         </p>
                                     </td>
                                 </tr>
                             @endforeach
-                            <tr>
-                                <td colspan="2">
+                            </tbody>
+                        </table>
+                        <br>
+                        <form action="{{ route('auto-inventory.store') }}" method="post">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="note">Ghi chú</label>
+                                        <input type="text" name="note" id="note" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6">
                                     <button type="submit" style="width: 100%" class="btn btn-primary w-md">
                                         Lưu
                                     </button>
-                                </td>
-                                <td colspan="2">
-                                    <a href="{{ route('auto-inventory.index') }}" style="width: 100%"
-                                       class="btn btn-danger w-md">Hủy</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <td colspan="2">
+                                        <a href="{{ route('auto-inventory.index') }}" style="width: 100%"
+                                           class="btn btn-danger w-md">Hủy</a>
+                                    </td>
+                                </div>
+                            </div>
+                        </form>
 
                     </div>
                 </div>
@@ -114,7 +126,8 @@
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-bs4\js\dataTables.bootstrap4.min.js') }}"></script>
     <!-- Buttons examples -->
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons\js\dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\js\buttons.bootstrap4.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\js\buttons.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\jszip\jszip.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\pdfmake\build\pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\pdfmake\build\vfs_fonts.js') }}"></script>
@@ -127,10 +140,25 @@
 
     <!-- Init js -->
     <script src="{{ asset('assets\apps\assets\js\pages\table-responsive.init.js') }}"></script>
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-responsive\js\dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-responsive\js\dataTables.responsive.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js') }}"></script>
 
     <!-- Datatable init js -->
     <script src="{{ asset('assets\apps\assets\js\pages\datatables.init.js') }}"></script>
     <!-- delete ajax -->
+    <script>
+        let elements = document.querySelectorAll("*[id]");
+        let usedIds = {};
+
+        for (let i = 0; i < elements.length; i++) {
+            const id = elements[i].getAttribute("id");
+            if (usedIds[id]) {
+                elements[i].parentNode.removeChild(elements[i]);
+            } else {
+                usedIds[id] = true;
+            }
+        }
+    </script>
 @endsection

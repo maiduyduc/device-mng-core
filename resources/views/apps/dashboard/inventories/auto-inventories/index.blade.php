@@ -105,14 +105,13 @@
 
                                     <td>
                                         <p class="text-dark font-size-14 mb-0 text-over">
-                                            {{ date_format($inventory->create_at,"d/m/Y")  }}
+                                            {{ $inventory->created_at  }}
                                         </p>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-around">
                                             <a class="btn btn-info badge badge-info font-size-14"
-                                               style=" @if($liquidate->can_edit == 0) width:100% @endif"
-                                               href="{{ route('auto-inventory.info', ['id'=>$inventory->id]) }}">Xem chi
+                                               href="{{ route('auto-inventory.detail', ['id'=>$inventory->id]) }}">Xem chi
                                                 tiết</a>
                                         </div>
                                     </td>
