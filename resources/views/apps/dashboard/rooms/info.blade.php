@@ -88,7 +88,7 @@
                                 <th scope="col">Hạn bảo hành</th>
                                 <th scope="col">Phòng</th>
                                 <th scope="col">Trạng thái</th>
-                                <th scope="col">Hành động</th>
+{{--                                <th scope="col">Hành động</th>--}}
                             </tr>
                             </thead>
                             <tbody>
@@ -169,6 +169,14 @@
                                                     </button>
                                                 </form>
                                                 <form method="post"
+                                                      action="{{ route('device.fixing', ['id' => $device->id]) }}">
+                                                    @csrf
+                                                    <button class="dropdown-item"
+                                                            style="@if($device->status == 'fixing') display:none @endif"
+                                                            href="#">Đang sửa
+                                                    </button>
+                                                </form>
+                                                <form method="post"
                                                       action="{{ route('device.liquidate', ['id' => $device->id]) }}">
                                                     @csrf
                                                     <button class="dropdown-item"
@@ -180,14 +188,14 @@
                                         </div>
 
                                     </td>
-                                    <td>
-                                        <a class="btn btn-primary badge badge-primary font-size-14"
-                                           href=""
-                                        >Sửa</a>
-                                        <a href=""
-                                           class="btn btn-danger badge badge-danger font-size-14 action_delete"
-                                        >Xóa</a>
-                                    </td>
+{{--                                    <td>--}}
+{{--                                        <a class="btn btn-primary badge badge-primary font-size-14"--}}
+{{--                                           href=""--}}
+{{--                                        >Sửa</a>--}}
+{{--                                        <a href=""--}}
+{{--                                           class="btn btn-danger badge badge-danger font-size-14 action_delete"--}}
+{{--                                        >Xóa</a>--}}
+{{--                                    </td>--}}
                                 </tr>
                             @endforeach
                             </tbody>

@@ -48,9 +48,11 @@
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
+                                    @if(Auth::user()->menuroles == 'ktv')
                                     <div class="page-title-right">
                                         <a href="{{ route('room.create') }}" class="btn btn-primary">Tạp phòng mới</a>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -76,6 +78,7 @@
                                         <p class="text-dark font-size-14 mb-0">{{ $room->num_of_equip }}</p>
                                     </td>
                                     <td>
+                                        @if(Auth::user()->menuroles == 'ktv')
                                         <a class="btn btn-primary badge badge-primary font-size-14"
                                            href="{{ route('room.edit', ['id' => $room->id]) }}"
                                         >Sửa</a>
@@ -83,6 +86,7 @@
                                            class="btn btn-danger badge badge-danger font-size-14 action_delete"
                                            data-url="{{ route('room.delete', ['id'=>$room->id]) }}"
                                         >Xóa</a>
+                                        @endif
                                         <a href="{{ route('room.device', ['id' => $room->id]) }}"
                                            class="btn btn-info badge badge-info font-size-14"
                                         >Xem thiết bị</a>

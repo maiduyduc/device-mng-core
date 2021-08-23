@@ -169,7 +169,7 @@ class MenusTableSeeder extends Seeder
         $this->endDropdown();
         //================
         //Tìm kiếm, báo cáo
-        $this->beginDropdown('ktv,ptb,trk',   'Báo cáo',   'mdi mdi-book-search-outline');
+        $this->beginDropdown('ktv',   'Báo cáo',   'mdi mdi-book-search-outline');
 //            $this->insertLink('ktv,ptb,trk',  'Tìm kiếm',                  '/developing');
             $this->insertLink('ktv',  'Lập báo cáo',               '/report');
         $this->endDropdown();
@@ -177,16 +177,16 @@ class MenusTableSeeder extends Seeder
 
         //Quản trị hệ thống
         $this->insertTitle('admin', 'CHỨC NĂNG DÀNH RIÊNG CHO AMDIN');
-        $this->beginDropdown('admin,ktv',   'Quản lý hệ thống', 'bx bx-chip');
+        $this->beginDropdown('admin,ktv,ptb,trk',   'Quản lý hệ thống', 'bx bx-chip');
             $this->insertLink('admin',      'Quản lý người dùng',      '/users');
             $this->insertLink('admin',      'Quản lý vai trò',         '/roles');
             $this->insertLink('admin',      'Quản lý menu chính',      '/menu/menu');
             $this->insertLink('admin',      'Quản lý menu con',        '/menu/element');
-            $this->insertLink('ktv',        'Quản lý phòng',           '/room');
+            $this->insertLink('ktv,ptb,trk',        'Quản lý phòng',           '/room');
             $this->insertLink('ktv,admin',  'Sao lưu, phục hồi',       '/developing');
-            $this->beginDropdown('ktv',     'Quản lý thiết bị');
+            $this->beginDropdown('ktv,ptb,trk',     'Quản lý thiết bị');
                 $this->insertLink('ktv',    'Danh mục thiết bị',       '/category-device');
-                $this->insertLink('ktv',    'Danh sách thiết bị',      '/device');
+                $this->insertLink('ktv,trk,ptb',    'Danh sách thiết bị',      '/device');
             $this->endDropdown();
         $this->endDropdown();
         //================
