@@ -81,91 +81,89 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/coreui/menu-create.js":
+/***/ "./resources/js/coreui/media-cropp.js":
 /*!********************************************!*\
-  !*** ./resources/js/coreui/menu-create.js ***!
+  !*** ./resources/js/coreui/media-cropp.js ***!
   \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-/* 11.12.2019 */
 var self = this;
+this.changePort = ''; // :8000
 
-this.buildSelectParent = function (data) {
-  var result = '<option value="none">Do not have parent</option>';
+this.removeFolderModal = new coreui.Modal(document.getElementById('cropp-img-modal'));
+this.cropper = null;
+this.croppUrl = null;
+this.croppFileId = null;
 
-  for (var i = 0; i < data.length; i++) {
-    result += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+this.uploadCroppedImage = function () {
+  self.cropper.getCroppedCanvas().toBlob(function (blob) {
+    var formData = new FormData();
+    formData.append('file', blob);
+    formData.append('thisFolder', document.getElementById('this-folder-id').value);
+    formData.append('id', self.croppFileId);
+    axios.post('/media/file/cropp', formData).then(function (response) {
+      location.reload();
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
-
-  return result;
+  /*, 'image/png' */
+  );
 };
 
-this.updateSelectParent = function () {
-  axios.get('/menu/element/get-parents?menu=' + document.getElementById("menu").value).then(function (response) {
-    document.getElementById("parent").innerHTML = self.buildSelectParent(response.data);
+this.afterShowedCroppModal = function () {
+  if (self.cropper !== null) {
+    self.cropper.replace(self.croppUrl);
+  } else {
+    var image = document.getElementById('cropp-img-img');
+    self.cropper = new Cropper(image, {
+      minContainerWidth: 600,
+      minContainerHeight: 600
+    });
+  }
+};
+
+this.showCroppModal = function (data) {
+  self.croppUrl = data.url;
+  self.croppUrl = self.croppUrl.replace('localhost', 'localhost' + self.changePort);
+  document.getElementById('cropp-img-img').setAttribute('src', self.croppUrl);
+  self.removeFolderModal.show();
+};
+
+this.croppImg = function (e) {
+  self.croppFileId = e.target.getAttribute('atr');
+  axios.get('/media/file?id=' + self.croppFileId + '&thisFolder=' + document.getElementById('this-folder-id').value).then(function (response) {
+    self.showCroppModal(response.data);
   })["catch"](function (error) {
-    // handle error
     console.log(error);
   });
 };
 
-this.toggleDivs = function () {
-  var value = document.getElementById("type").value;
+var croppFiles = document.getElementsByClassName("file-cropp-file");
 
-  if (value === 'title') {
-    document.getElementById('div-href').classList.add('d-none');
-    document.getElementById('div-dropdown-parent').classList.add('d-none');
-    document.getElementById('div-icon').classList.add('d-none');
-  } else if (value === 'link') {
-    document.getElementById('div-href').classList.remove('d-none');
-    document.getElementById('div-dropdown-parent').classList.remove('d-none');
-    document.getElementById('div-icon').classList.remove('d-none');
-  } else {
-    document.getElementById('div-href').classList.add('d-none');
-    document.getElementById('div-dropdown-parent').classList.remove('d-none');
-    document.getElementById('div-icon').classList.remove('d-none');
-  }
-};
+for (var i = 0; i < croppFiles.length; i++) {
+  croppFiles[i].addEventListener('click', this.croppImg);
+}
 
-this.updateSelectParent();
-this.toggleDivs();
-
-document.getElementById("menu").onchange = function () {
-  self.updateSelectParent();
-};
-
-document.getElementById("type").onchange = function () {
-  self.toggleDivs();
-};
+document.getElementById("cropp-img-modal").addEventListener("show.coreui.modal", this.afterShowedCroppModal);
+document.getElementById('cropp-img-save-button').addEventListener('click', this.uploadCroppedImage);
 
 /***/ }),
 
-/***/ "./resources/sass/style.scss":
-/*!***********************************!*\
-  !*** ./resources/sass/style.scss ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!******************************************************************************!*\
-  !*** multi ./resources/js/coreui/menu-create.js ./resources/sass/style.scss ***!
-  \******************************************************************************/
+/***/ 3:
+/*!**************************************************!*\
+  !*** multi ./resources/js/coreui/media-cropp.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! I:\device-mng-core\resources\js\coreui\menu-create.js */"./resources/js/coreui/menu-create.js");
-module.exports = __webpack_require__(/*! I:\device-mng-core\resources\sass\style.scss */"./resources/sass/style.scss");
+module.exports = __webpack_require__(/*! I:\device-mng-core\resources\js\coreui\media-cropp.js */"./resources/js/coreui/media-cropp.js");
 
 
 /***/ })
