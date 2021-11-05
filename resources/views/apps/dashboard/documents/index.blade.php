@@ -137,7 +137,7 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            @if(Auth::user()->menuroles == 'ktv')
+                                            @if(Auth::user()->menuroles == 'ptb')
                                             <a class="btn btn-primary badge badge-primary font-size-14"
                                                style="@if($document->can_edit == 0) display:none @endif"
                                                href="{{ route('document.edit', ['id'=>$document->id]) }}">Sửa</a>
