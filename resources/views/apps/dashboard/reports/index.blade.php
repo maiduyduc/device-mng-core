@@ -65,7 +65,7 @@
                                         <col span="1">
                                     </colgroup>
                                     <thead>
-                                        <th colspan="2">Báo cáo toàn khoa</th>
+                                        <th colspan="2"><h4 style="text-align: center">Báo cáo toàn khoa</h4></th>
                                     </thead>
                                     <tbody>
                                     <tr>
@@ -101,6 +101,9 @@
                                         <td>
                                             {{ $deviceLiquidated }}
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><h6 style="text-align: right">Ngày <script>document.write(new Date().getDate())</script> tháng <script>document.write(new Date().getMonth())</script> năm <script>document.write(new Date().getFullYear())</script></h6></td>
                                     </tr>
                                     </tbody>
                                 </table>
