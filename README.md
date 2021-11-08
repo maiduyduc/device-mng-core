@@ -22,7 +22,7 @@ Hãy chắc chắn máy tính của bạn đã được cài đặt các phần 
 Nếu bạn đã cài đặt các phần mềm trên, hãy làm tiếp các bước sau đây.
 ###
 
-### Tạo 1 database mới với tên **device-mng**
+### Tạo 1 database mới với tên **device-mng-core**
 
 *Hướng dẫn dưới đây dành cho người sử dụng Xampp*
 
@@ -58,7 +58,7 @@ Khởi tạo khóa ứng dụng
   php artisan key:generate
 ```
 
-Khởi tại database và dữ liệu mẫu
+Khởi tạo table và dữ liệu mẫu
 
 ```bash
   php artisan migrate:fresh --seed
