@@ -75,7 +75,7 @@
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
                                     <div class="page-title-right">
-                                        @if(Auth::user()->menuroles == 'ktv')
+                                        @if(Auth::user()->menuroles == 'ktv' || Auth::user()->menuroles == 'sadmin')
                                             <a class="btn btn-info" data-toggle="modal" id="getMessage"
                                                data-target="#messageBoard" data-url="{{ url('liquidateDevice')}}"
                                                href="#!"> Thêm mới </a>
@@ -132,7 +132,7 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            @if(Auth::user()->menuroles == 'ktv')
+                                            @if(Auth::user()->menuroles == 'ktv' || Auth::user()->menuroles == 'sadmin')
                                             <a class="btn btn-primary badge badge-primary font-size-14"
                                                style=" @if($liquidate->can_edit == 0) display:none @endif"
                                                href="{{ route('liquidate.edit', ['id'=>$liquidate->id]) }}">Sửa</a>

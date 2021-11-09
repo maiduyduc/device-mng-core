@@ -14,4 +14,8 @@ class DeviceGroup extends Model
     public function Device(){
         return $this->hasMany(Device::class, 'device_group_id');
     }
+
+    public function Room(){
+        return $this->belongsTo(Room::class, 'room_id');
+    }
 }

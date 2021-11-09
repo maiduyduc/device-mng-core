@@ -76,7 +76,7 @@
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
-                                    @if(Auth::user()->menuroles == 'ptb')
+                                    @if(Auth::user()->menuroles == 'ptb' || Auth::user()->menuroles == 'sadmin')
                                         <div class="page-title-right">
                                             <a class="btn btn-info" data-toggle="modal" id="getMessage"
                                                data-target="#messageBoard" data-url="{{ url('ajax-document')}}"
@@ -143,7 +143,7 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-around">
-                                            @if(Auth::user()->menuroles == 'ptb')
+                                            @if(Auth::user()->menuroles == 'ptb' || Auth::user()->menuroles == 'sadmin')
                                                 <a class="btn btn-primary badge badge-primary font-size-14"
                                                    style=" @if($handover->can_edit == 0) display:none @endif"
                                                    href="{{ route('handover.edit', ['id'=>$handover->id]) }}">Sửa</a>

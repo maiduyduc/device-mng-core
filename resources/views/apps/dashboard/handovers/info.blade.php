@@ -149,7 +149,7 @@
                                             <td>{{ $info->purchase_date }}</td>
                                             <td>{{ $info->unit }}</td>
                                             <td>{{ $info->qty }}</td>
-                                            <td></td>
+                                            <td>{{ $info->inventory_qty }}</td>
                                             <td></td>
                                             <td></td>
                                             <td>{{ $info->note }}</td>

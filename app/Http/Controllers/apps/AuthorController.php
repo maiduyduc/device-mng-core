@@ -86,6 +86,18 @@ class AuthorController extends Controller
         }
     }
 
+    public function getDeviceFromRoom($id){
+        $i = 1;
+        $datas = DB::table('Devices')
+            ->where('room_id', $id)
+            ->get();
+        if ($datas->count() != 0) {
+            return view('apps.dashboard.ajax.ajax-device', ['datas' => $datas, 'i' => $i]);
+        } else {
+            return view('apps.dashboard.ajax.ajax-device', compact('datas'));
+        }
+    }
+
     public function developing()
     {
         return view('errors.developing');

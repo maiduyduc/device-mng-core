@@ -23,31 +23,47 @@ class RoleHierarchySeeder extends Seeder
         $usersIds = array();
         $faker = Faker::create();
         /* Create roles */
-        $adminRole = Role::create(['name' => 'admin', 'display_name' => 'Super Admin']);
+        $SadminRole = Role::create(['name' => 'sadmin', 'display_name' => 'Super Admin']);
+        RoleHierarchy::create([
+            'role_id' => $SadminRole->id,
+            'hierarchy' => 1,
+        ]);
+
+        $adminRole = Role::create(['name' => 'admin', 'display_name' => 'System Admin']);
         RoleHierarchy::create([
             'role_id' => $adminRole->id,
-            'hierarchy' => 1,
+            'hierarchy' => 2,
         ]);
         $ktvRole = Role::create(['name' => 'ktv', 'display_name' => 'Kỹ thuật viên']);
         RoleHierarchy::create([
             'role_id' => $ktvRole->id,
-            'hierarchy' => 2,
+            'hierarchy' => 3,
         ]);
         $ptbRole = Role::create(['name' => 'ptb', 'display_name' => 'Phòng thiết bị']);
         RoleHierarchy::create([
             'role_id' => $ptbRole->id,
-            'hierarchy' => 3,
+            'hierarchy' => 4,
         ]);
 
         $trkRole = Role::create(['name' => 'trk', 'display_name' => 'Trưởng khoa']);
         RoleHierarchy::create([
             'role_id' => $trkRole->id,
-            'hierarchy' => 4,
+            'hierarchy' => 5,
         ]);
 
         /*  insert users   */
         $user = User::create([
             'name' => 'Super Admin',
+            'email' => 'admin@super',
+            'email_verified_at' => now(),
+            'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
+            'remember_token' => Str::random(10),
+            'menuroles' => 'sadmin'
+        ]);
+        $user->assignRole('sadmin');
+
+        $user = User::create([
+            'name' => 'System Admin',
             'email' => 'admin@admin',
             'email_verified_at' => now(),
             'password' => '$2a$12$T7HYl3wEyaAgWI/V/ukugu8BubpxjdBtzM4FpD6NHRPK/HtmZFYM2', // 123
