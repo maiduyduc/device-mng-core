@@ -1,7 +1,7 @@
 @extends('apps.layouts.app')
 
 @section('title')
-    <title>Danh sách phòng</title>
+    <title>Danh sách thiết bị nhóm</title>
 @endsection
 @section('link')
     <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}" rel="stylesheet"
@@ -26,12 +26,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0 font-size-18">Danh sách phòng</h4>
+                    <h4 class="mb-0 font-size-18">Danh sách thiết bị nhóm</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Phòng</a></li>
-                            <li class="breadcrumb-item active">Danh sách phòng</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Thiết bị</a></li>
+                            <li class="breadcrumb-item active">Danh sách thiết bị nhóm</li>
                         </ol>
                     </div>
 
@@ -48,11 +48,10 @@
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
-                                    @if(Auth::user()->menuroles == 'ktv' || Auth::user()->menuroles == 'sadmin')
                                     <div class="page-title-right">
-                                        <a href="{{ route('room.create') }}" class="btn btn-primary">Tạp phòng mới</a>
+                                        <a href="{{ route('device-group.create') }}" class="btn btn-primary">Thêm thiết bị vào nhóm</a>
+                                        <a href="{{ route('device-group.index') }}" class="btn btn-info"><i class="bx bx-arrow-back"></i></a>
                                     </div>
-                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -60,36 +59,27 @@
                                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                             <tr>
-                                <th scope="col" style="width: 50px">ID</th>
-                                <th>Tên phòng</th>
-                                <th>Số lượng thiết bị</th>
-                                <th scope="col" style="max-width: 5rem">Hành động</th>
+                                <th scope="col" style="width: 50px">STT</th>
+                                <th>Tên thiết bị</th>
+                                <th scope="col" style="width: 100px">Hành động</th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            @foreach($rooms as $room)
+                            @foreach($devices as $device)
                                 <tr>
-                                    <td>{{ $room->id }}</td>
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0">{{ $room->name }}</p>
+                                        {{ $i }}
+                                        <p style="display: none">{{ $i++ }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0">{{ $room->num_of_equip }}</p>
+                                        <p class="text-dark font-size-14 mb-0">{{ $device->Device->device_name }}</p>
                                     </td>
                                     <td>
-                                        @if(Auth::user()->menuroles == 'ktv' || Auth::user()->menuroles == 'sadmin')
-                                        <a class="btn btn-primary badge badge-primary font-size-14"
-                                           href="{{ route('room.edit', ['id' => $room->id]) }}"
-                                        >Sửa</a>
                                         <a href=""
                                            class="btn btn-danger badge badge-danger font-size-14 action_delete"
-                                           data-url="{{ route('room.delete', ['id'=>$room->id]) }}"
-                                        >Xóa</a>
-                                        @endif
-                                        <a href="{{ route('room.device', ['id' => $room->id]) }}"
-                                           class="btn btn-info badge badge-info font-size-14"
-                                        >Xem thiết bị</a>
+                                           data-url="{{ route('device-group.delete', ['id'=>$device->id]) }}"
+                                        >Xóa khỏi nhóm</a>
                                     </td>
                                 </tr>
                             @endforeach

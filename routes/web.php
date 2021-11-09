@@ -345,6 +345,36 @@ Route::group(['middleware' => ['get.menu']], function () {
             'uses' => 'apps\AutoInventoryController@detail'
         ]);
     });
+    Route::prefix('/device-group')->group(function () {
+        Route::get('/', [
+            'as' => 'device-group.index',
+            'uses' => 'apps\DeviceGroupController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'device-group.create',
+            'uses' => 'apps\DeviceGroupController@create'
+        ]);
+        Route::post('/store', [
+            'as' => 'device-group.store',
+            'uses' => 'apps\DeviceGroupController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'device-group.edit',
+            'uses' => 'apps\DeviceGroupController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'device-group.update',
+            'uses' => 'apps\DeviceGroupController@update'
+        ]);
+        Route::get('/detail/{id}', [
+            'as' => 'device-group.detail',
+            'uses' => 'apps\DeviceGroupController@detail'
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'device-group.delete',
+            'uses' => 'apps\DeviceGroupController@delete'
+        ]);
+    });
     //================================================================
     //================================================================
     //================================================================

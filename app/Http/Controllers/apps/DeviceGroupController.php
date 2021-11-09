@@ -1,0 +1,87 @@
+<?php
+
+namespace App\Http\Controllers\apps;
+
+use App\Http\Controllers\Controller;
+use App\Models\Models\apps\DeviceGroup;
+use App\Models\Models\apps\DeviceGroupInfo;
+use App\Models\Models\apps\Room;
+use Illuminate\Http\Request;
+
+class DeviceGroupController extends Controller
+{
+    private $device_group_info;
+    private $device_group;
+    private $room;
+
+    public function __construct(DeviceGroup $device_group, Room $room, DeviceGroupInfo $device_group_info)
+    {
+        $this->middleware('auth');
+        $this->device_group = $device_group;
+        $this->room = $room;
+        $this->device_group_info = $device_group_info;
+    }
+
+    public function index()
+    {
+        $groups = $this->device_group::all();
+        return view('apps.dashboard.device_group.index', compact('groups'));
+    }
+
+    public function create()
+    {
+        $rooms = $this->room::all();
+        return view('apps.dashboard.device_group.add', compact('rooms'));
+    }
+
+    public function store(Request $request)
+    {
+        $this->device_group->create([
+            'name' => $request->name,
+            'room_id' => $request->room_id,
+        ]);
+        alert()->success('Thành công', 'Đã thêm nhóm ' . "$request->name");
+        return redirect()->route('device-group.index');
+    }
+
+    public function edit($id)
+    {
+        $rooms = $this->room::all();
+        $device_group = $this->device_group->find($id);
+        return view('apps.dashboard.device_group.edit', compact('device_group', 'rooms'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->device_group->find($id)->update([
+            'name' => $request->name,
+            'room_id' => $request->room_id,
+        ]);
+        alert()->success('Cập nhật thành công');
+        return redirect()->route('device-group.index');
+    }
+
+    public function detail($id)
+    {
+        $i = 1;
+        $devices = $this->device_group_info::where('device_group_id', $id)->get();
+        return view('apps.dashboard.device_group.info', compact('devices', 'i'));
+    }
+
+    public function deleteDeviceFromGroup($id)
+    {
+        $this->device_group_info->find($id)->delete();
+        return $this->successResponse();
+    }
+
+    public function addDeviceToGroup(Request $request, $id)
+    {
+
+    }
+
+    public function delete($id)
+    {
+        $this->device_group->find($id)->delete();
+        return $this->successResponse();
+    }
+}

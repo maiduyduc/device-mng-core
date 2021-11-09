@@ -48,7 +48,7 @@
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
                                     <div class="page-title-right">
-                                        @if(Auth::user()->menuroles == 'ktv')
+                                        @if(Auth::user()->menuroles == 'ktv' || Auth::user()->menuroles == 'sadmin')
                                             <a href="{{ route("inventory.create") }}" class="btn btn-primary">Thêm mới</a>
                                         @endif
                                     </div>
