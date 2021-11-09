@@ -86,13 +86,15 @@ class AuthorController extends Controller
         }
     }
 
-    public function getDeviceFromRoom($id){
+    public function getDeviceFromRoom($id, $id2){
         $i = 1;
+        $dg_id = $id2;
         $datas = DB::table('Devices')
             ->where('room_id', $id)
+            ->where('device_group_id', null)
             ->get();
         if ($datas->count() != 0) {
-            return view('apps.dashboard.ajax.ajax-device', ['datas' => $datas, 'i' => $i]);
+            return view('apps.dashboard.ajax.ajax-device', ['datas' => $datas, 'i' => $i, 'dg_id' => $dg_id]);
         } else {
             return view('apps.dashboard.ajax.ajax-device', compact('datas'));
         }

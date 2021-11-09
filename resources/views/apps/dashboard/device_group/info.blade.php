@@ -1,7 +1,7 @@
 @extends('apps.layouts.app')
 
 @section('title')
-    <title>Danh sách thiết bị nhóm</title>
+    <title>Danh sách thiết bị nhóm: {{ $ids->name }}</title>
 @endsection
 @section('link')
     <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}" rel="stylesheet"
@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0 font-size-18">Danh sách thiết bị nhóm</h4>
+                    <h4 class="mb-0 font-size-18">Danh sách thiết bị nhóm: {{ $ids->name }}</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
@@ -49,7 +49,9 @@
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
                                     <div class="page-title-right">
-                                        <a href="{{ route('device-group.create') }}" class="btn btn-primary">Thêm thiết bị vào nhóm</a>
+                                        <a class="btn btn-info" data-toggle="modal" id="getMessage"
+                                           data-target="#messageBoard" data-url="{{ url('device-room', ['id' => $ids->room_id, 'id2' => $ids->id])}}"
+                                           href="#!"> Thêm thiết bị vào nhóm </a>
                                         <a href="{{ route('device-group.index') }}" class="btn btn-info"><i class="bx bx-arrow-back"></i></a>
                                     </div>
                                 </div>
@@ -78,7 +80,7 @@
                                     <td>
                                         <a href=""
                                            class="btn btn-danger badge badge-danger font-size-14 action_delete"
-                                           data-url="{{ route('device-group.delete', ['id'=>$device->id]) }}"
+                                           data-url="{{ route('device-group.del-device-to-group', ['id'=>$device->id]) }}"
                                         >Xóa khỏi nhóm</a>
                                     </td>
                                 </tr>

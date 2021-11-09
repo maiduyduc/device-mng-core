@@ -12,11 +12,12 @@
                 <div class="table-responsive mb-0 list-group-item rounded px-3 mb-1" data-pattern="priority-columns"
                      id="list-item">
                     <form method="post"
-                          action="{{ route('liquidate.create') }}">
+                          action="">
                         @csrf
                     <table id="tech-companies-1" class="table table-striped">
                         <thead>
                         <tr>
+                            <th></th>
                             <th data-priority="1">STT</th>
                             <th data-priority="1">Mã thiết bị</th>
                             <th data-priority="3">Tên thiết bị</th>
