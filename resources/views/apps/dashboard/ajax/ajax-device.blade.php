@@ -12,7 +12,7 @@
                 <div class="table-responsive mb-0 list-group-item rounded px-3 mb-1" data-pattern="priority-columns"
                      id="list-item">
                     <form method="post"
-                          action="{{ route('liquidate.create') }}">
+                          action="{{ route('device-group.add-device-to-group') }}">
                         @csrf
                         <table id="tech-companies-1" class="table table-striped">
                             <thead>
@@ -50,6 +50,7 @@
                                             </label>
                                         </div>
                                     </td>
+                                    <input type="hidden" value="{{ $dg_id }}" name="dg_id">
                                 </tr>
                             @endforeach
                             <tr>

@@ -374,6 +374,14 @@ Route::group(['middleware' => ['get.menu']], function () {
             'as' => 'device-group.delete',
             'uses' => 'apps\DeviceGroupController@delete'
         ]);
+        Route::post('/add-device-to-group', [
+            'as' => 'device-group.add-device-to-group',
+            'uses' => 'apps\DeviceGroupController@addDeviceToGroup'
+        ]);
+        Route::get('/del-device-to-group/{id}', [
+            'as' => 'device-group.del-device-to-group',
+            'uses' => 'apps\DeviceGroupController@deleteDeviceFromGroup'
+        ]);
     });
     //================================================================
     //================================================================
@@ -388,6 +396,7 @@ Route::group(['middleware' => ['get.menu']], function () {
     /*=*/   Route::get('ajax-document', 'apps\AuthorController@getDocument'); //xem danh sách văn bản dự trù đã duyệt
     /*=*/   Route::get('developing', 'apps\AuthorController@developing'); //thông báo tính năng đang phát triển
     /*=*/   Route::get('liquidateDevice', 'apps\AuthorController@getDeviceLiquidate'); //xem danh sách thiết bị chờ thanh lý
+    /*=*/   Route::get('device-room/{id}/{id2}', 'apps\AuthorController@getDeviceFromRoom'); //xem danh sách thiết bị trong phòng
     //=============================================================================
     //=================================END AJAX====================================
     //=============================================================================
