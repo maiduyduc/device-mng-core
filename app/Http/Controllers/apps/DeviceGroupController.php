@@ -5,20 +5,24 @@ namespace App\Http\Controllers\apps;
 use App\Http\Controllers\Controller;
 use App\Models\Models\apps\DeviceGroup;
 use App\Models\Models\apps\DeviceGroupInfo;
+use App\Models\Models\apps\HistoryDevice;
 use App\Models\Models\apps\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class DeviceGroupController extends Controller
 {
     private $device_group_info;
     private $device_group;
+    private $history;
     private $room;
 
-    public function __construct(DeviceGroup $device_group, Room $room, DeviceGroupInfo $device_group_info)
+    public function __construct(DeviceGroup $device_group, Room $room, DeviceGroupInfo $device_group_info, HistoryDevice $history)
     {
         $this->middleware('auth');
         $this->device_group = $device_group;
+        $this->history = $history;
         $this->room = $room;
         $this->device_group_info = $device_group_info;
     }
@@ -72,30 +76,66 @@ class DeviceGroupController extends Controller
 
     public function deleteDeviceFromGroup($id)
     {
-        $ids = $this->device_group_info->find($id);
-//        dd($ids->id);
-        $this->device_group_info->find($id)->delete();
-        $this->device_group::where('id', $ids->device_group_id)->decrement('qty', 1);
-        DB::table('devices')->where('id', $ids->device_id)->update([
-            'device_group_id' => null,
-        ]);
-        return $this->successResponse();
+        try {
+            DB::beginTransaction();
+            $ids = $this->device_group_info->find($id);;
+            $this->device_group_info->find($id)->delete();
+            $this->device_group::where('id', $ids->device_group_id)->decrement('qty', 1);
+            DB::table('devices')->where('id', $ids->device_id)->update([
+                'device_group_id' => null,
+            ]);
+            $name = $this->device_group::where('id', $ids->device_group_id)->pluck('name');
+            $this->history->create([
+                'device_id' => $ids->device_id,
+                'device_name' => $ids->Device->device_name,
+                'date_modified' => now(),
+                'note' => 'Xóa thiết bị khỏi nhóm "' . $name[0] . '"',
+            ]);
+
+            DB::commit();
+
+            return $this->successResponse();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            log::error('Message: ' . $exception->getMessage() . ' ---line: ' . $exception->getLine());
+            alert()->error('Lỗi', 'Message: ' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
+            return redirect()->route('device-group.detail', ['id' => $id]);
+        }
     }
 
     public function addDeviceToGroup(Request $request)
     {
-        foreach ($request->device_id as $item) {
-            $this->device_group_info->create([
-                'device_group_id' => $request->dg_id,
-                'device_id' => $item,
-            ]);
-            $this->device_group::where('id', $request->dg_id)->increment('qty', 1);
-            DB::table('devices')->where('id', $item)->update([
-                'device_group_id' => $request->dg_id,
-            ]);
+        try {
+            DB::beginTransaction();
+            foreach ($request->device_id as $item) {
+                $this->device_group_info->create([
+                    'device_group_id' => $request->dg_id,
+                    'device_id' => $item,
+                ]);
+                $this->device_group::where('id', $request->dg_id)->increment('qty', 1);
+                DB::table('devices')->where('id', $item)->update([
+                    'device_group_id' => $request->dg_id,
+                ]);
+                //cập nhật lịch sử thiết bị
+                $device_name = DB::table('devices')->where('id', $item)->pluck('device_name');
+                $group_name = $this->device_group::where('id', $request->dg_id)->pluck('name');
+                $this->history->create([
+                    'device_id' => $item,
+                    'device_name' => $device_name[0],
+                    'date_modified' => now(),
+                    'note' => 'Thêm thiết bị vào nhóm "' . $group_name[0] . '"',
+                ]);
+            }
+            alert()->success('Thêm thiết bị vào nhóm thành công');
+            DB::commit();
+            return redirect()->route('device-group.detail', ['id' => $request->dg_id]);
+
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            log::error('Message: ' . $exception->getMessage() . ' ---line: ' . $exception->getLine());
+            alert()->error('Lỗi', 'Message: ' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
+            return $this->failResponse();
         }
-        alert()->success('Thêm thiết bị vào nhóm thành công');
-        return redirect()->route('device-group.detail', ['id' => $request->dg_id]);
     }
 
     public function delete($id)
