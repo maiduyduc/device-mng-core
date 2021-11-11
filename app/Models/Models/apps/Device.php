@@ -11,9 +11,8 @@ class Device extends Model
     protected $table = 'devices';
     protected $guarded = [];
 
-    public function DeviceGroup()
-    {
-        return $this->belongsTo(DeviceGroup::class, 'device_group_id');
+    public function DeviceGroup(){
+        return $this->belongsTo(DeviceGroup::class, 'device_group_id', 'id');
     }
 
     public function Category()

@@ -85,8 +85,8 @@
                                 <th scope="col">Chủng loại</th>
                                 <th scope="col">Thông tin thiết bị</th>
                                 <th scope="col">Ngày nhập</th>
-                                <th scope="col">Hạn bảo hành</th>
-                                <th scope="col">Phòng</th>
+                                <th scope="col">Nhóm</th>
+{{--                                <th scope="col">Phòng</th>--}}
                                 <th scope="col">Trạng thái</th>
 {{--                                <th scope="col">Hành động</th>--}}
                             </tr>
@@ -110,23 +110,12 @@
                                         <p class="text-dark font-size-14 mb-0">{{ $device->created_at }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0">{{ $device->warranty_period }}</p>
+                                        <p class="text-dark font-size-14 mb-0">@if($device->device_group_id != 0) {{ $device->DeviceGroup->name }} @else Chưa có nhóm @endif</p>
                                     </td>
-                                    <td>
-                                        <p class="text-dark font-size-14 mb-0">{{ $device->Room->name }}</p>
-                                    </td>
+{{--                                    <td>--}}
+{{--                                        <p class="text-dark font-size-14 mb-0">{{ $device->Room->name }}</p>--}}
+{{--                                    </td>--}}
                                     <td style="text-align: center !important;">
-                                        {{--                                        <p class="text-dark font-size-14 mb-0">--}}
-                                        {{--                                            {{ $device->status }}--}}
-                                        {{--                                            <span class="font-size-14 badge badge-soft-{{ $device->status }}"--}}
-                                        {{--                                                  style="max-width: 20rem">--}}
-                                        {{--                                            @foreach(config('status.device') as $status => $item)--}}
-                                        {{--                                                @if($status == $device->status)--}}
-                                        {{--                                                    {{ $item }}--}}
-                                        {{--                                                @endif--}}
-                                        {{--                                            @endforeach--}}
-                                        {{--                                            </span>--}}
-                                        {{--                                        </p>--}}
                                         <div class="dropdown">
                                             <a class="dropdown-toggle font-size-14" href="#" role="button"
                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

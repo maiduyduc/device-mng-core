@@ -52,7 +52,7 @@
                             @foreach($histories as $history)
                                 <tr>
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0">{{ $history->device_id }}</p>
+                                        <p class="text-dark font-size-14 mb-0">{{ $history->Device->full_number }}</p>
                                     </td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0">{{ $history->device_name }}</p>
