@@ -46,6 +46,8 @@ class DeviceGroupController extends Controller
             'room_id' => $request->room_id,
         ]);
         alert()->success('Thành công', 'Đã thêm nhóm ' . "$request->name");
+        if ($request->has('ajax'))
+            return back();
         return redirect()->route('device-group.index');
     }
 
@@ -140,7 +142,17 @@ class DeviceGroupController extends Controller
 
     public function delete($id)
     {
-        $this->device_group->find($id)->delete();
-        return $this->successResponse();
+        try {
+            DB::beginTransaction();
+            $this->device_group->find($id)->delete();
+            DB::table('devices')->where('device_group_id', $id)->update([
+                'device_group_id' => null,
+            ]);
+            DB::commit();
+            return $this->successResponse();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return $this->failResponse();
+        }
     }
 }

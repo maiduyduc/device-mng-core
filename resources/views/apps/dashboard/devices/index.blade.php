@@ -71,9 +71,6 @@
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
-{{--                                    <div class="page-title-right">--}}
-{{--                                        <a href="" class="btn btn-primary">Thêm mới</a>--}}
-{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
@@ -89,7 +86,7 @@
                                 <th scope="col">Nhóm</th>
                                 <th scope="col">Phòng</th>
                                 <th scope="col">Trạng thái</th>
-{{--                                <th scope="col">Hành động</th>--}}
+                                {{--                                <th scope="col">Hành động</th>--}}
                             </tr>
                             </thead>
                             <tbody>
@@ -109,13 +106,20 @@
                                         <p class="text-dark font-size-14 mb-0">{{ $device->Category->name }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0">{{ $device->device_info }}</p>
+                                        <p class="text-dark font-size-14 mb-0"
+                                           style="-webkit-line-clamp: 1;
+                                            -webkit-box-orient: vertical;
+                                            overflow: hidden;
+                                            max-width: 120px;
+                                            display: -webkit-box;"
+                                        >{{ $device->device_info }}</p>
                                     </td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0">{{ $device->created_at }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0">@if($device->device_group_id != 0) {{ $device->DeviceGroup->name }} @else Chưa có nhóm @endif</p>
+                                        <p class="text-dark font-size-14 mb-0">@if($device->device_group_id != 0) {{ $device->DeviceGroup->name }} @else
+                                                Chưa có nhóm @endif</p>
                                     </td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0">
@@ -185,14 +189,14 @@
                                             </div>
                                         </div>
                                     </td>
-{{--                                    <td>--}}
-{{--                                        <a class="btn btn-primary badge badge-primary font-size-14"--}}
-{{--                                           href=""--}}
-{{--                                        >Sửa</a>--}}
-{{--                                        <a href=""--}}
-{{--                                           class="btn btn-danger badge badge-danger font-size-14 action_delete"--}}
-{{--                                        >Xóa</a>--}}
-{{--                                    </td>--}}
+                                    {{--                                    <td>--}}
+                                    {{--                                        <a class="btn btn-primary badge badge-primary font-size-14"--}}
+                                    {{--                                           href=""--}}
+                                    {{--                                        >Sửa</a>--}}
+                                    {{--                                        <a href=""--}}
+                                    {{--                                           class="btn btn-danger badge badge-danger font-size-14 action_delete"--}}
+                                    {{--                                        >Xóa</a>--}}
+                                    {{--                                    </td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
@@ -231,32 +235,32 @@
 
     <script src="{{ asset('assets/apps/js/delete.js') }}"></script>
     {{--    <script src="{{ asset('assets\apps\assets\js\sort-number-table.js') }}"></script>--}}
-        <script>
-            $(document).ready(function() {
-                $('#testTB').DataTable( {
-                    dom: 'Bfrtip',
-                    buttons: [
-                        {
-                            extend: 'copyHtml5',
-                            exportOptions: {
-                                columns: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-                            }
-                        },
-                        {
-                            extend: 'excelHtml5',
-                            exportOptions: {
-                                columns: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-                            }
-                        },
-                        {
-                            extend: 'pdfHtml5',
-                            exportOptions: {
-                                columns: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-                            }
-                        },
-                        'colvis'
-                    ]
-                } );
-            } );
-        </script>
+    <script>
+        $(document).ready(function () {
+            $('#testTB').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        }
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        }
+                    },
+                    'colvis'
+                ]
+            });
+        });
+    </script>
 @endsection

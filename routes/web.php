@@ -397,6 +397,7 @@ Route::group(['middleware' => ['get.menu']], function () {
     /*=*/   Route::get('developing', 'apps\AuthorController@developing'); //thông báo tính năng đang phát triển
     /*=*/   Route::get('liquidateDevice', 'apps\AuthorController@getDeviceLiquidate'); //xem danh sách thiết bị chờ thanh lý
     /*=*/   Route::get('device-room/{id}/{id2}', 'apps\AuthorController@getDeviceFromRoom'); //xem danh sách thiết bị trong phòng
+    /*=*/   Route::get('create-device-group/{id}', 'apps\AuthorController@getDeviceGroupOnRoom'); //tạo device-group trong phòng
     //=============================================================================
     //=================================END AJAX====================================
     //=============================================================================
