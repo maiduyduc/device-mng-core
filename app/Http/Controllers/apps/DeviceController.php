@@ -156,4 +156,9 @@ class DeviceController extends Controller
         }
         return back();
     }
+
+    public function detail($id)
+    {
+
+    }
 }

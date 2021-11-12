@@ -86,7 +86,8 @@ class AuthorController extends Controller
         }
     }
 
-    public function getDeviceFromRoom($id, $id2){
+    public function getDeviceFromRoom($id, $id2)
+    {
         $i = 1;
         $dg_id = $id2;
         $datas = DB::table('Devices')
@@ -97,6 +98,20 @@ class AuthorController extends Controller
             return view('apps.dashboard.ajax.ajax-device', ['datas' => $datas, 'i' => $i, 'dg_id' => $dg_id]);
         } else {
             return view('apps.dashboard.ajax.ajax-device', compact('datas'));
+        }
+    }
+
+    public function getDeviceGroupOnRoom($id)
+    {
+        $i = 1;
+        $ids = $id;
+        $datas = DB::table('device_groups')
+            ->where('room_id', $id)
+            ->get();
+        if ($datas->count() != 0) {
+            return view('apps.dashboard.ajax.ajax-device-group-on-room', ['datas' => $datas, 'i' => $i, 'ids' => $ids]);
+        } else {
+            return view('apps.dashboard.ajax.ajax-device-group-on-room', compact('datas', 'ids'));
         }
     }
 

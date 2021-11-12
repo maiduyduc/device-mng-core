@@ -4,9 +4,11 @@
     <title>Danh sách thiết bị phòng {{ $room->name }}</title>
 @endsection
 @section('link')
-    <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}"
+          rel="stylesheet"
           type="text/css">
-    <link href="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\css\buttons.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\css\buttons.bootstrap4.min.css') }}"
+          rel="stylesheet"
           type="text/css">
     <!-- Responsive datatable examples -->
     <link href="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\css\responsive.bootstrap4.min.css') }}"
@@ -69,11 +71,17 @@
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
-                                    <a href="{{ route('room.index') }}" class="btn btn-primary"
-                                       data-toggle="tooltip" data-placement="top" title=""
-                                       data-original-title="Trở về">
-                                        <i class="bx bx-arrow-back"></i>
-                                    </a>
+
+                                    <div class="page-title-right">
+                                        <a class="btn btn-info" data-toggle="modal" id="getMessage"
+                                           data-target="#messageBoard" data-url="{{ url('create-device-group', ['id' => $room->id])}}"
+                                           href="#!"> Tạo nhóm thiết bị </a>
+                                        <a href="{{ route('room.index') }}" class="btn btn-info"
+                                           data-toggle="tooltip" data-placement="top" title=""
+                                           data-original-title="Trở về">
+                                            <i class="bx bx-arrow-back"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -86,9 +94,9 @@
                                 <th scope="col">Thông tin thiết bị</th>
                                 <th scope="col">Ngày nhập</th>
                                 <th scope="col">Nhóm</th>
-{{--                                <th scope="col">Phòng</th>--}}
+                                {{--                                <th scope="col">Phòng</th>--}}
                                 <th scope="col">Trạng thái</th>
-{{--                                <th scope="col">Hành động</th>--}}
+                                {{--                                <th scope="col">Hành động</th>--}}
                             </tr>
                             </thead>
                             <tbody>
@@ -110,11 +118,12 @@
                                         <p class="text-dark font-size-14 mb-0">{{ $device->created_at }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0">@if($device->device_group_id != 0) {{ $device->DeviceGroup->name }} @else Chưa có nhóm @endif</p>
+                                        <p class="text-dark font-size-14 mb-0">@if($device->device_group_id != 0) {{ $device->DeviceGroup->name }} @else
+                                                Chưa có nhóm @endif</p>
                                     </td>
-{{--                                    <td>--}}
-{{--                                        <p class="text-dark font-size-14 mb-0">{{ $device->Room->name }}</p>--}}
-{{--                                    </td>--}}
+                                    {{--                                    <td>--}}
+                                    {{--                                        <p class="text-dark font-size-14 mb-0">{{ $device->Room->name }}</p>--}}
+                                    {{--                                    </td>--}}
                                     <td style="text-align: center !important;">
                                         <div class="dropdown">
                                             <a class="dropdown-toggle font-size-14" href="#" role="button"
@@ -177,14 +186,14 @@
                                         </div>
 
                                     </td>
-{{--                                    <td>--}}
-{{--                                        <a class="btn btn-primary badge badge-primary font-size-14"--}}
-{{--                                           href=""--}}
-{{--                                        >Sửa</a>--}}
-{{--                                        <a href=""--}}
-{{--                                           class="btn btn-danger badge badge-danger font-size-14 action_delete"--}}
-{{--                                        >Xóa</a>--}}
-{{--                                    </td>--}}
+                                    {{--                                    <td>--}}
+                                    {{--                                        <a class="btn btn-primary badge badge-primary font-size-14"--}}
+                                    {{--                                           href=""--}}
+                                    {{--                                        >Sửa</a>--}}
+                                    {{--                                        <a href=""--}}
+                                    {{--                                           class="btn btn-danger badge badge-danger font-size-14 action_delete"--}}
+                                    {{--                                        >Xóa</a>--}}
+                                    {{--                                    </td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
@@ -203,7 +212,8 @@
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-bs4\js\dataTables.bootstrap4.min.js') }}"></script>
     <!-- Buttons examples -->
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons\js\dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\js\buttons.bootstrap4.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\js\buttons.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\jszip\jszip.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\pdfmake\build\pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\pdfmake\build\vfs_fonts.js') }}"></script>
@@ -212,8 +222,10 @@
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons\js\buttons.colVis.min.js') }}"></script>
 
     <!-- Responsive examples -->
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-responsive\js\dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-responsive\js\dataTables.responsive.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js') }}"></script>
 
     <!-- Datatable init js -->
     <script src="{{ asset('assets\apps\assets\js\pages\datatables.init.js') }}"></script>
