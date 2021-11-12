@@ -17,6 +17,12 @@
     <link href="{{ asset('assets\apps\assets\css\icons.min.css') }}" rel="stylesheet" type="text/css">
     <!-- App Css-->
     <link href="{{ asset('assets\apps\assets\css\app.min.css') }}" id="app-style" rel="stylesheet" type="text/css">
+    <style>
+        th, td {
+            vertical-align: middle !important;
+            text-align: center !important;
+        }
+    </style>
 </head>
 
 <body data-sidebar="dark">

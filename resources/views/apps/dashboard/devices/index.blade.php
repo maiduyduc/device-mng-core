@@ -111,11 +111,10 @@
                                     </td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0"
-                                           style="--webkit-line-clamp: 1;
-                                            -webkit-box-orient: vertical;
+                                           style=" white-space: nowrap;
+                                            width: 150px;
                                             overflow: hidden;
-                                            max-width: 120px;
-                                            display: -webkit-box;"
+                                            text-overflow: ellipsis;"
                                         >{{ $device->device_info }}</p>
                                     </td>
 {{--                                    <td>--}}
