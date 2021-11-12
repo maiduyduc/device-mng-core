@@ -14,6 +14,10 @@
     <link href="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\css\responsive.bootstrap4.min.css') }}"
           rel="stylesheet" type="text/css">
     <style>
+        th, td {
+            vertical-align: middle !important;
+            text-align: center !important;
+        }
         .badge-soft-error {
             color: #f46a6a;
             background-color: rgba(244, 106, 106, .18);
@@ -82,11 +86,11 @@
                                 <th scope="col">Tên thiết bị</th>
                                 <th scope="col">Chủng loại</th>
                                 <th scope="col">Thông tin thiết bị</th>
-                                <th scope="col">Ngày nhập</th>
+{{--                                <th scope="col">Ngày nhập</th>--}}
                                 <th scope="col">Nhóm</th>
                                 <th scope="col">Phòng</th>
                                 <th scope="col">Trạng thái</th>
-                                {{--                                <th scope="col">Hành động</th>--}}
+                                <th scope="col">Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -107,16 +111,15 @@
                                     </td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0"
-                                           style="-webkit-line-clamp: 1;
-                                            -webkit-box-orient: vertical;
+                                           style=" white-space: nowrap;
+                                            width: 150px;
                                             overflow: hidden;
-                                            max-width: 120px;
-                                            display: -webkit-box;"
+                                            text-overflow: ellipsis;"
                                         >{{ $device->device_info }}</p>
                                     </td>
-                                    <td>
-                                        <p class="text-dark font-size-14 mb-0">{{ $device->created_at }}</p>
-                                    </td>
+{{--                                    <td>--}}
+{{--                                        <p class="text-dark font-size-14 mb-0">{{ $device->created_at }}</p>--}}
+{{--                                    </td>--}}
                                     <td>
                                         <p class="text-dark font-size-14 mb-0">@if($device->device_group_id != 0) {{ $device->DeviceGroup->name }} @else
                                                 Chưa có nhóm @endif</p>
@@ -189,14 +192,21 @@
                                             </div>
                                         </div>
                                     </td>
-                                    {{--                                    <td>--}}
-                                    {{--                                        <a class="btn btn-primary badge badge-primary font-size-14"--}}
-                                    {{--                                           href=""--}}
-                                    {{--                                        >Sửa</a>--}}
-                                    {{--                                        <a href=""--}}
-                                    {{--                                           class="btn btn-danger badge badge-danger font-size-14 action_delete"--}}
-                                    {{--                                        >Xóa</a>--}}
-                                    {{--                                    </td>--}}
+                                    <td>
+                                        <a class="btn btn-primary badge badge-primary font-size-14"
+                                           href=""
+                                        >Sửa</a>
+
+                                        <a href="
+                                        @if($device->device_group_id != 0)
+                                    {{ route('device.detail', ['id' => $device->id, 'group_id' => $device->device_group_id ]) }}
+                                        @else
+                                        {{ route('device.detail', ['id' => $device->id ]) }}
+                                            @endif
+                                            "
+                                           class="btn btn-danger badge badge-danger font-size-14"
+                                        >Xem chi tiết</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

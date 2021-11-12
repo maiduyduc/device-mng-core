@@ -157,8 +157,19 @@ class DeviceController extends Controller
         return back();
     }
 
-    public function detail($id)
+    public function detailWithGroup($id, $group_id)
     {
-
+        $devices = $this->device
+            ->where('id', $id)
+            ->where('device_group_id', $group_id)
+            ->get();
+        dd($devices);
+    }
+    public function detailNoGroup($id)
+    {
+        $devices = $this->device
+            ->where('id', $id)
+            ->get();
+        dd($devices);
     }
 }

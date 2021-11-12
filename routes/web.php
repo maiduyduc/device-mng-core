@@ -154,6 +154,14 @@ Route::group(['middleware' => ['get.menu']], function () {
             'as' => 'device.liquidate',
             'uses' => 'apps\DeviceController@liquidate'
         ]);
+        Route::get('/detail/{id}/{group_id}', [
+            'as' => 'device.detail',
+            'uses' => 'apps\DeviceController@detailWithGroup'
+        ]);
+        Route::get('/detail/{id}', [
+            'as' => 'device.detail',
+            'uses' => 'apps\DeviceController@detailNoGroup'
+        ]);
     });
     //trang quản lý văn bản bàn giao
     Route::prefix('/handover')->group(function () {

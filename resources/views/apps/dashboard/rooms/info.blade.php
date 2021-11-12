@@ -94,7 +94,6 @@
                                 <th scope="col">Thông tin thiết bị</th>
                                 <th scope="col">Ngày nhập</th>
                                 <th scope="col">Nhóm</th>
-                                {{--                                <th scope="col">Phòng</th>--}}
                                 <th scope="col">Trạng thái</th>
                                 {{--                                <th scope="col">Hành động</th>--}}
                             </tr>
@@ -106,13 +105,21 @@
                                         <p class="text-dark font-size-14 mb-0">{{ $device->full_number }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0">{{ $device->device_name }}</p>
+                                        <p class="text-dark font-size-14 mb-0"
+                                           style=" white-space: nowrap;
+                                            width: 200px;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;"
+                                        >{{ $device->device_name }}</p>
                                     </td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0">{{ $device->Category->name }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-dark font-size-14 mb-0">{{ $device->device_info }}</p>
+                                        <p class="text-dark font-size-14 mb-0" style=" white-space: nowrap;
+                                            width: 150px;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;">{{ $device->device_info }}</p>
                                     </td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0">{{ $device->created_at }}</p>
