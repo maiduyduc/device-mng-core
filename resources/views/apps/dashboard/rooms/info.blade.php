@@ -74,6 +74,9 @@
 
                                     <div class="page-title-right">
                                         <a class="btn btn-info" data-toggle="modal" id="getMessage"
+                                           data-target="#messageBoard" data-url="{{ url('device-no-room', ['id' => $room->id])}}"
+                                           href="#!"> Thêm thiết bị vào phòng </a>
+                                        <a class="btn btn-info" data-toggle="modal" id="getMessage"
                                            data-target="#messageBoard" data-url="{{ url('create-device-group', ['id' => $room->id])}}"
                                            href="#!"> Tạo nhóm thiết bị </a>
                                         <a href="{{ route('room.index') }}" class="btn btn-info"

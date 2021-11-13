@@ -20,6 +20,7 @@ class CreateInventoriesTable extends Migration
             $table->string('full_number');
             $table->integer('qty');
             $table->text('note')->nullable();
+            $table->string('semesters');
             $table->timestamps();
         });
     }

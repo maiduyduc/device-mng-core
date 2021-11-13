@@ -67,7 +67,11 @@
                             <tbody>
                             @foreach($datas as $data)
                                 <tr>
-                                    <th id="id_{{$data->room_id}}" colspan="4">Phòng: {{ $data->Room->name }}</th>
+                                    @if($data->room_id != null)
+                                        <th id="id_{{$data->room_id}}" colspan="4">Phòng: {{ $data->Room->name }}</th>
+                                    @else
+                                        <th id="id_-1" colspan="4">Không có phòng</th>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>{{ $data->device_name }}</td>
@@ -88,6 +92,14 @@
                         <br>
                         <form action="{{ route('auto-inventory.store') }}" method="post">
                             @csrf
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="semesters">Kỳ kiểm kê</label>
+                                        <input type="text" name="semesters" id="semesters" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">

@@ -59,6 +59,7 @@
                             <thead>
                             <tr>
                                 <th scope="col">Mã văn bản</th>
+                                <th scope="col">Kỳ kiểm kê</th>
                                 <th scope="col">Số lượng thiết bị</th>
                                 <th scope="col">Ngày tạo</th>
                                 <th scope="col" style="max-width: 100px">Hành động</th>
@@ -70,6 +71,9 @@
                                 <tr>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0">{{ $inventory->full_number }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-dark font-size-14 mb-0">{{ $inventory->semesters }}</p>
                                     </td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0">{{ $inventory->qty }}</p>

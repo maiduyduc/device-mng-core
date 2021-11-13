@@ -35,6 +35,18 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <label for="formrow-inputInfo11">Kỳ kiểm kê</label>
+                                            <input type="text" name="semesters"
+                                                   class="form-control @error('semesters') is-invalid @enderror"
+                                                   required
+                                                   value="{{ old('semesters') }}"
+                                                   id="formrow-inputInfo11">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
                                             <label for="formrow-inputInfo1">Ghi chú</label>
                                             <textarea name="detail" rows="5" id="formrow-inputInfo1"
                                                       autofocus

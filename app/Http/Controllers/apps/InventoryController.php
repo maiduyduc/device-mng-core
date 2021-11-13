@@ -41,7 +41,8 @@ class InventoryController extends Controller
             $inventory = $this->inventory->create([
                 'qty' => array_sum($request->qty_inventory),
                 'document_prefix_id' => 4,
-                'note' => $request->detail
+                'note' => $request->detail,
+                'semesters' => $request->semesters,
             ]);
 
             for ($i = 0; $i < $countDevice; $i++) {

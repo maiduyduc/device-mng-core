@@ -7,6 +7,8 @@ use App\Models\Models\apps\Device;
 use App\Models\Models\apps\HistoryDevice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class DeviceController extends Controller
 {
@@ -165,6 +167,7 @@ class DeviceController extends Controller
             ->get();
         dd($devices);
     }
+
     public function detailNoGroup($id)
     {
         $devices = $this->device
@@ -172,4 +175,35 @@ class DeviceController extends Controller
             ->get();
         dd($devices);
     }
+
+    public function updateRoom(Request $request, $ids)
+    {
+        try {
+            DB::beginTransaction();
+
+            $ids = $request->device_id;
+
+            foreach ($ids as $id) {
+                $this->device->where('id', $id)->update([
+                    'room_id' => $request->room_id
+                ]);
+                $this->history->create([
+                    'device_id' => $id,
+                    'device_name' => $request->device_name,
+                    'date_modified' => now(),
+                    'note' => 'Thêm thiết bị vào phòng ' . $request->room_name
+                ]);
+            }
+
+            DB::commit();
+            alert()->success('', 'Thêm thiết bị vào phòng thành công');
+            return redirect()->route('room.device', ['id' => $request->room_id]);
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            log::error('Message: ' . $exception->getMessage() . ' ---line: ' . $exception->getLine());
+            alert()->error('Lỗi', 'Message: ' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
+            return back();
+        }
+    }
+
 }

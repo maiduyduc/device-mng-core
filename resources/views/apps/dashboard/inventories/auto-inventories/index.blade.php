@@ -87,6 +87,7 @@
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">Mã văn bản</th>
+                                <th scope="col">Kỳ kiểm kê</th>
                                 <th scope="col">Ghi chú</th>
                                 <th scope="col">Ngày tạo</th>
                                 <th scope="col" style="width: 170px">Hành động</th>
@@ -98,6 +99,9 @@
                                     <td>{{ $inventory->id }}</td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0 text-over">{{ $inventory->full_number }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">{{ $inventory->semesters }}</p>
                                     </td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0 text-over" style="max-width: 1rem">
