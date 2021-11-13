@@ -160,8 +160,8 @@ class MenusTableSeeder extends Seeder
         //================
         //Quản lý kiểm kê
         $this->beginDropdown('ktv,ptb,trk,sadmin',   'Kiểm kê',             'mdi mdi-clipboard-text-outline');
-            $this->insertLink('ktv,ptb,trk,sadmin',  'Kiểm kê trên máy',         '/auto-inventory');
-            $this->insertLink('ktv,ptb,trk,sadmin',  'Kiểm kê trên sổ',          '/inventory');
+            $this->insertLink('ktv,ptb,trk,sadmin',  'Kiểm kê tự động',         '/auto-inventory');
+            $this->insertLink('ktv,ptb,trk,sadmin',  'Kiểm kê thủ công',          '/inventory');
         $this->endDropdown();
         //================
         //Theo dõi

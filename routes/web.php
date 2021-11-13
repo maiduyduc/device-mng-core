@@ -162,6 +162,11 @@ Route::group(['middleware' => ['get.menu']], function () {
             'as' => 'device.detail',
             'uses' => 'apps\DeviceController@detailNoGroup'
         ]);
+        Route::post('/updateRoom/{id}', [
+            'as' => 'device.updateRoom',
+            'uses' => 'apps\DeviceController@updateRoom'
+        ]);
+
     });
     //trang quản lý văn bản bàn giao
     Route::prefix('/handover')->group(function () {
@@ -405,7 +410,8 @@ Route::group(['middleware' => ['get.menu']], function () {
     /*=*/   Route::get('developing', 'apps\AuthorController@developing'); //thông báo tính năng đang phát triển
     /*=*/   Route::get('liquidateDevice', 'apps\AuthorController@getDeviceLiquidate'); //xem danh sách thiết bị chờ thanh lý
     /*=*/   Route::get('device-room/{id}/{id2}', 'apps\AuthorController@getDeviceFromRoom'); //xem danh sách thiết bị trong phòng
-    /*=*/   Route::get('create-device-group/{id}', 'apps\AuthorController@getDeviceGroupOnRoom'); //tạo device-group trong phòng
+    /*=*/   Route::get('create-device-group/{id}', 'apps\AuthorController@getDeviceGroupOnRoom'); //load device group của phòng
+    /*=*/   Route::get('device-no-room/{id}', 'apps\AuthorController@getDeviceNoRoom'); //load thiết bị chưa có phòng
     //=============================================================================
     //=================================END AJAX====================================
     //=============================================================================

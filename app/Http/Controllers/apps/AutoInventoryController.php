@@ -55,7 +55,8 @@ class AutoInventoryController extends Controller
             DB::beginTransaction();
             $auto_inventory = $this->inventory->create([
                 'document_prefix_id' => 6,
-                'note' => $request->note
+                'note' => $request->note,
+                'semesters' => $request->semesters
             ]);
 
             foreach ($datas as $data){

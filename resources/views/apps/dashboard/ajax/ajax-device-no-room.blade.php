@@ -12,7 +12,7 @@
                 <div class="table-responsive mb-0 list-group-item rounded px-3 mb-1" data-pattern="priority-columns"
                      id="list-item">
                     <form method="post"
-                          action="{{ route('device-group.add-device-to-group') }}">
+                          action="{{ route('device.updateRoom', ['id' => $rooms->id]) }}">
                         @csrf
                         <table id="tech-companies-1" class="table table-striped">
                             <thead>
@@ -44,14 +44,15 @@
                                                    value="{{$data->id}}"
                                                    id="checkbox{{$data->id}}"
                                                    class="custom-control-input">
-                                            <input type="hidden" value="{{ $data->full_number }}" name="full_number"></input>
+                                            <input type="hidden" value="{{ $rooms->id }}" name="room_id">
+                                            <input type="hidden" value="{{ $rooms->name }}" name="room_name">
+                                            <input type="hidden" value="{{ $data->device_name }}" name="device_name">
                                             <label class="custom-control-label text-danger"
                                                    style="font-size: 14px"
                                                    for="checkbox{{$data->id}}">
                                             </label>
                                         </div>
                                     </td>
-                                    <input type="hidden" value="{{ $dg_id }}" name="dg_id">
                                 </tr>
                             @endforeach
                             <tr>

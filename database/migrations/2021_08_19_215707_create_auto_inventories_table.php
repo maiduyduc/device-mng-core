@@ -19,6 +19,7 @@ class CreateAutoInventoriesTable extends Migration
             $table->integer('document_prefix_id');
             $table->string('full_number');
             $table->text('note')->nullable();
+            $table->string('semesters');
             $table->timestamps();
         });
     }
