@@ -44,6 +44,7 @@
                                                    value="{{$data->id}}"
                                                    id="checkbox{{$data->id}}"
                                                    class="custom-control-input">
+                                            <input type="hidden" value="{{ $data->full_number }}" name="full_number"></input>
                                             <label class="custom-control-label text-danger"
                                                    style="font-size: 14px"
                                                    for="checkbox{{$data->id}}">

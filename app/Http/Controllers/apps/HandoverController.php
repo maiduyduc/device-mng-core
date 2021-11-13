@@ -204,7 +204,7 @@ class HandoverController extends Controller
                         ]);
                         //thêm dữ liệu vào bảng history_device
                         $this->history->create([
-                            'device_id' => $device->full_number,
+                            'device_id' => $device->id,
                             'device_name' => $info->device_name,
                             'date_modified' => now(),
                             'note' => 'Thêm thiết bị vào phòng ' . $room_info[1]
@@ -287,7 +287,7 @@ class HandoverController extends Controller
                     ]);
                     //thêm dữ liệu vào bảng history_device
                     $this->history->create([
-                        'device_id' => $device->full_number,
+                        'device_id' => $device->id,
                         'device_name' => $device_info[$i]['device_name'],
                         'date_modified' => now(),
                         'note' => 'Thêm thiết bị vào phòng ' . $room_names[$i]
@@ -337,7 +337,7 @@ class HandoverController extends Controller
                         ]);
                         //thêm dữ liệu vào bảng history_device
                         $this->history->create([
-                            'device_id' => $device->full_number,
+                            'device_id' => $device->id,
                             'device_name' => $info->device_name,
                             'date_modified' => now(),
                             'note' => 'Nhập thiết bị'
