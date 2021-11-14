@@ -267,6 +267,7 @@ class DevicePlanController extends Controller
                     ]);
                 }
                 $this->updateWhenExport(2);
+                $this->updateWhenCreate(1);
                 DB::commit();
                 alert()->success('', 'Xuất thông tin thành công!');
                 return redirect()->route('document.info', ['id' => $document->id]);

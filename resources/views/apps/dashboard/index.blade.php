@@ -101,7 +101,7 @@
                                         <div class="media">
                                             <div class="media-body">
                                                 <p class="text-muted font-weight-medium">
-                                                    <a href="{{ route('device.index', 'noRoom') }}">Số lượng tồn kho</a>
+                                                    <a href="{{ route('device.index', 'noRoom') }}">Số lượng thiết bị tồn kho</a>
                                                 </p>
                                                 <h4 class="mb-0">{{ $stocks }}</h4>
                                             </div>
@@ -121,7 +121,7 @@
                                         <div class="media">
                                             <div class="media-body">
                                                 <p class="text-muted font-weight-medium">
-                                                    <a href="{{ route('device.index','error') }}">Số máy đang hỏng</a>
+                                                    <a href="{{ route('device.index','error') }}">Số lượng thiết bị đang hỏng</a>
                                                 </p>
                                                 <h4 class="mb-0">{{ $device_error }}</h4>
                                             </div>
