@@ -74,6 +74,9 @@ class DevicePlanController extends Controller
                     'note' => $request->note[$i]
                 ]);
             }
+
+            $this->updateWhenCreate(2);
+
             DB::commit();
             alert()->success('', 'Thêm mới thành công!');
             return redirect()->route('device-plan.index');
@@ -137,6 +140,7 @@ class DevicePlanController extends Controller
             DB::beginTransaction();
             $this->device_plan->find($id)->delete();
             $this->device_plan_list::where('device_plan_id', $id)->delete();
+            $this->updateWhenDelete(2);
             DB::commit();
             return $this->successResponse();
         } catch (\Exception $exception) {
@@ -171,6 +175,7 @@ class DevicePlanController extends Controller
             ]);
             alert()->success('', 'Phê duyệt thành công!');
         }
+        $this->updateWhenApproved(2);
         return redirect()->route('device-plan.info', ['id' => $id]);
     }
 
@@ -186,6 +191,7 @@ class DevicePlanController extends Controller
             ]);
             alert()->success('Thành công', 'Đã từ chối yêu cầu');
         }
+        $this->updateWhenRefuse(2);
         return redirect()->route('device-plan.info', ['id' => $id]);
     }
 
@@ -260,6 +266,7 @@ class DevicePlanController extends Controller
                         'note' => $infos[$i]->note
                     ]);
                 }
+                $this->updateWhenExport(2);
                 DB::commit();
                 alert()->success('', 'Xuất thông tin thành công!');
                 return redirect()->route('document.info', ['id' => $document->id]);

@@ -69,7 +69,7 @@ class LiquidateController extends Controller
                     'status' => 'in_order_liquidate'
                 ]);
             }
-
+            $this->updateWhenCreate(5);
             DB::commit();
             alert()->success('', 'Thành công');
             return redirect()->route('liquidate.index');
@@ -144,6 +144,7 @@ class LiquidateController extends Controller
             ]);
             alert()->success('', 'Phê duyệt thành công!');
         }
+        $this->updateWhenApproved(5);
         return redirect()->route('liquidate.info', ['id' => $id]);
     }
 
@@ -159,6 +160,7 @@ class LiquidateController extends Controller
             ]);
             alert()->success('Thành công', 'Đã từ chối yêu cầu');
         }
+        $this->updateWhenRefuse(5);
         return redirect()->route('liquidate.info', ['id' => $id]);
     }
 
@@ -179,6 +181,7 @@ class LiquidateController extends Controller
             }
             alert()->success('Thành công', 'Đã thanh lý thiết bị');
         }
+        $this->updateWhenExport(5);
         return redirect()->route('liquidate.info', ['id' => $id]);
     }
 }

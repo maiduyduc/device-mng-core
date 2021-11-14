@@ -15,12 +15,12 @@ class DocumentPrefixSeeder extends Seeder
     public function run()
     {
         DB::table('document_prefixes')->insert([
-            ['prefix' => 'CV'],
-            ['prefix' => 'DT'],
-            ['prefix' => 'BG'],
-            ['prefix' => 'KK'],
-            ['prefix' => 'TL'],
-            ['prefix' => 'AKK'],
+            ['prefix' => 'CV', 'display_name' => 'Công Văn Mua Sắm'],
+            ['prefix' => 'DT', 'display_name' => 'Dự Trù'],
+            ['prefix' => 'BG', 'display_name' => 'Bàn Giao'],
+            ['prefix' => 'KK', 'display_name' => 'Kiểm Kê'],
+            ['prefix' => 'TL', 'display_name' => 'Thanh Lý'],
+            ['prefix' => 'AKK', 'display_name' => 'Kiểm Kê Tự Động'],
         ]);
     }
 }

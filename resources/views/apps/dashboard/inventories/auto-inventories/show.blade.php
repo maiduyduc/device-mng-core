@@ -67,7 +67,11 @@
                             <tbody>
                             @foreach($datas as $data)
                                 <tr>
-                                    <th id="id_{{$data->room_id}}" colspan="4">Phòng: {{ $data->Room->name }}</th>
+                                    @if($data->room_id != null)
+                                        <th id="id_{{$data->room_id}}" colspan="4">Phòng: {{ $data->Room->name }}</th>
+                                    @else
+                                        <th id="id_-1" colspan="4">Không có phòng</th>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>{{ $data->device_name }}</td>

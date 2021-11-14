@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Models\apps\DocumentSystem;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
             DevicePlanSeeder::class,
             DevicePlanInfoSeeder::class,
             DeviceSeeder::class,
+            DocumentSystemSeeder::class,
         ]);
     }
 }

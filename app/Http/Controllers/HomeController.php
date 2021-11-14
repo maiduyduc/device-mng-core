@@ -5,23 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Models\apps\Device;
 use App\Models\Models\apps\DevicePlan;
 use App\Models\Models\apps\Document;
+use App\Models\Models\apps\DocumentSystem;
 use App\Models\Models\apps\Handover;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    private $document_system;
     private $device;
-    private $document;
-    private $devicePlan;
-    private $handover;
 
-    public function __construct(Device $device, Document $document, DevicePlan $devicePlan, Handover $handover)
+    public function __construct(DocumentSystem $document_system, Device $device)
     {
         $this->middleware('auth');
+        $this->document_system = $document_system;
         $this->device = $device;
-        $this->document = $document;
-        $this->devicePlan = $devicePlan;
-        $this->handover = $handover;
     }
 
     public function home()
@@ -34,19 +31,12 @@ class HomeController extends Controller
         $device_error = $this->device
             ->where('status', '=', 'error')
             ->count();
-        $documents = $this->document
-            ->where('status', 'pending')
-            ->count();
-        $devicePlans = $this->devicePlan
-            ->where('status', 'pending')
-            ->count();
-        $handovers = $this->handover
-            ->where('status', 'pending')
-            ->count();
         $stocks = $this->device
             ->where('room_id', null)
             ->count();
-        return view('apps.dashboard.index', compact('devices', 'device_error', 'documents', 'devicePlans', 'handovers','stocks'));
+        $document_systems = $this->document_system->all();
+
+        return view('apps.dashboard.index', compact('document_systems', 'devices', 'device_error', 'stocks'));
     }
 
 }
