@@ -83,6 +83,7 @@ class DocumentDeviceController extends Controller
                     'note' => $request->note[$i]
                 ]);
             }
+            $this->updateWhenCreate(1);
             DB::commit();
             alert()->success('','Thêm mới thành công');
             return redirect()->route('document.index');
@@ -164,6 +165,7 @@ class DocumentDeviceController extends Controller
             ]);
             alert()->success('Thành công', 'Đã phê duyệt yêu cầu này');
         }
+        $this->updateWhenApproved(1);
         return redirect()->route('document.info', ['id' => $id]);
     }
 
@@ -179,6 +181,7 @@ class DocumentDeviceController extends Controller
             ]);
             alert()->success('Thành công', 'Đã từ chối yêu cầu');
         }
+        $this->updateWhenRefuse(1);
         return redirect()->route('document.info', ['id' => $id]);
     }
 
@@ -226,6 +229,8 @@ class DocumentDeviceController extends Controller
                         'note' => $infos[$i]->note
                     ]);
                 }
+                $this->updateWhenExport(1);
+                $this->updateWhenCreate(3);
                 DB::commit();
                 alert()->success('', 'Xuất thông tin thành công!');
                 return redirect()->route('handover.info', ['id' => $handover->id]);
@@ -249,6 +254,7 @@ class DocumentDeviceController extends Controller
                 'can_export' => 1,
                 'is_export' => 0
             ]);
+            $this->updateWhenDelete(1);
             DB::commit();
             return $this->successResponse();
         } catch (\Exception $exception) {

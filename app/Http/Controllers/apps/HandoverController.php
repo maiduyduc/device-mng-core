@@ -130,7 +130,7 @@ class HandoverController extends Controller
                     'is_export' => 0
                 ]);
             }
-
+            $this->updateWhenDelete(3);
             DB::commit();
             return $this->successResponse();
         } catch (\Exception $exception) {
@@ -154,6 +154,7 @@ class HandoverController extends Controller
             ]);
             alert()->success('Thành công', 'Bàn giao thành công');
         }
+        $this->updateWhenApproved(3);
         return redirect()->route('handover.info', ['id' => $id]);
     }
 
@@ -216,6 +217,7 @@ class HandoverController extends Controller
                     'can_export' => 0
                 ]);
                 $this->room->where('id', $room_info[0])->increment('num_of_equip', $countDevice);
+                $this->updateWhenExport(3);
                 DB::commit();
                 alert()->success('Xuất thông tin thành công!');
                 return redirect()->route('room.device', ['id' => $room_info[0]]);
@@ -298,7 +300,7 @@ class HandoverController extends Controller
                     'is_export' => 1,
                     'can_export' => 0
                 ]);
-
+                $this->updateWhenExport(3);
                 DB::commit();
                 alert()->success('Xuất thông tin thành công!');
                 return redirect()->route('room.index');
@@ -348,7 +350,7 @@ class HandoverController extends Controller
                     'is_export' => 1,
                     'can_export' => 0
                 ]);
-
+                $this->updateWhenExport(3);
                 DB::commit();
                 alert()->success('Xuất thông tin thành công!');
                 return redirect()->route('device.index','noRoom');
