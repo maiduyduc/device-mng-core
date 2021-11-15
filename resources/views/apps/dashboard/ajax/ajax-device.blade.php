@@ -14,59 +14,64 @@
                     <form method="post"
                           action="{{ route('device-group.add-device-to-group') }}">
                         @csrf
-                        <table id="tech-companies-1" class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th data-priority="1">STT</th>
-                                <th data-priority="1">Mã thiết bị</th>
-                                <th data-priority="3">Tên thiết bị</th>
-                                <th data-priority="3">Thông tin thiết bị</th>
-                                <th data-priority="1">Đơn vị tính</th>
-                                <th data-priority="1">Chọn</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($datas as $data)
-                                <tr class="item-wrapper">
-                                    <td>
-                                        {{ $i }}
-                                        <p style="display: none">{{ $i++ }}</p>
-                                    </td>
-                                    <td>{{ $data->full_number }}</td>
-                                    <td>{{ $data->device_name }}</td>
-                                    <td>{{ $data->device_info }}</td>
-                                    <td>{{ $data->unit }}</td>
-                                    <td>
-                                        <div
-                                            class="custom-control custom-checkbox custom-checkbox-primary">
-                                            <input type="checkbox"
-                                                   name="device_id[]"
-                                                   value="{{$data->id}}"
-                                                   id="checkbox{{$data->id}}"
-                                                   class="custom-control-input">
-                                            <input type="hidden" value="{{ $data->full_number }}" name="full_number"></input>
-                                            <label class="custom-control-label text-danger"
-                                                   style="font-size: 14px"
-                                                   for="checkbox{{$data->id}}">
-                                            </label>
+                        <div>
+                            <div class="chat-conversation p-3">
+                                <ul class="list-unstyled" data-simplebar="" style="max-height: 350px;">
+                                    <li>
+                                        <div class="p-3 chat-input-section">
+                                            <table id="tech-companies-1" class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th data-priority="1">STT</th>
+                                                    <th data-priority="1">Mã thiết bị</th>
+                                                    <th data-priority="3">Tên thiết bị</th>
+                                                    <th data-priority="3">Thông tin thiết bị</th>
+                                                    <th data-priority="1">Đơn vị tính</th>
+                                                    <th data-priority="1">Chọn</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($datas as $data)
+                                                    <tr class="item-wrapper">
+                                                        <td>
+                                                            {{ $i }}
+                                                            <p style="display: none">{{ $i++ }}</p>
+                                                        </td>
+                                                        <td>{{ $data->full_number }}</td>
+                                                        <td>{{ $data->device_name }}</td>
+                                                        <td>{{ $data->device_info }}</td>
+                                                        <td>{{ $data->unit }}</td>
+                                                        <td>
+                                                            <div
+                                                                class="custom-control custom-checkbox custom-checkbox-primary">
+                                                                <input type="checkbox"
+                                                                       name="device_id[]"
+                                                                       value="{{$data->id}}"
+                                                                       id="checkbox{{$data->id}}"
+                                                                       class="custom-control-input">
+                                                                <input type="hidden" value="{{ $data->full_number }}" name="full_number"></input>
+                                                                <label class="custom-control-label text-danger"
+                                                                       style="font-size: 14px"
+                                                                       for="checkbox{{$data->id}}">
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <input type="hidden" value="{{ $dg_id }}" name="dg_id">
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
                                         </div>
-                                    </td>
-                                    <input type="hidden" value="{{ $dg_id }}" name="dg_id">
-                                </tr>
-                            @endforeach
-                            <tr>
-                                <td colspan="6" style="text-align: right!important;">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary badge badge-primary font-size-14 noPrint"
+                                style="height: 36px; width: 100%"
+                                type="submit">
+                            Đồng ý
+                        </button>
 
-                                    <button class="btn btn-primary badge badge-primary font-size-14 noPrint"
-                                            style="height: 36px; width: 100px"
-                                            type="submit">
-                                        Đồng ý
-                                    </button>
-
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
                     </form>
                 </div>
                 <div>

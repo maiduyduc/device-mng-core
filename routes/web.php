@@ -162,6 +162,14 @@ Route::group(['middleware' => ['get.menu']], function () {
             'as' => 'device.detail',
             'uses' => 'apps\DeviceController@detailNoGroup'
         ]);
+        Route::get('/edit/{id}', [
+            'as' => 'device.edit',
+            'uses' => 'apps\DeviceController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'device.update',
+            'uses' => 'apps\DeviceController@update'
+        ]);
         Route::post('/updateRoom/{id}', [
             'as' => 'device.updateRoom',
             'uses' => 'apps\DeviceController@updateRoom'
@@ -406,7 +414,7 @@ Route::group(['middleware' => ['get.menu']], function () {
     /*=*/   Route::get('document/{id}', 'apps\AuthorController@getData'); //xem thông tin văn bản mua sắm
     /*=*/   Route::get('rooms/{id}', 'apps\AuthorController@getRoom'); //xem danh sách phòng
     /*=*/   Route::get('ajax-device-plan', 'apps\AuthorController@getDevicePlan'); //xem danh sách văn bản dự trù đã duyệt
-    /*=*/   Route::get('ajax-document', 'apps\AuthorController@getDocument'); //xem danh sách văn bản dự trù đã duyệt
+    /*=*/   Route::get('ajax-document', 'apps\AuthorController@getDocument'); //xem danh sách văn bản nhập thiết bị đã duyệt
     /*=*/   Route::get('developing', 'apps\AuthorController@developing'); //thông báo tính năng đang phát triển
     /*=*/   Route::get('liquidateDevice', 'apps\AuthorController@getDeviceLiquidate'); //xem danh sách thiết bị chờ thanh lý
     /*=*/   Route::get('device-room/{id}/{id2}', 'apps\AuthorController@getDeviceFromRoom'); //xem danh sách thiết bị trong phòng

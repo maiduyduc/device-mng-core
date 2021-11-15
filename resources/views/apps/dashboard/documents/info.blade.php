@@ -230,7 +230,7 @@
                         </form>
                     </div>
                 @else
-                    <div class="col-md-5">
+                    <div class="col-md-5 noPrint">
                         <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
                                 style="width: 100%; height: 36px"
                                 disabled

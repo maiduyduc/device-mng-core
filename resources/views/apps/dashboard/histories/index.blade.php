@@ -40,6 +40,7 @@
                         <table id="testTB" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                             <tr>
+{{--                                <th scope="col" style="width: 50px">STT</th>--}}
                                 <th scope="col" style="width: 100px">Mã thiết bị</th>
                                 <th scope="col" style="width: 100px">Tên thiết bị</th>
                                 <th scope="col" style="width: 100px">Ngày thay đổi</th>
@@ -51,6 +52,10 @@
                             <tbody>
                             @foreach($histories as $history)
                                 <tr>
+{{--                                    <td>--}}
+{{--                                        <p class="text-dark font-size-14 mb-0">{{ $i }}</p>--}}
+{{--                                        <p style="display: none">{{ $i++ }}</p>--}}
+{{--                                    </td>--}}
                                     <td>
                                         <p class="text-dark font-size-14 mb-0">{{ $history->Device->full_number }}</p>
                                     </td>
@@ -125,7 +130,6 @@
                     },
                     'colvis'
                 ],
-                "order": [[ 2, "desc" ]],
             } );
         } );
     </script>

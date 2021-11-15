@@ -38,7 +38,7 @@
                                             <label for="formrow-inputInfo11">Kỳ kiểm kê</label>
                                             <input type="text" name="semesters"
                                                    class="form-control @error('semesters') is-invalid @enderror"
-                                                   required
+                                                   required autofocus
                                                    value="{{ old('semesters') }}"
                                                    id="formrow-inputInfo11">
                                         </div>
@@ -49,7 +49,6 @@
                                         <div class="form-group">
                                             <label for="formrow-inputInfo1">Ghi chú</label>
                                             <textarea name="detail" rows="5" id="formrow-inputInfo1"
-                                                      autofocus
                                                       class="form-control"></textarea>
                                         </div>
                                     </div>
@@ -192,8 +191,7 @@
                                                     <div class="col-lg-2">
                                                         <div class="form-group">
                                                             <label for="funds">Nguồn tiền</label>
-                                                            <input type="number" name="funds[]" id="funds"
-                                                                   min="0"
+                                                            <input type="text" name="funds[]" id="funds"
                                                                    class="form-control @error('funds.0') is-invalid @enderror">
                                                             @error('funds.0')
                                                             <span class="invalid-feedback" role="alert">

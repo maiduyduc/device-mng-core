@@ -41,6 +41,57 @@ class DeviceController extends Controller
         return view("apps.dashboard.devices.index", compact("devices"));
     }
 
+    public function edit($id)
+    {
+        $device = $this->device->find($id);
+        $rooms = DB::table('rooms')->get();
+        $device_groups = DB::table('device_groups')
+            ->where('room_id', $device->room_id)
+            ->get();
+//        dd($device);
+        return view('apps.dashboard.devices.edit', compact('device', 'rooms', 'device_groups'));
+    }
+
+    public function update($id, Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            if($request->group_id != ""){
+                DB::table('device_group_infos')
+                    ->where('device_id', $id)
+                    ->update([
+                        'device_group_id' => $request->group_id
+                    ]);
+            }
+
+            $device = $this->device->find($id);
+            if($device->device_group_id == null){
+                DB::table('device_group_infos')->insert([
+                    'device_group_id' => $request->group_id,
+                    'device_id' => $device->id,
+                ]);
+            }
+
+            $this->device->find($id)->update([
+                'serial' => $request->serial,
+                'room_id' => $request->room_id,
+                'device_name' => $request->device_name,
+                'device_group_id' => $request->group_id,
+                'device_info' => $request->device_info
+            ]);
+
+            DB::commit();
+
+            alert()->success('Cập nhật thành công');
+            return redirect()->route('device.index');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            log::error('Message: ' . $exception->getMessage() . ' ---line: ' . $exception->getLine());
+            alert()->error('Lỗi', 'Message: ' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
+            return back();
+        }
+    }
+
     public function active($id): \Illuminate\Http\RedirectResponse
     {
 
@@ -55,7 +106,7 @@ class DeviceController extends Controller
                 if ($status == $device[0]->status)
                     $device_status = $item;
             $this->history->create([
-                'device_id' => $device[0]->full_number,
+                'device_id' => $device[0]->id,
                 'device_name' => $device[0]->device_name,
                 'date_modified' => now(),
                 'note' => 'Cập nhật trạng thái thiết bị từ "' . $device_status . '" thành "Đang sử dụng"',
@@ -79,7 +130,7 @@ class DeviceController extends Controller
                 if ($status == $device[0]->status)
                     $device_status = $item;
             $this->history->create([
-                'device_id' => $device[0]->full_number,
+                'device_id' => $device[0]->id,
                 'device_name' => $device[0]->device_name,
                 'date_modified' => now(),
                 'note' => 'Cập nhật trạng thái thiết bị từ "' . $device_status . '" thành "Chưa sử dụng"',
@@ -102,7 +153,7 @@ class DeviceController extends Controller
                 if ($status == $device[0]->status)
                     $device_status = $item;
             $this->history->create([
-                'device_id' => $device[0]->full_number,
+                'device_id' => $device[0]->id,
                 'device_name' => $device[0]->device_name,
                 'date_modified' => now(),
                 'note' => 'Cập nhật trạng thái thiết bị từ "' . $device_status . '" thành "Hỏng"',
@@ -125,7 +176,7 @@ class DeviceController extends Controller
                 if ($status == $device[0]->status)
                     $device_status = $item;
             $this->history->create([
-                'device_id' => $device[0]->full_number,
+                'device_id' => $device[0]->id,
                 'device_name' => $device[0]->device_name,
                 'date_modified' => now(),
                 'note' => 'Cập nhật trạng thái thiết bị từ "' . $device_status . '" thành "Đang sửa"',
@@ -149,7 +200,7 @@ class DeviceController extends Controller
                 if ($status == $device[0]->status)
                     $device_status = $item;
             $this->history->create([
-                'device_id' => $device[0]->full_number,
+                'device_id' => $device[0]->id,
                 'device_name' => $device[0]->device_name,
                 'date_modified' => now(),
                 'note' => 'Cập nhật trạng thái thiết bị từ "' . $device_status . '" thành "Xin thanh lý"',
@@ -176,7 +227,7 @@ class DeviceController extends Controller
         dd($devices);
     }
 
-    public function updateRoom(Request $request, $ids)
+    public function updateRoom(Request $request, $ids): \Illuminate\Http\RedirectResponse
     {
         try {
             DB::beginTransaction();
