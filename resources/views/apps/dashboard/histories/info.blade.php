@@ -43,7 +43,6 @@
                                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                             <tr>
-                                <th scope="col" style="width: 50px">STT</th>
                                 <th scope="col" style="width: 100px">Mã thiết bị</th>
                                 <th scope="col" style="width: 100px">Tên thiết bị</th>
                                 <th scope="col" style="width: 100px">Ngày thay đổi</th>
@@ -55,10 +54,6 @@
                             <tbody>
                             @foreach($histories as $history)
                                 <tr>
-                                    <td>
-                                        {{ $i }}
-                                        <p style="display: none"> {{ $i++ }}</p>
-                                    </td>
                                     <td>
                                         <p class="text-dark font-size-14 mb-0">{{ $history->Device->full_number }}</p>
                                     </td>
@@ -82,9 +77,16 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <a class="btn btn-outline-info font-size-14"
-                       style="width: 100%"
-                       href="{{ route('history.index') }}">Trở về</a>
+{{--                    <a class="btn btn-outline-info font-size-14"--}}
+{{--                       style="width: 100%"--}}
+{{--                       href="{{ route('history.index') }}">Trở về</a>--}}
+                    <input
+                        onclick="window.history.go(-1); return false;"
+                        type="submit"
+                        style="width: 100%"
+                        class="btn btn-danger w-md"
+                        value="Trở về"
+                    />
                 </div>
             </div> <!-- end col -->
         </div> <!-- end row -->

@@ -200,7 +200,7 @@
 
                                         <a href="
                                         @if($device->device_group_id != 0)
-                                        {{ route('device.detail', ['id' => $device->id, 'group_id' => $device->device_group_id ]) }}
+                                        {{ route('device.detail-wg', ['id' => $device->id, 'group_id' => $device->device_group_id ]) }}
                                         @else
                                         {{ route('device.detail', ['id' => $device->id ]) }}
                                         @endif"

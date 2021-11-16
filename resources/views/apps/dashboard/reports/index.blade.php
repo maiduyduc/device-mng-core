@@ -133,32 +133,6 @@
                                 @endforeach
                                 </tbody>
                             </table>
-
-{{--                            <div class="table-responsive">--}}
-{{--                                <table class="table table-bordered mb-0">--}}
-{{--                                    <colgroup>--}}
-{{--                                        <col span="1" style="width: 300px;">--}}
-{{--                                        <col span="1">--}}
-{{--                                    </colgroup>--}}
-{{--                                    <thead>--}}
-{{--                                    <th>Phòng</th>--}}
-{{--                                    <th>Tổng thiết bị</th>--}}
-{{--                                    <th>Số máy đang hỏng</th>--}}
-{{--                                    <th>Số máy đang sửa</th>--}}
-{{--                                    </thead>--}}
-{{--                                    <tbody>--}}
-{{--                                    @foreach($data as $dt)--}}
-{{--                                        <tr>--}}
-{{--                                            <td>{{ $rooms[$i]->name }}</td>--}}
-{{--                                            <td>{{ $dt['devices'] }}</td>--}}
-{{--                                            <td>{{ $dt['deviceError'] }}</td>--}}
-{{--                                            <td>{{ $dt['deviceOnRepair'] }}</td>--}}
-{{--                                        </tr>--}}
-{{--                                        <p style="display: none"> {{ $i++ }}</p>--}}
-{{--                                    @endforeach--}}
-{{--                                    </tbody>--}}
-{{--                                </table>--}}
-{{--                            </div>--}}
                         @endif
                     </div>
                 </div>

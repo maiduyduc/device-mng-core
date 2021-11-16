@@ -155,7 +155,7 @@ Route::group(['middleware' => ['get.menu']], function () {
             'uses' => 'apps\DeviceController@liquidate'
         ]);
         Route::get('/detail/{id}/{group_id}', [
-            'as' => 'device.detail',
+            'as' => 'device.detail-wg',
             'uses' => 'apps\DeviceController@detailWithGroup'
         ]);
         Route::get('/detail/{id}', [
@@ -173,6 +173,10 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::post('/updateRoom/{id}', [
             'as' => 'device.updateRoom',
             'uses' => 'apps\DeviceController@updateRoom'
+        ]);
+        Route::get('/remove-room/{id}', [
+            'as' => 'device.remove-room',
+            'uses' => 'apps\DeviceController@removeRoom'
         ]);
 
     });

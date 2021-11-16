@@ -92,8 +92,15 @@
                         <br>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="{{ route('auto-inventory.index') }}" style="width: 100%"
-                                       class="btn btn-danger w-md">Trở về</a>
+{{--                                    <a href="{{ route('auto-inventory.index') }}" style="width: 100%"--}}
+{{--                                       class="btn btn-danger w-md">Trở về</a>--}}
+                                    <input
+                                        onclick="window.history.go(-1); return false;"
+                                        type="submit"
+                                        style="width: 100%"
+                                        class="btn btn-danger w-md"
+                                        value="Trở về"
+                                    />
                                 </div>
                             </div>
                     </div>

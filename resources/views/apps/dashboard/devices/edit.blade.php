@@ -126,8 +126,15 @@
                                             </button>
                                         </div>
                                         <div class="col-md-6">
-                                            <a href="{{ route('device.index') }}" style="width: 100%"
-                                               class="btn btn-danger w-md">Hủy</a>
+{{--                                            <a href="{{ route('device.index') }}" style="width: 100%"--}}
+{{--                                               class="btn btn-danger w-md">Hủy</a>--}}
+                                            <input
+                                                onclick="window.history.go(-1); return false;"
+                                                type="submit"
+                                                style="width: 100%"
+                                                class="btn btn-danger w-md"
+                                                value="Hủy"
+                                            />
                                         </div>
                                     </div>
                                 </div>
