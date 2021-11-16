@@ -26,35 +26,51 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($datas as $data)
-                                <tr class="item-wrapper">
-                                    <td>
-                                        {{ $i }}
-                                        <p style="display: none">{{ $i++ }}</p>
-                                    </td>
-                                    <td>{{ $data->full_number }}</td>
-                                    <td>{{ $data->device_name }}</td>
-                                    <td>{{ $data->device_info }}</td>
-                                    <td>{{ $data->unit }}</td>
-                                    <td>
-                                        <div
-                                            class="custom-control custom-checkbox custom-checkbox-primary">
-                                            <input type="checkbox"
-                                                   name="device_id[]"
-                                                   value="{{$data->id}}"
-                                                   id="checkbox{{$data->id}}"
-                                                   class="custom-control-input">
-                                            <input type="hidden" value="{{ $rooms->id }}" name="room_id">
-                                            <input type="hidden" value="{{ $rooms->name }}" name="room_name">
-                                            <input type="hidden" value="{{ $data->device_name }}" name="device_name">
-                                            <label class="custom-control-label text-danger"
-                                                   style="font-size: 14px"
-                                                   for="checkbox{{$data->id}}">
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
+
+                            <div>
+                                <div class="chat-conversation p-3">
+                                    <ul class="list-unstyled" data-simplebar="" style="max-height: 350px;">
+                                        <li>
+                                            <div class="p-3 chat-input-section">
+                                                @foreach($datas as $data)
+                                                    <tr class="item-wrapper">
+                                                        <td>
+                                                            {{ $i }}
+                                                            <p style="display: none">{{ $i++ }}</p>
+                                                        </td>
+                                                        <td>{{ $data->full_number }}</td>
+                                                        <td>{{ $data->device_name }}</td>
+                                                        <td>{{ $data->device_info }}</td>
+                                                        <td>{{ $data->unit }}</td>
+                                                        <td>
+                                                            <div
+                                                                class="custom-control custom-checkbox custom-checkbox-primary">
+                                                                <input type="checkbox"
+                                                                       name="device_id[]"
+                                                                       value="{{$data->id}}"
+                                                                       id="checkbox{{$data->id}}"
+                                                                       class="custom-control-input">
+                                                                <input type="hidden" value="{{ $rooms->id }}" name="room_id">
+                                                                <input type="hidden" value="{{ $rooms->name }}" name="room_name">
+                                                                <input type="hidden" value="{{ $data->device_name }}" name="device_name">
+                                                                <label class="custom-control-label text-danger"
+                                                                       style="font-size: 14px"
+                                                                       for="checkbox{{$data->id}}">
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                            </div>
+
+
+
                             <tr>
                                 <td colspan="6" style="text-align: right!important;">
 

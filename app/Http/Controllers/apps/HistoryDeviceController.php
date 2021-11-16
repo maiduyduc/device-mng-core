@@ -18,8 +18,9 @@ class HistoryDeviceController extends Controller
 
     public function index()
     {
+        $i = 1;
         $histories = $this->history->all();
-        return view("apps.dashboard.histories.index", compact('histories'));
+        return view("apps.dashboard.histories.index", compact('histories', 'i'));
     }
 
     public function detail($code)

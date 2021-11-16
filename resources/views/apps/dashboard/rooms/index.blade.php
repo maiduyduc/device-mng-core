@@ -50,7 +50,7 @@
                                     <p></p>
                                     @if(Auth::user()->menuroles == 'ktv' || Auth::user()->menuroles == 'sadmin')
                                     <div class="page-title-right">
-                                        <a href="{{ route('room.create') }}" class="btn btn-primary">Tạp phòng mới</a>
+                                        <a href="{{ route('room.create') }}" class="btn btn-primary">Tạo phòng mới</a>
                                     </div>
                                     @endif
                                 </div>

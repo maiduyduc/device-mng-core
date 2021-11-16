@@ -74,10 +74,12 @@
 
                                     <div class="page-title-right">
                                         <a class="btn btn-primary" data-toggle="modal" id="getMessage"
-                                           data-target="#messageBoard" data-url="{{ url('device-no-room', ['id' => $room->id])}}"
+                                           data-target="#messageBoard"
+                                           data-url="{{ url('device-no-room', ['id' => $room->id])}}"
                                            href="#!"> Thêm thiết bị vào phòng </a>
                                         <a class="btn btn-info" data-toggle="modal" id="getMessage"
-                                           data-target="#messageBoard" data-url="{{ url('create-device-group', ['id' => $room->id])}}"
+                                           data-target="#messageBoard"
+                                           data-url="{{ url('create-device-group', ['id' => $room->id])}}"
                                            href="#!"> Tạo nhóm thiết bị </a>
                                         <a href="{{ route('room.index') }}" class="btn btn-outline-dark"
                                            data-toggle="tooltip" data-placement="top" title=""
@@ -95,10 +97,10 @@
                                 <th scope="col">Tên thiết bị</th>
                                 <th scope="col">Chủng loại</th>
                                 <th scope="col">Thông tin thiết bị</th>
-                                <th scope="col">Ngày nhập</th>
+                                {{--                                <th scope="col">Ngày nhập</th>--}}
                                 <th scope="col">Nhóm</th>
                                 <th scope="col">Trạng thái</th>
-                                {{--                                <th scope="col">Hành động</th>--}}
+                                <th scope="col">Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -124,9 +126,9 @@
                                             overflow: hidden;
                                             text-overflow: ellipsis;">{{ $device->device_info }}</p>
                                     </td>
-                                    <td>
-                                        <p class="text-dark font-size-14 mb-0">{{ $device->created_at }}</p>
-                                    </td>
+                                    {{--                                    <td>--}}
+                                    {{--                                        <p class="text-dark font-size-14 mb-0">{{ $device->created_at }}</p>--}}
+                                    {{--                                    </td>--}}
                                     <td>
                                         <p class="text-dark font-size-14 mb-0">@if($device->device_group_id != 0) {{ $device->DeviceGroup->name }} @else
                                                 Chưa có nhóm @endif</p>
@@ -196,14 +198,23 @@
                                         </div>
 
                                     </td>
-                                    {{--                                    <td>--}}
-                                    {{--                                        <a class="btn btn-primary badge badge-primary font-size-14"--}}
-                                    {{--                                           href=""--}}
-                                    {{--                                        >Sửa</a>--}}
-                                    {{--                                        <a href=""--}}
-                                    {{--                                           class="btn btn-danger badge badge-danger font-size-14 action_delete"--}}
-                                    {{--                                        >Xóa</a>--}}
-                                    {{--                                    </td>--}}
+                                    <td>
+                                        <a class="btn btn-primary badge badge-primary font-size-14"
+                                           href="{{ route('device.edit',['id' => $device->id]) }}"
+                                        >Sửa</a>
+                                        <a href="{{ route('device.remove-room', ['id'=>$device->id]) }}"
+                                           class="btn btn-danger badge badge-danger font-size-14"
+{{--                                           data-url="{{ route('device.remove-room', ['id'=>$device->id]) }}"--}}
+                                        >Xóa</a>
+                                        <a href="
+                                        @if($device->device_group_id != 0)
+                                        {{ route('device.detail-wg', ['id' => $device->id, 'group_id' => $device->device_group_id ]) }}
+                                        @else
+                                        {{ route('device.detail', ['id' => $device->id ]) }}
+                                        @endif"
+                                           class="btn btn-info badge badge-info font-size-14"
+                                        >Xem chi tiết</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\apps;
 
 use App\Http\Controllers\Controller;
 use App\Models\Models\apps\Device;
+use App\Models\Models\apps\DeviceGroupInfo;
 use App\Models\Models\apps\HistoryDevice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,11 +15,13 @@ class DeviceController extends Controller
 {
     private $device;
     private $history;
+    private $group;
 
-    public function __construct(Device $device, HistoryDevice $history)
+    public function __construct(Device $device, HistoryDevice $history, DeviceGroupInfo $group)
     {
         $this->device = $device;
         $this->history = $history;
+        $this->group = $group;
         $this->middleware('auth');
     }
 
@@ -41,6 +44,67 @@ class DeviceController extends Controller
         return view("apps.dashboard.devices.index", compact("devices"));
     }
 
+    public function edit($id)
+    {
+        $device = $this->device->find($id);
+        $rooms = DB::table('rooms')->get();
+        $device_groups = DB::table('device_groups')
+            ->where('room_id', $device->room_id)
+            ->get();
+//        dd($device);
+        return view('apps.dashboard.devices.edit', compact('device', 'rooms', 'device_groups'));
+    }
+
+    public function update($id, Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            if($request->group_id != ""){
+                DB::table('device_group_infos')
+                    ->where('device_id', $id)
+                    ->update([
+                        'device_group_id' => $request->group_id
+                    ]);
+            }
+
+            $device = $this->device->find($id);
+            if($request->group_id != "" && $device->device_group_id == null){
+                DB::table('device_group_infos')->insert([
+                    'device_group_id' => $request->group_id,
+                    'device_id' => $device->id,
+                ]);
+                $group_name = DB::table('device_groups')->where('id', $request->group_id)->pluck('name');
+                DB::table('history_devices')->insert([
+                    'device_id' => $device->id,
+                    'device_name' => $device->device_name,
+                    'note' => "Thêm thiết bị " . $device->device_name . " vào nhóm " . $group_name[0],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+
+            $this->device->find($id)->update([
+                'serial' => $request->serial,
+                'room_id' => $request->room_id,
+                'device_name' => $request->device_name,
+                'device_group_id' => $request->group_id,
+                'device_info' => $request->device_info
+            ]);
+
+            DB::commit();
+
+            alert()->success('Cập nhật thành công');
+            if($request->room_id != null)
+                return redirect()->route('room.device', ['id' => $request->room_id]);
+            return redirect()->route('device.index');
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            log::error('Message: ' . $exception->getMessage() . ' ---line: ' . $exception->getLine());
+            alert()->error('Lỗi', 'Message: ' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
+            return back();
+        }
+    }
+
     public function active($id): \Illuminate\Http\RedirectResponse
     {
 
@@ -55,7 +119,7 @@ class DeviceController extends Controller
                 if ($status == $device[0]->status)
                     $device_status = $item;
             $this->history->create([
-                'device_id' => $device[0]->full_number,
+                'device_id' => $device[0]->id,
                 'device_name' => $device[0]->device_name,
                 'date_modified' => now(),
                 'note' => 'Cập nhật trạng thái thiết bị từ "' . $device_status . '" thành "Đang sử dụng"',
@@ -79,7 +143,7 @@ class DeviceController extends Controller
                 if ($status == $device[0]->status)
                     $device_status = $item;
             $this->history->create([
-                'device_id' => $device[0]->full_number,
+                'device_id' => $device[0]->id,
                 'device_name' => $device[0]->device_name,
                 'date_modified' => now(),
                 'note' => 'Cập nhật trạng thái thiết bị từ "' . $device_status . '" thành "Chưa sử dụng"',
@@ -102,7 +166,7 @@ class DeviceController extends Controller
                 if ($status == $device[0]->status)
                     $device_status = $item;
             $this->history->create([
-                'device_id' => $device[0]->full_number,
+                'device_id' => $device[0]->id,
                 'device_name' => $device[0]->device_name,
                 'date_modified' => now(),
                 'note' => 'Cập nhật trạng thái thiết bị từ "' . $device_status . '" thành "Hỏng"',
@@ -125,7 +189,7 @@ class DeviceController extends Controller
                 if ($status == $device[0]->status)
                     $device_status = $item;
             $this->history->create([
-                'device_id' => $device[0]->full_number,
+                'device_id' => $device[0]->id,
                 'device_name' => $device[0]->device_name,
                 'date_modified' => now(),
                 'note' => 'Cập nhật trạng thái thiết bị từ "' . $device_status . '" thành "Đang sửa"',
@@ -149,7 +213,7 @@ class DeviceController extends Controller
                 if ($status == $device[0]->status)
                     $device_status = $item;
             $this->history->create([
-                'device_id' => $device[0]->full_number,
+                'device_id' => $device[0]->id,
                 'device_name' => $device[0]->device_name,
                 'date_modified' => now(),
                 'note' => 'Cập nhật trạng thái thiết bị từ "' . $device_status . '" thành "Xin thanh lý"',
@@ -161,11 +225,18 @@ class DeviceController extends Controller
 
     public function detailWithGroup($id, $group_id)
     {
+
+        $i = 1;
         $devices = $this->device
             ->where('id', $id)
             ->where('device_group_id', $group_id)
             ->get();
-        dd($devices);
+        $groups = $this->device
+            ->where('device_group_id', $group_id)
+            ->where('id', '<>', $id)
+            ->get();
+        $history = $this->history->where('device_id', $id)->get();
+        return view('apps.dashboard.devices.info', compact('devices', 'groups', 'i', 'history'));
     }
 
     public function detailNoGroup($id)
@@ -173,10 +244,10 @@ class DeviceController extends Controller
         $devices = $this->device
             ->where('id', $id)
             ->get();
-        dd($devices);
+        return view('apps.dashboard.devices.info', compact('devices'));
     }
 
-    public function updateRoom(Request $request, $ids)
+    public function updateRoom(Request $request, $ids): \Illuminate\Http\RedirectResponse
     {
         try {
             DB::beginTransaction();
@@ -204,6 +275,31 @@ class DeviceController extends Controller
             alert()->error('Lỗi', 'Message: ' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
             return back();
         }
+    }
+
+    public function removeRoom($id){
+        try {
+            DB::beginTransaction();
+            $device = $this->device->find($id);
+            $this->device->where('id', $id)->update([
+                'room_id' => null
+            ]);
+            $this->group->where('device_id', $id)->delete();
+            $this->history->create([
+                'device_id' => $id,
+                'device_name' => $device->device_name,
+                'note' => "Xóa thiết bị " . $device->device_name . " khỏi phòng " . $device->Room->name
+            ]);
+            DB::commit();
+            alert()->success('', 'Đã xóa thiết bị khỏi phòng');
+            return back();
+        } catch (\Exception $exception){
+            DB::rollBack();
+            log::error('Message: ' . $exception->getMessage() . ' ---line: ' . $exception->getLine());
+            alert()->error('Lỗi', 'Message: ' . $exception->getMessage() . '--- Line: ' . $exception->getLine());
+            return back();
+        }
+
     }
 
 }

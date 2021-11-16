@@ -4,7 +4,7 @@ if (!function_exists('renderDropdown')) {
     {
         if (array_key_exists('slug', $data) && $data['slug'] === 'dropdown') {
             echo '<li>';
-            echo '<a href="javascript: void(0);" class="has-arrow waves-effect">';
+            echo '<a href="javascript: void(0);" class="has-arrow waves-effect font-size-16">';
             if ($data['hasIcon'] === true) {
                 echo '<i class="' . $data['icon'] . '"></i>';
             }
@@ -16,7 +16,7 @@ if (!function_exists('renderDropdown')) {
             for ($i = 0; $i < count($data); $i++) {
                 if ($data[$i]['slug'] === 'link') {
                     echo '<li>';
-                    echo '<a class="waves-effect" href="' . url($data[$i]['href']) . '">';
+                    echo '<a class="waves-effect font-size-15" href="' . url($data[$i]['href']) . '">';
                     echo $data[$i]['name'] . '</a></li>';
                 } elseif ($data[$i]['slug'] === 'dropdown') {
                     renderDropdown($data[$i]);
@@ -38,7 +38,7 @@ if (!function_exists('renderDropdown')) {
                     @foreach($appMenus['sidebar menu'] as $menuel)
                         @if($menuel['slug'] === 'link')
                             <li>
-                                <a class="waves-effect" href="{{ url($menuel['href']) }}">
+                                <a class="waves-effect font-size-16" href="{{ url($menuel['href']) }}">
                                     @if($menuel['hasIcon'] === true)
                                         @if($menuel['iconType'] === 'coreui')
                                             <i class="{{ $menuel['icon'] }}"></i>

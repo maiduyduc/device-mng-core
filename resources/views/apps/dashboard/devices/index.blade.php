@@ -18,6 +18,7 @@
             vertical-align: middle !important;
             text-align: center !important;
         }
+
         .badge-soft-error {
             color: #f46a6a;
             background-color: rgba(244, 106, 106, .18);
@@ -86,7 +87,7 @@
                                 <th scope="col">Tên thiết bị</th>
                                 <th scope="col">Chủng loại</th>
                                 <th scope="col">Thông tin thiết bị</th>
-{{--                                <th scope="col">Ngày nhập</th>--}}
+                                {{--                                <th scope="col">Ngày nhập</th>--}}
                                 <th scope="col">Nhóm</th>
                                 <th scope="col">Phòng</th>
                                 <th scope="col">Trạng thái</th>
@@ -117,9 +118,9 @@
                                             text-overflow: ellipsis;"
                                         >{{ $device->device_info }}</p>
                                     </td>
-{{--                                    <td>--}}
-{{--                                        <p class="text-dark font-size-14 mb-0">{{ $device->created_at }}</p>--}}
-{{--                                    </td>--}}
+                                    {{--                                    <td>--}}
+                                    {{--                                        <p class="text-dark font-size-14 mb-0">{{ $device->created_at }}</p>--}}
+                                    {{--                                    </td>--}}
                                     <td>
                                         <p class="text-dark font-size-14 mb-0">@if($device->device_group_id != 0) {{ $device->DeviceGroup->name }} @else
                                                 Chưa có nhóm @endif</p>
@@ -194,16 +195,15 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-primary badge badge-primary font-size-14"
-                                           href=""
+                                           href="{{ route('device.edit',['id' => $device->id]) }}"
                                         >Sửa</a>
 
                                         <a href="
                                         @if($device->device_group_id != 0)
-                                    {{ route('device.detail', ['id' => $device->id, 'group_id' => $device->device_group_id ]) }}
+                                        {{ route('device.detail-wg', ['id' => $device->id, 'group_id' => $device->device_group_id ]) }}
                                         @else
                                         {{ route('device.detail', ['id' => $device->id ]) }}
-                                            @endif
-                                            "
+                                        @endif"
                                            class="btn btn-danger badge badge-danger font-size-14"
                                         >Xem chi tiết</a>
                                     </td>
@@ -253,23 +253,23 @@
                     {
                         extend: 'copyHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     {
                         extend: 'excelHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     {
                         extend: 'pdfHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     'colvis'
-                ]
+                ],
             });
         });
     </script>
