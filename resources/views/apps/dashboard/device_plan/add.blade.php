@@ -35,9 +35,19 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <label for="formrow-document-name">Tên văn bản</label>
+                                            <input type="text" name="document_name" class="form-control"
+                                                   required autofocus
+                                                   id="formrow-document-name">
+                                            @error('document_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
                                             <label for="formrow-inputInfo1">Mô tả</label>
                                             <textarea name="detail" rows="5" id="formrow-inputInfo1"
-                                                      autofocus
                                                       class="form-control"></textarea>
                                         </div>
                                     </div>

@@ -4,9 +4,11 @@
     <title>Danh sách dự trù</title>
 @endsection
 @section('link')
-    <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets\apps\assets\libs\datatables.net-bs4\css\dataTables.bootstrap4.min.css') }}"
+          rel="stylesheet"
           type="text/css">
-    <link href="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\css\buttons.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\css\buttons.bootstrap4.min.css') }}"
+          rel="stylesheet"
           type="text/css">
     <!-- Responsive datatable examples -->
     <link href="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\css\responsive.bootstrap4.min.css') }}"
@@ -67,9 +69,10 @@
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <p></p>
                                     @if(Auth::user()->menuroles == 'ptb' || Auth::user()->menuroles == 'sadmin')
-                                    <div class="page-title-right">
-                                        <a href="{{ route('device-plan.create') }}" class="btn btn-primary">Tạo mới</a>
-                                    </div>
+                                        <div class="page-title-right">
+                                            <a href="{{ route('device-plan.create') }}" class="btn btn-primary">Tạo
+                                                mới</a>
+                                        </div>
                                     @endif
                                 </div>
                             </div>
@@ -80,6 +83,7 @@
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col" style="width: 50px">Mã văn bản</th>
+                                <th scope="col">Tên văn bản</th>
                                 <th scope="col">Số lượng thiết bị</th>
                                 <th scope="col">Ghi chú</th>
                                 <th scope="col" style="max-width: 5rem">Trạng thái</th>
@@ -94,6 +98,7 @@
                                     <td>{{ $i }}</td>
                                     <p style="display: none">{{ $i++ }}</p>
                                     <td>{{ $items->full_number }}</td>
+                                    <td>{{ $items->name }}</td>
                                     <td>{{ $items->qty }}</td>
                                     <td>{{ $items->note }}</td>
                                     <td>
@@ -103,25 +108,27 @@
                                                 @if($status == $items->status)
                                                     {{ $item }}
                                                 @endif
-                                        @endforeach
+                                            @endforeach
                                         </span>
                                         @if($items->is_export == 1)
+                                            <br> <br>
                                             <span class="font-size-14 badge badge-soft-{{ $items->status }}"
                                                   style="max-width: 20rem">Đã tạo phiếu nhập
-                                                @endif
-                                        </span>
+                                            </span>
+                                        @endif
+
                                     </td>
                                     <td>{{ $items->created_at }}</td>
                                     <td>
                                         @if(Auth::user()->menuroles == 'ptb' || Auth::user()->menuroles == 'sadmin')
-                                        <a class="btn btn-primary badge badge-primary font-size-14"
-                                           style="@if($items->status == 'accept' || $items->status == 'cancel') display:none @endif"
-                                           href="{{ route('device-plan.edit',['id'=>$items->id]) }}">Sửa</a>
-                                        <a href=""
-                                           style="@if($items->status == 'accept' || $items->status == 'cancel') display:none @endif"
-                                           class="btn btn-danger badge badge-danger font-size-14 action_delete"
-                                           data-url="{{ route('device-plan.delete', ['id'=>$items->id]) }}"
-                                        >Xóa</a>
+                                            <a class="btn btn-primary badge badge-primary font-size-14"
+                                               style="@if($items->status == 'accept' || $items->status == 'cancel') display:none @endif"
+                                               href="{{ route('device-plan.edit',['id'=>$items->id]) }}">Sửa</a>
+                                            <a href=""
+                                               style="@if($items->status == 'accept' || $items->status == 'cancel') display:none @endif"
+                                               class="btn btn-danger badge badge-danger font-size-14 action_delete"
+                                               data-url="{{ route('device-plan.delete', ['id'=>$items->id]) }}"
+                                            >Xóa</a>
                                         @endif
                                         <a href="{{ route('device-plan.info', ['id'=>$items->id]) }}"
                                            style=""
@@ -144,7 +151,8 @@
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-bs4\js\dataTables.bootstrap4.min.js') }}"></script>
     <!-- Buttons examples -->
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons\js\dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\js\buttons.bootstrap4.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-buttons-bs4\js\buttons.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\jszip\jszip.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\pdfmake\build\pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets\apps\assets\libs\pdfmake\build\vfs_fonts.js') }}"></script>
@@ -153,8 +161,10 @@
     <script src="{{ asset('assets\apps\assets\libs\datatables.net-buttons\js\buttons.colVis.min.js') }}"></script>
 
     <!-- Responsive examples -->
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-responsive\js\dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-responsive\js\dataTables.responsive.min.js') }}"></script>
+    <script
+        src="{{ asset('assets\apps\assets\libs\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js') }}"></script>
 
     <!-- Datatable init js -->
     <script src="{{ asset('assets\apps\assets\js\pages\datatables.init.js') }}"></script>

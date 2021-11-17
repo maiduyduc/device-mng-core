@@ -9,17 +9,7 @@ class Document extends Model
 {
     use HasFactory;
     protected $table = 'documents';
-    protected $fillable = [
-        'number',
-        'document_prefix_id',
-        'full_number',
-        'code',
-        'qty',
-        'status',
-        'can_edit',
-        'can_export',
-        'is_export'
-    ];
+    protected $guarded = [];
 
     public function DocumentInfo(){
         return $this->hasMany(DocumentInfo::class, 'document_id');

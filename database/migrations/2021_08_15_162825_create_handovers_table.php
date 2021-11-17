@@ -19,6 +19,7 @@ class CreateHandoversTable extends Migration
             $table->integer('document_prefix_id')->default(3);
             $table->string('full_number')->unique();
             $table->string('code');
+            $table->string('name');
             $table->integer('qty');
             $table->string('status')->default('pending');
             $table->boolean('can_edit')->default(1);

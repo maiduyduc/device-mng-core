@@ -71,6 +71,7 @@ class HandoverController extends Controller
             DB::beginTransaction();
             $countDevice = count($request->device_name);
             $this->handover->find($id)->update([
+                'name' => $request->document_name,
                 'qty' => array_sum($request->qty),
                 'status' => 'pending',
             ]);

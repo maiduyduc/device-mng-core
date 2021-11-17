@@ -90,9 +90,10 @@
                             <thead>
                             <tr>
                                 <th scope="col">STT</th>
-                                <th scope="col">Mã văn bản bàn giao</th>
-                                <th scope="col">Mã văn bản liên quan</th>
-                                <th scope="col">Số lượng thiết bị</th>
+                                <th scope="col">Mã văn bản <br> bàn giao</th>
+                                <th scope="col">Mã văn bản <br> liên quan</th>
+                                <th scope="col">Tên văn bản</th>
+                                <th scope="col">Số lượng <br> thiết bị</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col">Ngày tạo</th>
                                 <th scope="col" style="width: 170px">Hành động</th>
@@ -112,6 +113,9 @@
                                         <p class="text-dark font-size-14 mb-0 text-over">{{ $handover->code }}</p>
                                     </td>
                                     <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">{{ $handover->name }}</p>
+                                    </td>
+                                    <td>
                                         <p class="text-dark font-size-14 mb-0 text-over" style="max-width: 1rem">
                                             {{ $handover->qty }}
                                         </p>
@@ -125,7 +129,9 @@
                                                 @endif
                                             @endforeach
                                         </span>
+
                                         @if($handover->is_export == 1)
+                                            <br> <br>
                                         <span class="font-size-14 badge badge-soft-{{ $handover->status }}"
                                               style="max-width: 20rem">
                                             Đã xuất thông tin </span>
