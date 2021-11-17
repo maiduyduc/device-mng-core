@@ -91,6 +91,7 @@
                                 <th scope="col">STT</th>
                                 <th scope="col" style="">Mã chứng từ</th>
                                 <th scope="col" style="">Mã văn bản dự trù <br> (nếu có)</th>
+                                <th scope="col" style="">Tên văn bản</th>
                                 <th scope="col" style="">Số lượng thiết bị</th>
                                 <th scope="col" style="max-width: 10rem">Trạng thái</th>
                                 <th scope="col" style="">Ngày tạo</th>
@@ -111,6 +112,10 @@
                                             {{ $document->code }}</p>
                                     </td>
                                     <td>
+                                        <p class="text-dark font-size-14 mb-0 text-over">
+                                            {{ $document->name }}</p>
+                                    </td>
+                                    <td>
                                         <p class="text-dark font-size-14 mb-0 text-over" style="max-width: 20rem">
                                             {{ $document->qty }}
                                         </p>
@@ -125,6 +130,7 @@
                                             @endforeach
                                         </span>
                                         @if($document->is_export == 1)
+                                            <br> <br>
                                             <span class="font-size-14 badge badge-soft-{{ $document->status }}"
                                                   style="max-width: 20rem">Đã tạo phiếu bàn giao
                                         </span>

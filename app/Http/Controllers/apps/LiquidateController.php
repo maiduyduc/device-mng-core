@@ -49,6 +49,7 @@ class LiquidateController extends Controller
 
             $countDevice = count($request->device_name);
             $liquidate = $this->liquidate->create([
+                'name' => $request->document_name,
                 'qty' => $countDevice,
                 'note' => $request->note,
                 'document_prefix_id' => 5
@@ -97,6 +98,7 @@ class LiquidateController extends Controller
 
             $this->liquidate->find($id)->update([
                 'note' => $request->note,
+                'name' => $request->document_name
             ]);
 
             $this->liquidate_info->where('liquidate_id', $id)->delete();

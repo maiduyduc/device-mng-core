@@ -51,6 +51,7 @@ class DocumentDeviceController extends Controller
             DB::beginTransaction();
             $validatedData = $request->validate([
                 'device_name.*' => ['required', 'max:191'],
+                'document_name' => ['required'],
                 'order_qty.*' => ['required', 'min:0', 'regex:/^[0-9]+$/u'],
                 'stock.*' => ['required', 'min:0', 'regex:/^[0-9]+$/u'],
                 'device_prefix_id.*' => [],
@@ -62,6 +63,7 @@ class DocumentDeviceController extends Controller
             $countDevice = count($request->device_name);
             //create value for document_info
             $document = $this->document->create([
+                'name' => $request->document_name,
                 'qty' => array_sum($request->order_qty),
                 'document_prefix_id' => 1
             ]);
@@ -120,6 +122,7 @@ class DocumentDeviceController extends Controller
             $countDevice = count($request->device_name);
             //create value for document_info
             $this->document->find($id)->update([
+                'name' => $request->document_name,
                 'qty' => array_sum($request->order_qty),
                 'status' => 'pending',
             ]);
@@ -205,11 +208,12 @@ class DocumentDeviceController extends Controller
                 DB::beginTransaction();
                 $countDevice = $this->document_info->where('document_id', $id)->count();
                 $infos = $this->document_info->where('document_id', $id)->get();
-                $this->document->find($id)->update([
+                $doc = $this->document->find($id)->update([
                     'can_export' => 0,
                     'is_export' => 1,
                 ]);
                 $handover = $this->handover->create([
+                    'name' => "Bàn giao " . $edited[0]->name,
                     'qty' => $edited[0]->qty,
                     'document_prefix_id' => 3,
                     'code' => $edited[0]->full_number,

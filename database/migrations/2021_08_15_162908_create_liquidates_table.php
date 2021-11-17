@@ -18,6 +18,7 @@ class CreateLiquidatesTable extends Migration
             $table->integer('number');
             $table->integer('document_prefix_id');
             $table->string('full_number');
+            $table->string('name');
             $table->integer('qty');
             $table->string('status')->default('pending');
             $table->text('note')->nullable();

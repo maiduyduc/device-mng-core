@@ -18,6 +18,7 @@ class CreateDevicePlansTable extends Migration
             $table->integer('number');
             $table->integer('document_prefix_id')->default(2);
             $table->string('full_number')->unique();
+            $table->string('name');
             $table->integer('qty');
             $table->string('status')->default('pending');
             $table->boolean('can_edit')->default(1);

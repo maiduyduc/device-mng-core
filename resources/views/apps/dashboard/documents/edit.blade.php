@@ -32,6 +32,23 @@
                         <div class="col-lg-12">
                             <form method="post" action="{{ route('document.update', ['id'=>$document_id->id]) }}">
                                 @csrf
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="formrow-input_document_name">Tên văn bản</label>
+                                            <input type="text" name="document_name"
+                                                   class="form-control @error('document_name') is-invalid @enderror"
+                                                   required autofocus
+                                                   value="{{ $document_id->name }}"
+                                                   id="formrow-input_document_name">
+                                            @error('document_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="item-wrapper" id="list-item">
                                     @foreach($document_id->DocumentInfo as $document)
                                         <div id="lec{{$document->id}}" class="list-group-item rounded px-3 mb-1">

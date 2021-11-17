@@ -53,11 +53,13 @@ class DevicePlanController extends Controller
                 'device_name.*' => ['required', 'max:191'],
                 'qty.*' => ['required', 'min:1', 'regex:/^[0-9]+$/u'],
                 'device_info.*' => [],
-                'note.*' => []
+                'note.*' => [],
+                'document_name' => ['required']
             ]);
 
             $countDevice = count($request->device_name);
             $device_plan = $this->device_plan->create([
+                'name' => $request->document_name,
                 'qty' => array_sum($request->qty),
                 'note' => $request->detail,
                 'document_prefix_id' => 2,
@@ -103,11 +105,13 @@ class DevicePlanController extends Controller
                 'device_name.*' => ['required', 'max:191'],
                 'qty.*' => ['required', 'min:1', 'regex:/^[0-9]+$/u'],
                 'device_info.*' => [],
-                'note.*' => []
+                'note.*' => [],
+                'document_name' => ['required']
             ]);
 
             $countDevice = count($request->device_name);
             $this->device_plan->find($id)->update([
+                'name' => $request->document_name,
                 'qty' => array_sum($request->qty),
                 'note' => $request->detail,
             ]);
@@ -251,6 +255,7 @@ class DevicePlanController extends Controller
                     'qty' => $edited[0]->qty,
                     'document_prefix_id' => 1,
                     'code' => $edited[0]->full_number,
+                    'name' => "Giấy đề nghị mua sắm thiết bị dự trù - " . $edited[0]->full_number,
                 ]);
 
                 for ($i = 0; $i < $countDevice; $i++) {

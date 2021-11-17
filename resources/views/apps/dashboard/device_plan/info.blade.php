@@ -255,6 +255,7 @@
                             <button class="btn btn-danger badge badge-danger font-size-14 noPrint"
                                     style="width: 100%; height: 36px"
                                     @if($code[0]->can_export == 0) disabled @endif
+                                    @if(!$is_buy_count == 0) disabled @endif
                                     type="submit">
                                 Tạo phiếu nhập
                             </button>

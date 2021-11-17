@@ -35,6 +35,19 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <label for="formrow-input_document_name">Tên văn bản</label>
+                                            <input type="text" name="document_name"
+                                                   class="form-control @error('document_name') is-invalid @enderror"
+                                                   required autofocus
+                                                   value="{{ $liquidate->name }}"
+                                                   id="formrow-input_document_name">
+                                            @error('document_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
                                             <label for="formrow-inputInfo1">Mô tả</label>
                                             <textarea name="note" rows="5" id="formrow-inputInfo1"
                                                       autofocus
