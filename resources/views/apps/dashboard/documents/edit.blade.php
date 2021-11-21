@@ -35,7 +35,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="formrow-input_document_name">Tên văn bản</label>
+                                            <label for="formrow-input_document_name">Tên văn bản (<span class="text-danger">*</span>)</label>
                                             <input type="text" name="document_name"
                                                    class="form-control @error('document_name') is-invalid @enderror"
                                                    required autofocus
@@ -77,7 +77,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-3">
                                                             <div class="form-group">
-                                                                <label for="formrow-inputDeviceName">Tên thiết bị</label>
+                                                                <label for="formrow-inputDeviceName">Tên thiết bị (<span class="text-danger">*</span>)</label>
                                                                 <input type="text" name="device_name[]"
                                                                        class="form-control"
                                                                        required
@@ -141,7 +141,7 @@
                                                         <div class="col-lg-2">
                                                             <div class="form-group">
                                                                 <label for="formrow-order_qty">Số lượng yêu
-                                                                    cầu</label>
+                                                                    cầu (<span class="text-danger">*</span>)</label>
                                                                 <input type="number" name="order_qty[]" min="0"
                                                                        class="form-control"
                                                                        required value="{{ $document->order_qty }}"
@@ -150,7 +150,7 @@
                                                         </div>
                                                         <div class="col-lg-2">
                                                             <div class="form-group">
-                                                                <label for="formrow-inputstock">Số lượng trong kho</label>
+                                                                <label for="formrow-inputstock">Số lượng trong kho (<span class="text-danger">*</span>)</label>
                                                                 <input type="number" name="stock[]" min="0"
                                                                        required
                                                                        value="{{ $document->stock }}"
@@ -161,7 +161,7 @@
                                                         <div class="col-lg-2">
                                                             <div class="form-group">
                                                                 <label for="recommended_qty">Số lượng đề nghị
-                                                                    cấp</label>
+                                                                    cấp (<span class="text-danger">*</span>)</label>
                                                                 <input type="number" name="recommended_qty[]"
                                                                        required min="0"
                                                                        value="{{ $document->recommended_qty }}"
@@ -171,7 +171,7 @@
                                                         </div>
                                                         <div class="col-lg-3">
                                                             <div class="form-group">
-                                                                <label for="unit_price">Đơn giá (đã bao gồm VAT)</label>
+                                                                <label for="unit_price">Đơn giá (đã bao gồm VAT) (<span class="text-danger">*</span>)</label>
                                                                 <input type="number" name="unit_price[]"
                                                                        required min="0"
                                                                        value="{{ $document->unit_price }}"
@@ -181,7 +181,7 @@
                                                         </div>
                                                         <div class="col-lg-3">
                                                             <div class="form-group">
-                                                                <label for="total_money">Tổng tiền (đã bao gồm VAT)</label>
+                                                                <label for="total_money">Tổng tiền (đã bao gồm VAT) (<span class="text-danger">*</span>)</label>
                                                                 <input type="number" name="total_money[]" id="total_money"
                                                                        required min="0"
                                                                        value="{{ $document->total_money }}"

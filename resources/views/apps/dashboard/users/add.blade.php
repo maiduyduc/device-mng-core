@@ -35,13 +35,13 @@
                             <form method="post" action="{{ route('user.store') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="formrow-name-input">Tên người dùng</label>
+                                    <label for="formrow-name-input">Tên người dùng (<span class="text-danger">*</span>)</label>
                                     <input type="text" name="name"
                                            class="form-control @error('name') is-invalid @enderror"
                                            id="formrow-name-input"
                                            placeholder="Nhập tên người dùng"
                                            value="{{ old('name') }}"
-                                           required="">
+                                           required>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -49,12 +49,12 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="formrow-email-input">Email</label>
+                                    <label for="formrow-email-input">Email (<span class="text-danger">*</span>)</label>
                                     <input type="email" name="email"
                                            class="form-control @error('email') is-invalid @enderror"
                                            value="{{ old('email') }}"
                                            placeholder="Nhập Email"
-                                           id="formrow-email-input" required="">
+                                           id="formrow-email-input" required>
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -62,11 +62,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="formrow-password-input">Mật khẩu</label>
+                                    <label for="formrow-password-input">Mật khẩu (<span class="text-danger">*</span>)</label>
                                     <input type="password" name="password"
                                            placeholder="Nhập mật khẩu"
                                            class="form-control @error('password') is-invalid @enderror"
-                                           id="formrow-password-input" required="">
+                                           id="formrow-password-input" required>
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

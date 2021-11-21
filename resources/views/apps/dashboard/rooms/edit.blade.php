@@ -33,13 +33,13 @@
                             <form method="post" action="{{ route('room.update', ['id' => $room->id]) }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="formrow-name-input">Tên phòng</label>
+                                    <label for="formrow-name-input">Tên phòng (<span class="text-danger">*</span>)</label>
                                     <input type="text" name="name"
                                            class="form-control @error('name') is-invalid @enderror"
                                            id="formrow-name-input"
                                            placeholder="Nhập tên phòng"
                                            value="{{ $room->name }}"
-                                           required="">
+                                           required>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

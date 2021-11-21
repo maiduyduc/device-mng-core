@@ -36,7 +36,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="formrow-document-name">Tên văn bản</label>
+                                            <label for="formrow-document-name">Tên văn bản (<span class="text-danger">*</span>)</label>
                                             <input type="text" name="document_name" class="form-control"
                                                    required autofocus
                                                    value="{{ $device_plan_id->name }}"
@@ -89,7 +89,7 @@
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label for="formrow-inputDeviceName">Tên thiết
-                                                                    bị</label>
+                                                                    bị (<span class="text-danger">*</span>)</label>
                                                                 <input type="text" name="device_name[]"
                                                                        class="form-control"
                                                                        required
@@ -104,7 +104,7 @@
                                                         </div>
                                                         <div class="col-lg-3">
                                                             <div class="form-group">
-                                                                <label for="qty">Số lượng</label>
+                                                                <label for="qty">Số lượng (<span class="text-danger">*</span>)</label>
                                                                 <input type="number" class="form-control" name="qty[]"
                                                                        required
                                                                        value="{{ $info->qty }}"

@@ -35,7 +35,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="formrow-inputInfo11">Kỳ kiểm kê</label>
+                                            <label for="formrow-inputInfo11">Kỳ kiểm kê (<span class="text-danger">*</span>)</label>
                                             <input type="text" name="semesters"
                                                    class="form-control @error('semesters') is-invalid @enderror"
                                                    required autofocus
@@ -79,7 +79,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
-                                                            <label for="formrow-inputDeviceName">Tên thiết bị</label>
+                                                            <label for="formrow-inputDeviceName">Tên thiết bị (<span class="text-danger">*</span>)</label>
                                                             <input type="text" name="device_name[]"
                                                                    class="form-control @error('device_name.0') is-invalid @enderror"
                                                                    required
@@ -134,7 +134,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-2">
                                                         <div class="form-group">
-                                                            <label for="qty_doc">Số lượng theo sổ sách</label>
+                                                            <label for="qty_doc">Số lượng theo sổ sách (<span class="text-danger">*</span>)</label>
                                                             <input type="number" name="qty_document[]" min="0"
                                                                    class="form-control @error('qty_document.0') is-invalid @enderror"
                                                                    required value="{{ old('qty_document.0') }}"
@@ -148,7 +148,7 @@
                                                     </div>
                                                     <div class="col-lg-2">
                                                         <div class="form-group">
-                                                            <label for="price_document">Nguyên giá</label>
+                                                            <label for="price_document">Nguyên giá (<span class="text-danger">*</span>)</label>
                                                             <input type="number" name="price_document[]" min="0"
                                                                    required
                                                                    class="form-control @error('price_document.0') is-invalid @enderror"
@@ -162,7 +162,7 @@
                                                     </div>
                                                     <div class="col-lg-2">
                                                         <div class="form-group">
-                                                            <label for="qty_inventory">Số lượng theo kiểm kê</label>
+                                                            <label for="qty_inventory">Số lượng theo kiểm kê (<span class="text-danger">*</span>)</label>
                                                             <input type="number" name="qty_inventory[]"
                                                                    required min="0"
                                                                    class="form-control @error('qty_inventory.0') is-invalid @enderror"
@@ -176,7 +176,7 @@
                                                     </div>
                                                     <div class="col-lg-2">
                                                         <div class="form-group">
-                                                            <label for="price_inventory">Nguyên giá (theo kiểm kê)</label>
+                                                            <label for="price_inventory">Nguyên giá theo kiểm kê (<span class="text-danger">*</span>)</label>
                                                             <input type="number" name="price_inventory[]"
                                                                    required min="0"
                                                                    class="form-control @error('price_inventory.0') is-invalid @enderror"
@@ -202,7 +202,7 @@
                                                     </div>
                                                     <div class="col-lg-2">
                                                         <div class="form-group">
-                                                            <label for="estimate_price">Giá trị ước tính</label>
+                                                            <label for="estimate_price">Giá trị ước tính (<span class="text-danger">*</span>)</label>
                                                             <input type="number" name="estimate_price[]" id="estimate_price"
                                                                    required min="0"
                                                                    class="form-control @error('estimate_price.0') is-invalid @enderror">

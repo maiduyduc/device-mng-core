@@ -33,12 +33,12 @@
                             <form method="post" action="{{ route('room.store') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="formrow-name-input">Tên phòng</label>
+                                    <label for="formrow-name-input">Tên phòng (<span class="text-danger">*</span>)</label>
                                     <input type="text" name="name"
                                            class="form-control"
                                            id="formrow-name-input"
                                            placeholder="Nhập tên phòng"
-                                           required="">
+                                           required>
                                 </div>
                                 <div>
                                     <button type="submit" class="btn btn-primary w-md">Đồng ý</button>

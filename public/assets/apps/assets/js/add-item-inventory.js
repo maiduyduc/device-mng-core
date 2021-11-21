@@ -25,7 +25,7 @@ function appendText() {
                 "<div class='row'>" +
                     "<div class='col-lg-3'>" +
                         "<div class='form-group'>" +
-                            "<label>Tên thiết bị</label>" +
+                            "<label>Tên thiết bị (<span class='text-danger'>*</span>)</label>" +
                             "<input type='text' name='device_name[]' class='form-control' required>" +
                        " </div>" +
                     "</div>" +
@@ -66,25 +66,25 @@ function appendText() {
                 "<div class='row'>" +
                     "<div class='col-lg-2'>" +
                         "<div class='form-group'>" +
-                            "<label>Số lượng theo sổ sách</label>" +
+                            "<label>Số lượng theo sổ sách (<span class='text-danger'>*</span>)</label>" +
                             "<input type='number' name='qty_document[]' min='0' class='form-control' required>" +
                         "</div>" +
                     "</div>" +
                     "<div class='col-lg-2'>" +
                         "<div class='form-group'>" +
-                            "<label>Nguyên giá</label>" +
+                            "<label>Nguyên giá (<span class='text-danger'>*</span>)</label>" +
                             "<input type='number' name='price_document[]' min='0' required class='form-control'>" +
                         "</div>" +
                     "</div>" +
                     "<div class='col-lg-2'>" +
                         "<div class='form-group'>" +
-                            "<label>Số lượng theo kiểm kê</label>" +
+                            "<label>Số lượng theo kiểm kê (<span class='text-danger'>*</span>)</label>" +
                             "<input type='number' name='qty_inventory[]' required min='0' class='form-control'>" +
                        " </div>" +
                     "</div>" +
                     "<div class='col-lg-2'>" +
                         "<div class='form-group'>" +
-                            "<label>Nguyên giá (theo kiểm kê)</label>" +
+                            "<label>Nguyên giá theo kiểm kê (<span class='text-danger'>*</span>)</label>" +
                             "<input type='number' name='price_inventory[]' required min='0' class='form-control'>" +
                         "</div>" +
                     "</div>" +
@@ -96,7 +96,7 @@ function appendText() {
                     "</div>" +
                     "<div class='col-lg-2'>" +
                         "<div class='form-group'>" +
-                            "<label>Giá trị ước tính</label>" +
+                            "<label>Giá trị ước tính (<span class='text-danger'>*</span>)</label>" +
                             "<input type='number' name='estimate_price[]' required min='0' class='form-control'>" +
                         "</div>" +
                     "</div>" +

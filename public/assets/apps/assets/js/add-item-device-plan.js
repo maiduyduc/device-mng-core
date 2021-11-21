@@ -26,13 +26,13 @@ function appendText() {
                " <div class='row'>" +
                     "<div class='col-lg-6'>" +
                         "<div class='form-group'>" +
-                            "<label for='formrow-inputDeviceName'>Tên thiết bị</label>" +
+                            "<label for='formrow-inputDeviceName'>Tên thiết bị (<span class='text-danger'>*</span>)</label>" +
                             "<input type='text' name='device_name[]' autofocus class='form-control' required id='formrow-inputDeviceName'>" +
                         "</div>" +
                     "</div>" +
                     "<div class='col-lg-3'>" +
                         "<div class='form-group'>" +
-                            "<label for='qty'>Số lượng</label>" +
+                            "<label for='qty'>Số lượng (<span class='text-danger'>*</span>)</label>" +
                             "<input type='number' class='form-control' name='qty[]' required min='1' id='qty'>" +
                         "</div>" +
                     "</div>" +

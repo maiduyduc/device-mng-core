@@ -35,7 +35,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="formrow-input_document_name">Tên văn bản</label>
+                                            <label for="formrow-input_document_name">Tên văn bản (<span class="text-danger">*</span>)</label>
                                             <input type="text" name="document_name"
                                                    class="form-control @error('document_name') is-invalid @enderror"
                                                    required autofocus
@@ -77,7 +77,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-3">
                                                             <div class="form-group">
-                                                                <label for="formrow-inputDeviceName">Tên thiết bị</label>
+                                                                <label for="formrow-inputDeviceName">Tên thiết bị (<span class="text-danger">*</span>)</label>
                                                                 <input type="text" name="device_name[]"
                                                                        class="form-control"
                                                                        required
@@ -140,7 +140,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-2">
                                                             <div class="form-group">
-                                                                <label for="formrow-order_qty">Số lượng</label>
+                                                                <label for="formrow-order_qty">Số lượng (<span class="text-danger">*</span>)</label>
                                                                 <input type="number" name="qty[]" min="0"
                                                                        class="form-control"
                                                                        required value="{{ $info->qty }}"
