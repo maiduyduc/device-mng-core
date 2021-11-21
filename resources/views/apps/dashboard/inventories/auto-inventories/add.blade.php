@@ -95,7 +95,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="semesters">Kỳ kiểm kê</label>
+                                        <label for="semesters">Kỳ kiểm kê (<span class='text-danger'>*</span>)</label>
                                         <input type="text" name="semesters" id="semesters" required class="form-control">
                                     </div>
                                 </div>

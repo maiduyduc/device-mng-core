@@ -35,7 +35,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="formrow-input_document_name">Tên văn bản</label>
+                                            <label for="formrow-input_document_name">Tên văn bản (<span class="text-danger">*</span>)</label>
                                             <input type="text" name="document_name"
                                                    class="form-control @error('document_name') is-invalid @enderror"
                                                    required autofocus
@@ -95,7 +95,7 @@
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
-                                                            <label class="control-label">Giá thanh lý</label>
+                                                            <label class="control-label">Giá thanh lý (<span class="text-danger">*</span>)</label>
                                                             <input type="number" class="form-control" name="price[]"
                                                                    required
                                                                    min="1" id="price">

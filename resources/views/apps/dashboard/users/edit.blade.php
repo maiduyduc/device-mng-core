@@ -35,7 +35,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label for="formrow-firstname-input">Tên người dùng</label>
+                                    <label for="formrow-firstname-input">Tên người dùng (<span class="text-danger">*</span>)</label>
                                     <input type="text" name="name" value="{{ $user->name }}"
                                            required autofocus
                                            placeholder="{{ __('Tên người dùng') }}"
@@ -48,9 +48,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="formrow-email-input">Email</label>
+                                    <label for="formrow-email-input">Email (<span class="text-danger">*</span>)</label>
                                     <input type="email" name="email" placeholder="{{ __('Địa chỉ EMail') }}"
                                            value="{{ $user->email }}"
+                                           required
                                            class="form-control @error('email') is-invalid @enderror"
                                            id="formrow-email-input">
                                     @error('email')

@@ -34,7 +34,7 @@
                             <form method="post" action="{{ route('device-group.update', ['id'=>$device_group->id]) }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="formrow-name-input">Tên nhóm</label>
+                                    <label for="formrow-name-input">Tên nhóm (<span class="text-danger">*</span>)</label>
                                     <input type="text" name="name"
                                            class="form-control @error('name') is-invalid @enderror"
                                            id="formrow-name-input"
@@ -48,7 +48,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Phòng</label>
+                                    <label class="control-label">Phòng (<span class="text-danger">*</span>)</label>
                                     <select name="room_id" class="form-control select2-search-disable select2-init">
                                             @foreach($rooms as $room)
                                                 <option

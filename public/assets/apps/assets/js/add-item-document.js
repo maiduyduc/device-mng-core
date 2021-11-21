@@ -27,7 +27,7 @@ function appendText() {
                 "<div class='row'>" +
                     "<div class='col-lg-3'>" +
                         "<div class='form-group'>" +
-                            "<label For='formrow-inputDeviceName'>Tên thiết bị</label>" +
+                            "<label For='formrow-inputDeviceName'>Tên thiết bị (<span class='text-danger'>*</span>)</label>" +
                           " <input type='text' class='form-control' name='device_name[]' required id='formrow-inputDeviceName'>" +
                         "</div>" +
                     "</div>" +
@@ -83,32 +83,32 @@ function appendText() {
                 "<div class='row'>"+
                     "<div class='col-lg-2'>"+
                         "<div class='form-group'>"+
-                            "<label for='formrow-inputorder_quantity'>Số lượng yêu cầu</label>"+
-                            "<input type='number' min='0' class='form-control' name='order_qty[]' id='formrow-inputorder_quantity'>"+
+                            "<label for='formrow-inputorder_quantity'>Số lượng yêu cầu (<span class='text-danger'>*</span>)</label>"+
+                            "<input type='number' min='0' class='form-control' required name='order_qty[]' id='formrow-inputorder_quantity'>"+
                         "</div>"+
                     "</div>"+
                     "<div class='col-lg-2'>"+
                         "<div class='form-group'>"+
-                            "<label for='formrow-inputstock'>Số lượng trong kho</label>"+
-                            "<input type='number' min='0' class='form-control' name='stock[]' id='formrow-inputstock'>"+
+                            "<label for='formrow-inputstock'>Số lượng trong kho (<span class='text-danger'>*</span>)</label>"+
+                            "<input type='number' min='0' class='form-control' required name='stock[]' id='formrow-inputstock'>"+
                         "</div>"+
                     "</div>"+
                     "<div class='col-lg-2'>"+
                         "<div class='form-group'>"+
-                            "<label for='formrow-inputrecommened_unit'>Số lượng đề nghị cấp</label>"+
-                            "<input type='number' min='0' class='form-control' name='recommended_qty[]' id='formrow-inputrecommened_unit'>"+
+                            "<label for='formrow-inputrecommened_unit'>Số lượng đề nghị cấp (<span class='text-danger'>*</span>)</label>"+
+                            "<input type='number' min='0' class='form-control' required name='recommended_qty[]' id='formrow-inputrecommened_unit'>"+
                         "</div>"+
                     "</div>"+
                     "<div class='col-lg-3'>"+
                         "<div class='form-group'>"+
-                            "<label for='formrow-inputUnitPrice'>Đơn giá (đã bao gồm VAT)</label>"+
-                            "<input type='number' min='0' class='form-control' name='unit_price[]' id='formrow-inputUnitPrice'>"+
+                            "<label for='formrow-inputUnitPrice'>Đơn giá (đã bao gồm VAT) (<span class='text-danger'>*</span>)</label>"+
+                            "<input type='number' min='0' class='form-control' required name='unit_price[]' id='formrow-inputUnitPrice'>"+
                         "</div>"+
                     "</div>"+
                     "<div class='col-lg-3'>"+
                         "<div class='form-group'>"+
-                            "<label for='formrow-inputTotal'>Tổng tiền (đã bao gồm VAT)</label>"+
-                            "<input type='number' min='0' class='form-control' name='total_money[]' id='formrow-inputTotal'>"+
+                            "<label for='formrow-inputTotal'>Tổng tiền (đã bao gồm VAT) (<span class='text-danger'>*</span>)</label>"+
+                            "<input type='number' min='0' class='form-control' required name='total_money[]' id='formrow-inputTotal'>"+
                         "</div>"+
                     "</div>"+
                 "</div>"+

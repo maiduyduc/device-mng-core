@@ -91,7 +91,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label for="formrow-name">Tên thiết bị</label>
+                                                <label for="formrow-name">Tên thiết bị (<span class="text-danger">*</span>)</label>
                                                 <input type="text" name="device_name" min="0"
                                                        class="form-control @error('device_name') is-invalid @enderror"
                                                        required value="{{ $device->device_name }}"

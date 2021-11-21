@@ -33,13 +33,13 @@
                             <form method="post" action="{{ route('category-device.store') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="formrow-name-input">Tên chủng loại</label>
+                                    <label for="formrow-name-input">Tên chủng loại (<span class="text-danger">*</span>)</label>
                                     <input type="text" name="name"
                                            class="form-control @error('name') is-invalid @enderror"
                                            id="formrow-name-input"
                                            placeholder="Nhập tên chủng loại"
                                            value="{{ old('name') }}"
-                                           required="">
+                                           required>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
