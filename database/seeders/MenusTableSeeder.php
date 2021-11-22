@@ -171,9 +171,10 @@ class MenusTableSeeder extends Seeder
         $this->endDropdown();
         //================
         //Tìm kiếm, báo cáo
-        $this->beginDropdown('ktv,sadmin',   'Báo cáo',   'mdi mdi-book-search-outline');
+        $this->beginDropdown('ktv,sadmin,trk,ptb',   'Tìm kiếm - Báo cáo',   'mdi mdi-book-search-outline');
 //            $this->insertLink('ktv,ptb,trk',  'Tìm kiếm',                  '/developing');
             $this->insertLink('ktv,sadmin',  'Lập báo cáo',               '/report');
+            $this->insertLink('ktv,sadmin,trk,ptb',  'Tìm kiếm',               '/search');
         $this->endDropdown();
         //================
 

@@ -408,6 +408,16 @@ Route::group(['middleware' => ['get.menu']], function () {
             'uses' => 'apps\DeviceGroupController@deleteDeviceFromGroup'
         ]);
     });
+    Route::prefix('/search')->group(function () {
+        Route::get('/', [
+            'as' => 'search.index',
+            'uses' => 'apps\SearchController@index'
+        ]);
+        Route::get('/find', [
+            'as' => 'search.find',
+            'uses' => 'apps\SearchController@find'
+        ]);
+    });
     //================================================================
     //================================================================
     //================================================================
