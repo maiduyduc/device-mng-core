@@ -115,6 +115,7 @@ this.updateSelectParent = function () {
   });
 };
 
+
 this.toggleDivs = function () {
   var value = document.getElementById("type").value;
 
@@ -144,6 +145,31 @@ document.getElementById("type").onchange = function () {
   self.toggleDivs();
 };
 
+//========================
+this.toggleInput = function () {
+    var value = document.getElementById("key").value;
+
+    if (value === 'category') {
+        // document.getElementById('device_only').classList.add('d-none');
+        document.getElementById('with_cate').classList.remove('d-none');
+        document.getElementById('with_room').classList.add('d-none');
+    } else if (value === 'room') {
+        // document.getElementById('device_only').classList.add('d-none');
+        document.getElementById('with_cate').classList.add('d-none');
+        document.getElementById('with_room').classList.remove('d-none');
+    } else {
+        // document.getElementById('device_only').classList.add('d-none');
+        document.getElementById('with_cate').classList.add('d-none');
+        document.getElementById('with_room').classList.add('d-none');
+    }
+};
+
+this.toggleInput();
+
+document.getElementById("key").onchange = function () {
+    self.toggleInput();
+};
+//==============
 /***/ }),
 
 /***/ "./resources/sass/style.scss":
