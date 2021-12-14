@@ -115,7 +115,6 @@ this.updateSelectParent = function () {
   });
 };
 
-
 this.toggleDivs = function () {
   var value = document.getElementById("type").value;
 
@@ -165,8 +164,8 @@ document.getElementById("type").onchange = function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! I:\device-mng-core\resources\js\coreui\menu-create.js */"./resources/js/coreui/menu-create.js");
-module.exports = __webpack_require__(/*! I:\device-mng-core\resources\sass\style.scss */"./resources/sass/style.scss");
+__webpack_require__(/*! C:\xampp\htdocs\device-mng-core\resources\js\coreui\menu-create.js */"./resources/js/coreui/menu-create.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\device-mng-core\resources\sass\style.scss */"./resources/sass/style.scss");
 
 
 /***/ })
