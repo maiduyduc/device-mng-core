@@ -90,13 +90,6 @@
                                         Đăng nhập
                                     </button>
                                 </div>
-                                @if (Route::has('password.request'))
-{{--                                    <div class="mt-4 text-center">--}}
-{{--                                        <a href="{{ route('password.request') }}" class="text-muted"><i--}}
-{{--                                                class="mdi mdi-lock mr-1"></i>--}}
-{{--                                            Quên mật khẩu?</a>--}}
-{{--                                    </div>--}}
-                                @endif
                             </form>
                         </div>
 
