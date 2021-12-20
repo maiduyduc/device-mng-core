@@ -31,24 +31,25 @@ class SearchController extends Controller
         $room = $request->room_id;
         $rooms = DB::table('rooms')->get();
         $categories = DB::table('categories')->get();
-        if($request->key == 'category'){
+        if ($request->key == 'category') {
             $devices = $this->device
                 ->where('category_id', $category)
                 ->where('device_name', 'like', '%' . $txt . '%')
                 ->get();
-        }
-        elseif ($request->key == 'room'){
+        } elseif ($request->key == 'room') {
             $devices = $this->device
                 ->where('room_id', $room)
                 ->where('device_name', 'like', '%' . $txt . '%')
                 ->get();
-        } else{
+        } else {
             $devices = $this->device
                 ->where('device_name', $txt)
                 ->orwhere('device_name', 'like', '%' . $txt . '%')
                 ->get();
         }
-         return view('apps.dashboard.search.result',
-             compact('devices', 'rooms', 'categories', 'txt', 'category', 'room'));
+        return view(
+            'apps.dashboard.search.result',
+            compact('devices', 'rooms', 'categories', 'txt', 'category', 'room')
+        );
     }
 }
