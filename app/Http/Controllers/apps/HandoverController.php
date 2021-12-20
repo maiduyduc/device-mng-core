@@ -39,9 +39,9 @@ class HandoverController extends Controller
     public function index(Request $request)
     {
         $i = 1;
-        if($request->has('pending')){
-            $handovers = $this->handover::where('status','pending')->get();
-        }else{
+        if ($request->has('pending')) {
+            $handovers = $this->handover::where('status', 'pending')->get();
+        } else {
             $handovers = $this->handover::all();
         }
         return view('apps.dashboard.handovers.index', compact('handovers', 'i'));
@@ -106,7 +106,7 @@ class HandoverController extends Controller
     public function delete($id)
     {
         $handover = $this->handover->find($id);
-        if($handover->is_handover == 1){
+        if ($handover->is_handover == 1) {
             return $this->failResponse();
         }
         try {
@@ -161,7 +161,7 @@ class HandoverController extends Controller
 
     public function info($id)
     {
-//        alert()->info('', 'Vui lòng điền đầy đủ thông tin cần thiết trước khi bàn giao hoặc xuất thông tin.');
+        //        alert()->info('', 'Vui lòng điền đầy đủ thông tin cần thiết trước khi bàn giao hoặc xuất thông tin.');
         $i = 1;
         $infos = $this->handover_list->where('handover_id', $id)->get();
         $code = $this->handover->where('id', $id)->get();
@@ -314,7 +314,8 @@ class HandoverController extends Controller
         }
     }
 
-    public function exportOnly(Request $request, $id){
+    public function exportOnly(Request $request, $id)
+    {
         $handover_id = $this->handover->find($id);
         if ($handover_id->is_export == 1) {
             alert()->info('Thông tin này đã được xuất rồi!');
@@ -354,7 +355,7 @@ class HandoverController extends Controller
                 $this->updateWhenExport(3);
                 DB::commit();
                 alert()->success('Xuất thông tin thành công!');
-                return redirect()->route('device.index','noRoom');
+                return redirect()->route('device.index', 'noRoom');
             } catch (\Exception $exception) {
                 DB::rollBack();
                 log::error('Message: ' . $exception->getMessage() . ' ---line: ' . $exception->getLine());
